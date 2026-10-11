@@ -17,10 +17,13 @@
 > `.audits/202610071347-bab658dd/out/PLAN-placement.md`. Design tokens/copy live in
 > [DESIGN.md](DESIGN.md) and [design/COMP-NOTES.md](design/COMP-NOTES.md), NOT here.
 >
-> **Hosted deltas at port (the ONLY three):** `next.config.mjs` gains
-> `output:"standalone"` + build-time `basePath` from `NEXT_PUBLIC_BASE_PATH`;
-> `useApi.ts` gains the matching `BASE` fetch prefix; `package.json` gains the
-> `test` script. Plus the hosting files: `hosting.yaml`, `server.py`,
+> **Hosted deltas at port (prefix seam + hosting files):** `next.config.mjs`
+> gains `output:"standalone"` + build-time `basePath` from
+> `NEXT_PUBLIC_BASE_PATH`; the raw-ref sweep goes through ONE home,
+> `src/lib/basePath.ts` (`BASE`), consumed by `useApi.ts` (fetch) and the form
+> `action`s of `SearchField.tsx` + `FilterBar.tsx` — basePath rewrites `<Link>`
+> hrefs but NOT raw fetches/actions (DA gate MC 10444 FIX-1); `package.json`
+> gains the `test` script. Plus the hosting files: `hosting.yaml`, `server.py`,
 > `DEPLOY-BUILD.md`, committed `deploy/`. See [Hosting](#hosting-vm106--sibbamalacomfilm).
 
 ## What this is

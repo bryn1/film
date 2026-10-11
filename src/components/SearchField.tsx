@@ -11,15 +11,19 @@
  * this fallback to that boundary, and every curl'd page ships a real
  * <form role="search"> + <input type="search">. It reads NO search
  * params (that is why it can prerender) and carries a plain GET action
- * to /search?q= so even the no-JS path works. The hydrated SearchField
- * replaces it (Suspense swaps fallback → child), so the live DOM has
- * exactly one search field, never two.
+ * to /search?q= so even the no-JS path works. The action carries BASE
+ * (src/lib/basePath.ts) — basePath rewrites <Link> hrefs but NOT raw form
+ * actions, so unprefixed a JS-off submit would leave the app on the hosted
+ * /film copy ("/search" unchanged in local builds). The hydrated
+ * SearchField replaces it (Suspense swaps fallback → child), so the live
+ * DOM has exactly one search field, never two.
  */
 
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
 import type { FormEvent } from "react";
+import { BASE } from "@/lib/basePath";
 import styles from "./SearchField.module.css";
 
 export function SearchField() {
@@ -91,7 +95,7 @@ export function SearchFieldFallback() {
   return (
     <form
       role="search"
-      action="/search"
+      action={`${BASE}/search`}
       method="get"
       className={styles.form}
     >

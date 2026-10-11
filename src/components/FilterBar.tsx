@@ -19,6 +19,7 @@
  */
 
 import Link from "next/link";
+import { BASE } from "@/lib/basePath";
 import { COPY } from "@/lib/format";
 import styles from "./FilterBar.module.css";
 
@@ -50,7 +51,7 @@ export function FilterBar({ values }: FilterBarProps) {
     (values.count === "" || values.count === "20");
 
   return (
-    <form action="/discover" method="get" className={styles.bar}>
+    <form action={`${BASE}/discover`} method="get" className={styles.bar}>
       {/* chip state rides along through the GET submit (§7b hidden filter;
           "" ≡ absent is query.ts's own ruling, so an empty value is inert) */}
       <input type="hidden" name="filter" defaultValue={values.filter} />
