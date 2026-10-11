@@ -1,0 +1,45 @@
+/* Discover — page chrome for /discover (h1, count line, clear button);
+   DESIGN.md tokens only, page paddles mirror SearchResults.module.css. */
+
+.page {
+  max-width: 90rem;
+  margin-inline: auto;
+  padding: var(--space-8) var(--space-4) var(--space-16);
+}
+
+.heading {
+  margin-bottom: var(--space-8);
+  font-size: var(--text-2xl);
+  line-height: var(--lh-tight);
+  font-weight: var(--font-bold);
+  text-align: center;
+}
+
+@media (min-width: 60rem) {
+  /* comp-upptack-1440: the h1 is the page's loudest line */
+  .heading {
+    font-size: var(--text-3xl);
+  }
+}
+
+.count {
+  margin-bottom: var(--space-4);
+  color: var(--text-secondary);
+}
+
+.clearButton {
+  padding: var(--space-2) var(--space-4);
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+.clearButton:hover {
+  background: var(--surface-hover);
+}
+
+.clearButton:active {
+  background: var(--surface-active);
+}

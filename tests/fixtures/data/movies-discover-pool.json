@@ -1,0 +1,2557 @@
+{
+  "page": 1,
+  "results": [
+    {
+      "id": 15001,
+      "title": "Drama på Dramaten",
+      "overview": "En debuterande regissör sätter upp en pjäs om sin egen släkt, men roligheten börjar spilla över i pauserna.",
+      "poster_path": "/po/dramaten.jpg",
+      "backdrop_path": "/bk/dramaten.jpg",
+      "release_date": "2015-03-13",
+      "vote_average": 7.3,
+      "genre_ids": [
+        18
+      ],
+      "media_type": "movie"
+    },
+    {
+      "id": 15002,
+      "title": "Bröllopet på Öland",
+      "overview": "Ett bröllop på en solig ö sätter två familjer på kollisionskurs redan vid välkomstdrinken.",
+      "poster_path": "/po/oland.jpg",
+      "backdrop_path": "/bk/oland.jpg",
+      "release_date": "2017-06-09",
+      "vote_average": 6.6,
+      "genre_ids": [
+        18,
+        10749
+      ],
+      "media_type": "movie"
+    },
+    {
+      "id": 15003,
+      "title": "Arvet efter far",
+      "overview": "När varvsägaren dör samlas barnen i Glo for forgo, och testamenteot läser upp för en halvfylld advokatbyrå.",
+      "poster_path": "/po/arvet.jpg",
+      "backdrop_path": "/bk/arvet.jpg",
+      "release_date": "2014-10-31",
+      "vote_average": 7,
+      "genre_ids": [
+        18
+      ],
+      "media_type": "movie"
+    },
+    {
+      "id": 15004,
+      "title": "Poolfilm 15004",
+      "overview": "En genererad poolfilm med id 15004 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15004.jpg",
+      "backdrop_path": "/bk/p15004.jpg",
+      "release_date": "2013-05-09",
+      "vote_average": 7.6,
+      "genre_ids": [
+        18,
+        35
+      ],
+      "production_companies": [
+        {
+          "id": 88888,
+          "name": "Svea Filmbolag"
+        }
+      ]
+    },
+    {
+      "id": 15005,
+      "title": "Poolfilm 15005",
+      "overview": "En genererad poolfilm med id 15005 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15005.jpg",
+      "backdrop_path": "/bk/p15005.jpg",
+      "release_date": "2015-12-14",
+      "vote_average": 7.8,
+      "genre_ids": [
+        18,
+        10749
+      ],
+      "production_companies": [
+        {
+          "id": 88888,
+          "name": "Svea Filmbolag"
+        }
+      ]
+    },
+    {
+      "id": 15006,
+      "title": "Poolfilm 15006",
+      "overview": "En genererad poolfilm med id 15006 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15006.jpg",
+      "backdrop_path": "/bk/p15006.jpg",
+      "release_date": "2017-07-19",
+      "vote_average": 8.1,
+      "genre_ids": [
+        18,
+        53
+      ],
+      "production_companies": [
+        {
+          "id": 88888,
+          "name": "Svea Filmbolag"
+        }
+      ]
+    },
+    {
+      "id": 15007,
+      "title": "Poolfilm 15007",
+      "overview": "En genererad poolfilm med id 15007 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15007.jpg",
+      "backdrop_path": "/bk/p15007.jpg",
+      "release_date": "2010-02-24",
+      "vote_average": 8.4,
+      "genre_ids": [
+        12,
+        14
+      ]
+    },
+    {
+      "id": 15008,
+      "title": "Poolfilm 15008",
+      "overview": "En genererad poolfilm med id 15008 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15008.jpg",
+      "backdrop_path": "/bk/p15008.jpg",
+      "release_date": "2011-09-01",
+      "vote_average": 7.9,
+      "genre_ids": [
+        16,
+        878
+      ]
+    },
+    {
+      "id": 15009,
+      "title": "Poolfilm 15009",
+      "overview": "En genererad poolfilm med id 15009 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15009.jpg",
+      "backdrop_path": "/bk/p15009.jpg",
+      "release_date": "2012-04-06",
+      "vote_average": 8,
+      "genre_ids": [
+        27,
+        28
+      ]
+    },
+    {
+      "id": 15010,
+      "title": "Poolfilm 15010",
+      "overview": "En genererad poolfilm med id 15010 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15010.jpg",
+      "backdrop_path": "/bk/p15010.jpg",
+      "release_date": "2016-11-11",
+      "vote_average": 9.4,
+      "genre_ids": [
+        28,
+        80
+      ]
+    },
+    {
+      "id": 15011,
+      "title": "Poolfilm 15011",
+      "overview": "En genererad poolfilm med id 15011 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15011.jpg",
+      "backdrop_path": "/bk/p15011.jpg",
+      "release_date": "2014-06-16",
+      "vote_average": 7.7,
+      "genre_ids": [
+        35,
+        10749
+      ]
+    },
+    {
+      "id": 15012,
+      "title": "Poolfilm 15012",
+      "overview": "En genererad poolfilm med id 15012 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15012.jpg",
+      "backdrop_path": "/bk/p15012.jpg",
+      "release_date": "2013-01-21",
+      "vote_average": 8.2,
+      "genre_ids": [
+        10751,
+        12
+      ]
+    },
+    {
+      "id": 15013,
+      "title": "Poolfilm 15013",
+      "overview": "En genererad poolfilm med id 15013 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15013.jpg",
+      "backdrop_path": "/bk/p15013.jpg",
+      "release_date": "2018-08-26",
+      "vote_average": 8.6,
+      "genre_ids": [
+        14,
+        10749
+      ]
+    },
+    {
+      "id": 15014,
+      "title": "Poolfilm 15014",
+      "overview": "En genererad poolfilm med id 15014 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15014.jpg",
+      "backdrop_path": "/bk/p15014.jpg",
+      "release_date": "2019-03-03",
+      "vote_average": 8.8,
+      "genre_ids": [
+        16,
+        878
+      ]
+    },
+    {
+      "id": 15015,
+      "title": "Poolfilm 15015",
+      "overview": "En genererad poolfilm med id 15015 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15015.jpg",
+      "backdrop_path": "/bk/p15015.jpg",
+      "release_date": "2011-10-08",
+      "vote_average": 7.6,
+      "genre_ids": [
+        27,
+        9648
+      ]
+    },
+    {
+      "id": 15016,
+      "title": "Poolfilm 15016",
+      "overview": "En genererad poolfilm med id 15016 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15016.jpg",
+      "backdrop_path": "/bk/p15016.jpg",
+      "release_date": "2012-05-13",
+      "vote_average": 8.3,
+      "genre_ids": [
+        28,
+        53
+      ]
+    },
+    {
+      "id": 15017,
+      "title": "Poolfilm 15017",
+      "overview": "En genererad poolfilm med id 15017 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15017.jpg",
+      "backdrop_path": "/bk/p15017.jpg",
+      "release_date": "2010-12-18",
+      "vote_average": 7.5,
+      "genre_ids": [
+        35,
+        10751
+      ]
+    },
+    {
+      "id": 15018,
+      "title": "Poolfilm 15018",
+      "overview": "En genererad poolfilm med id 15018 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15018.jpg",
+      "backdrop_path": "/bk/p15018.jpg",
+      "release_date": "2020-07-23",
+      "vote_average": 9,
+      "genre_ids": [
+        12,
+        14
+      ]
+    },
+    {
+      "id": 15019,
+      "title": "Poolfilm 15019",
+      "overview": "En genererad poolfilm med id 15019 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15019.jpg",
+      "backdrop_path": "/bk/p15019.jpg",
+      "release_date": "1998-02-28",
+      "vote_average": 6.4,
+      "genre_ids": [
+        16,
+        18
+      ]
+    },
+    {
+      "id": 15020,
+      "title": "Poolfilm 15020",
+      "overview": "En genererad poolfilm med id 15020 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15020.jpg",
+      "backdrop_path": "/bk/p15020.jpg",
+      "release_date": "2005-09-05",
+      "vote_average": 5.2,
+      "genre_ids": [
+        10402
+      ]
+    },
+    {
+      "id": 15021,
+      "title": "Poolfilm 15021",
+      "overview": "En genererad poolfilm med id 15021 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15021.jpg",
+      "backdrop_path": "/bk/p15021.jpg",
+      "release_date": "2021-04-10",
+      "vote_average": 7.1,
+      "genre_ids": [
+        28,
+        53
+      ]
+    },
+    {
+      "id": 15022,
+      "title": "Poolfilm 15022",
+      "overview": "En genererad poolfilm med id 15022 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15022.jpg",
+      "backdrop_path": "/bk/p15022.jpg",
+      "release_date": "2022-11-15",
+      "vote_average": 6.9,
+      "genre_ids": [
+        12,
+        9648
+      ]
+    },
+    {
+      "id": 15023,
+      "title": "Poolfilm 15023",
+      "overview": "En genererad poolfilm med id 15023 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15023.jpg",
+      "backdrop_path": "/bk/p15023.jpg",
+      "release_date": "2023-06-20",
+      "vote_average": 6.7,
+      "genre_ids": [
+        878,
+        80
+      ]
+    },
+    {
+      "id": 15024,
+      "title": "Poolfilm 15024",
+      "overview": "En genererad poolfilm med id 15024 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15024.jpg",
+      "backdrop_path": "/bk/p15024.jpg",
+      "release_date": "2024-01-25",
+      "vote_average": 6.5,
+      "genre_ids": [
+        14,
+        99
+      ]
+    },
+    {
+      "id": 15025,
+      "title": "Poolfilm 15025",
+      "overview": "En genererad poolfilm med id 15025 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15025.jpg",
+      "backdrop_path": "/bk/p15025.jpg",
+      "release_date": "1980-08-02",
+      "vote_average": 5.9,
+      "genre_ids": [
+        14,
+        35
+      ]
+    },
+    {
+      "id": 15026,
+      "title": "Poolfilm 15026",
+      "overview": "En genererad poolfilm med id 15026 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15026.jpg",
+      "backdrop_path": "/bk/p15026.jpg",
+      "release_date": "1981-03-07",
+      "vote_average": 7.2,
+      "genre_ids": [
+        16,
+        10749
+      ]
+    },
+    {
+      "id": 15027,
+      "title": "Poolfilm 15027",
+      "overview": "En genererad poolfilm med id 15027 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15027.jpg",
+      "backdrop_path": "/bk/p15027.jpg",
+      "release_date": "1982-10-12",
+      "vote_average": 6.1,
+      "genre_ids": [
+        27,
+        99
+      ]
+    },
+    {
+      "id": 15028,
+      "title": "Poolfilm 15028",
+      "overview": "En genererad poolfilm med id 15028 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15028.jpg",
+      "backdrop_path": "/bk/p15028.jpg",
+      "release_date": "1983-05-17",
+      "vote_average": 4.6,
+      "genre_ids": [
+        28,
+        10402
+      ]
+    },
+    {
+      "id": 15029,
+      "title": "Poolfilm 15029",
+      "overview": "En genererad poolfilm med id 15029 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15029.jpg",
+      "backdrop_path": "/bk/p15029.jpg",
+      "release_date": "1984-12-22",
+      "vote_average": 7.4,
+      "genre_ids": [
+        35,
+        53
+      ]
+    },
+    {
+      "id": 15030,
+      "title": "Poolfilm 15030",
+      "overview": "En genererad poolfilm med id 15030 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15030.jpg",
+      "backdrop_path": "/bk/p15030.jpg",
+      "release_date": "1985-07-27",
+      "vote_average": 5.4,
+      "genre_ids": [
+        878,
+        80
+      ]
+    },
+    {
+      "id": 15031,
+      "title": "Poolfilm 15031",
+      "overview": "En genererad poolfilm med id 15031 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15031.jpg",
+      "backdrop_path": "/bk/p15031.jpg",
+      "release_date": "1986-02-04",
+      "vote_average": 7,
+      "genre_ids": [
+        10749,
+        9648
+      ]
+    },
+    {
+      "id": 15032,
+      "title": "Poolfilm 15032",
+      "overview": "En genererad poolfilm med id 15032 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15032.jpg",
+      "backdrop_path": "/bk/p15032.jpg",
+      "release_date": "1987-09-09",
+      "vote_average": 6.8,
+      "genre_ids": [
+        10751,
+        12
+      ]
+    },
+    {
+      "id": 15033,
+      "title": "Poolfilm 15033",
+      "overview": "En genererad poolfilm med id 15033 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15033.jpg",
+      "backdrop_path": "/bk/p15033.jpg",
+      "release_date": "1988-04-14",
+      "vote_average": 5.9,
+      "genre_ids": [
+        18,
+        10751
+      ]
+    },
+    {
+      "id": 15034,
+      "title": "Poolfilm 15034",
+      "overview": "En genererad poolfilm med id 15034 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15034.jpg",
+      "backdrop_path": "/bk/p15034.jpg",
+      "release_date": "1989-11-19",
+      "vote_average": 7.2,
+      "genre_ids": [
+        14,
+        9648
+      ]
+    },
+    {
+      "id": 15035,
+      "title": "Poolfilm 15035",
+      "overview": "En genererad poolfilm med id 15035 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15035.jpg",
+      "backdrop_path": "/bk/p15035.jpg",
+      "release_date": "1990-06-24",
+      "vote_average": 6.1,
+      "genre_ids": [
+        99,
+        10402
+      ]
+    },
+    {
+      "id": 15036,
+      "title": "Poolfilm 15036",
+      "overview": "En genererad poolfilm med id 15036 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15036.jpg",
+      "backdrop_path": "/bk/p15036.jpg",
+      "release_date": "1991-01-01",
+      "vote_average": 4.6,
+      "genre_ids": [
+        53,
+        11871
+      ]
+    },
+    {
+      "id": 15037,
+      "title": "Poolfilm 15037",
+      "overview": "En genererad poolfilm med id 15037 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15037.jpg",
+      "backdrop_path": "/bk/p15037.jpg",
+      "release_date": "1992-08-06",
+      "vote_average": 7.4,
+      "genre_ids": [
+        35,
+        878
+      ]
+    },
+    {
+      "id": 15038,
+      "title": "Poolfilm 15038",
+      "overview": "En genererad poolfilm med id 15038 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15038.jpg",
+      "backdrop_path": "/bk/p15038.jpg",
+      "release_date": "1993-03-11",
+      "vote_average": 5.4,
+      "genre_ids": [
+        12,
+        10751
+      ]
+    },
+    {
+      "id": 15039,
+      "title": "Poolfilm 15039",
+      "overview": "En genererad poolfilm med id 15039 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15039.jpg",
+      "backdrop_path": "/bk/p15039.jpg",
+      "release_date": "1994-10-16",
+      "vote_average": 7,
+      "genre_ids": [
+        16,
+        27
+      ]
+    },
+    {
+      "id": 15040,
+      "title": "Poolfilm 15040",
+      "overview": "En genererad poolfilm med id 15040 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15040.jpg",
+      "backdrop_path": "/bk/p15040.jpg",
+      "release_date": "1995-05-21",
+      "vote_average": 6.8,
+      "genre_ids": [
+        12,
+        878
+      ]
+    },
+    {
+      "id": 15041,
+      "title": "Poolfilm 15041",
+      "overview": "En genererad poolfilm med id 15041 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15041.jpg",
+      "backdrop_path": "/bk/p15041.jpg",
+      "release_date": "1996-12-26",
+      "vote_average": 5.9,
+      "genre_ids": [
+        14,
+        35
+      ]
+    },
+    {
+      "id": 15042,
+      "title": "Poolfilm 15042",
+      "overview": "En genererad poolfilm med id 15042 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15042.jpg",
+      "backdrop_path": "/bk/p15042.jpg",
+      "release_date": "1997-07-03",
+      "vote_average": 7.2,
+      "genre_ids": [
+        16,
+        10749
+      ]
+    },
+    {
+      "id": 15043,
+      "title": "Poolfilm 15043",
+      "overview": "En genererad poolfilm med id 15043 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15043.jpg",
+      "backdrop_path": "/bk/p15043.jpg",
+      "release_date": "1999-02-08",
+      "vote_average": 6.1,
+      "genre_ids": [
+        27,
+        99
+      ]
+    },
+    {
+      "id": 15044,
+      "title": "Poolfilm 15044",
+      "overview": "En genererad poolfilm med id 15044 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15044.jpg",
+      "backdrop_path": "/bk/p15044.jpg",
+      "release_date": "2000-09-13",
+      "vote_average": 4.6,
+      "genre_ids": [
+        28,
+        10402
+      ]
+    },
+    {
+      "id": 15045,
+      "title": "Poolfilm 15045",
+      "overview": "En genererad poolfilm med id 15045 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15045.jpg",
+      "backdrop_path": "/bk/p15045.jpg",
+      "release_date": "2001-04-18",
+      "vote_average": 7.4,
+      "genre_ids": [
+        35,
+        53
+      ]
+    },
+    {
+      "id": 15046,
+      "title": "Poolfilm 15046",
+      "overview": "En genererad poolfilm med id 15046 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15046.jpg",
+      "backdrop_path": "/bk/p15046.jpg",
+      "release_date": "2002-11-23",
+      "vote_average": 5.4,
+      "genre_ids": [
+        878,
+        80
+      ]
+    },
+    {
+      "id": 15047,
+      "title": "Poolfilm 15047",
+      "overview": "En genererad poolfilm med id 15047 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15047.jpg",
+      "backdrop_path": "/bk/p15047.jpg",
+      "release_date": "2003-06-28",
+      "vote_average": 7,
+      "genre_ids": [
+        10749,
+        9648
+      ]
+    },
+    {
+      "id": 15048,
+      "title": "Poolfilm 15048",
+      "overview": "En genererad poolfilm med id 15048 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15048.jpg",
+      "backdrop_path": "/bk/p15048.jpg",
+      "release_date": "2004-01-05",
+      "vote_average": 6.8,
+      "genre_ids": [
+        10751,
+        12
+      ]
+    },
+    {
+      "id": 15049,
+      "title": "Poolfilm 15049",
+      "overview": "En genererad poolfilm med id 15049 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15049.jpg",
+      "backdrop_path": "/bk/p15049.jpg",
+      "release_date": "2006-08-10",
+      "vote_average": 5.9,
+      "genre_ids": [
+        18,
+        10751
+      ]
+    },
+    {
+      "id": 15050,
+      "title": "Poolfilm 15050",
+      "overview": "En genererad poolfilm med id 15050 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15050.jpg",
+      "backdrop_path": "/bk/p15050.jpg",
+      "release_date": "2007-03-15",
+      "vote_average": 7.2,
+      "genre_ids": [
+        14,
+        9648
+      ]
+    },
+    {
+      "id": 15051,
+      "title": "Poolfilm 15051",
+      "overview": "En genererad poolfilm med id 15051 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15051.jpg",
+      "backdrop_path": "/bk/p15051.jpg",
+      "release_date": "2008-10-20",
+      "vote_average": 6.1,
+      "genre_ids": [
+        99,
+        10402
+      ]
+    },
+    {
+      "id": 15052,
+      "title": "Poolfilm 15052",
+      "overview": "En genererad poolfilm med id 15052 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15052.jpg",
+      "backdrop_path": "/bk/p15052.jpg",
+      "release_date": "2009-05-25",
+      "vote_average": 4.6,
+      "genre_ids": [
+        53,
+        11871
+      ]
+    },
+    {
+      "id": 15053,
+      "title": "Poolfilm 15053",
+      "overview": "En genererad poolfilm med id 15053 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15053.jpg",
+      "backdrop_path": "/bk/p15053.jpg",
+      "release_date": "1980-12-02",
+      "vote_average": 7.4,
+      "genre_ids": [
+        35,
+        878
+      ]
+    },
+    {
+      "id": 15054,
+      "title": "Poolfilm 15054",
+      "overview": "En genererad poolfilm med id 15054 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15054.jpg",
+      "backdrop_path": "/bk/p15054.jpg",
+      "release_date": "1981-07-07",
+      "vote_average": 5.4,
+      "genre_ids": [
+        12,
+        10751
+      ]
+    },
+    {
+      "id": 15055,
+      "title": "Poolfilm 15055",
+      "overview": "En genererad poolfilm med id 15055 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15055.jpg",
+      "backdrop_path": "/bk/p15055.jpg",
+      "release_date": "1982-02-12",
+      "vote_average": 7,
+      "genre_ids": [
+        16,
+        27
+      ]
+    },
+    {
+      "id": 15056,
+      "title": "Poolfilm 15056",
+      "overview": "En genererad poolfilm med id 15056 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15056.jpg",
+      "backdrop_path": "/bk/p15056.jpg",
+      "release_date": "1983-09-17",
+      "vote_average": 6.8,
+      "genre_ids": [
+        12,
+        878
+      ]
+    },
+    {
+      "id": 15057,
+      "title": "Poolfilm 15057",
+      "overview": "En genererad poolfilm med id 15057 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15057.jpg",
+      "backdrop_path": "/bk/p15057.jpg",
+      "release_date": "1984-04-22",
+      "vote_average": 5.9,
+      "genre_ids": [
+        14,
+        35
+      ]
+    },
+    {
+      "id": 15058,
+      "title": "Poolfilm 15058",
+      "overview": "En genererad poolfilm med id 15058 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15058.jpg",
+      "backdrop_path": "/bk/p15058.jpg",
+      "release_date": "1985-11-27",
+      "vote_average": 7.2,
+      "genre_ids": [
+        16,
+        10749
+      ]
+    },
+    {
+      "id": 15059,
+      "title": "Poolfilm 15059",
+      "overview": "En genererad poolfilm med id 15059 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15059.jpg",
+      "backdrop_path": "/bk/p15059.jpg",
+      "release_date": "1986-06-04",
+      "vote_average": 6.1,
+      "genre_ids": [
+        27,
+        99
+      ]
+    },
+    {
+      "id": 15060,
+      "title": "Poolfilm 15060",
+      "overview": "En genererad poolfilm med id 15060 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15060.jpg",
+      "backdrop_path": "/bk/p15060.jpg",
+      "release_date": "1987-01-09",
+      "vote_average": 4.6,
+      "genre_ids": [
+        28,
+        10402
+      ]
+    },
+    {
+      "id": 15061,
+      "title": "Poolfilm 15061",
+      "overview": "En genererad poolfilm med id 15061 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15061.jpg",
+      "backdrop_path": "/bk/p15061.jpg",
+      "release_date": "1988-08-14",
+      "vote_average": 7.4,
+      "genre_ids": [
+        35,
+        53
+      ]
+    },
+    {
+      "id": 15062,
+      "title": "Poolfilm 15062",
+      "overview": "En genererad poolfilm med id 15062 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15062.jpg",
+      "backdrop_path": "/bk/p15062.jpg",
+      "release_date": "1989-03-19",
+      "vote_average": 5.4,
+      "genre_ids": [
+        878,
+        80
+      ]
+    },
+    {
+      "id": 15063,
+      "title": "Poolfilm 15063",
+      "overview": "En genererad poolfilm med id 15063 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15063.jpg",
+      "backdrop_path": "/bk/p15063.jpg",
+      "release_date": "1990-10-24",
+      "vote_average": 7,
+      "genre_ids": [
+        10749,
+        9648
+      ]
+    },
+    {
+      "id": 15064,
+      "title": "Poolfilm 15064",
+      "overview": "En genererad poolfilm med id 15064 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15064.jpg",
+      "backdrop_path": "/bk/p15064.jpg",
+      "release_date": "1991-05-01",
+      "vote_average": 6.8,
+      "genre_ids": [
+        10751,
+        12
+      ]
+    },
+    {
+      "id": 15065,
+      "title": "Poolfilm 15065",
+      "overview": "En genererad poolfilm med id 15065 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15065.jpg",
+      "backdrop_path": "/bk/p15065.jpg",
+      "release_date": "1992-12-06",
+      "vote_average": 5.9,
+      "genre_ids": [
+        18,
+        10751
+      ]
+    },
+    {
+      "id": 15066,
+      "title": "Poolfilm 15066",
+      "overview": "En genererad poolfilm med id 15066 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15066.jpg",
+      "backdrop_path": "/bk/p15066.jpg",
+      "release_date": "1993-07-11",
+      "vote_average": 7.2,
+      "genre_ids": [
+        14,
+        9648
+      ]
+    },
+    {
+      "id": 15067,
+      "title": "Poolfilm 15067",
+      "overview": "En genererad poolfilm med id 15067 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15067.jpg",
+      "backdrop_path": "/bk/p15067.jpg",
+      "release_date": "1994-02-16",
+      "vote_average": 6.1,
+      "genre_ids": [
+        99,
+        10402
+      ]
+    },
+    {
+      "id": 15068,
+      "title": "Poolfilm 15068",
+      "overview": "En genererad poolfilm med id 15068 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15068.jpg",
+      "backdrop_path": "/bk/p15068.jpg",
+      "release_date": "1995-09-21",
+      "vote_average": 4.6,
+      "genre_ids": [
+        53,
+        11871
+      ]
+    },
+    {
+      "id": 15069,
+      "title": "Poolfilm 15069",
+      "overview": "En genererad poolfilm med id 15069 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15069.jpg",
+      "backdrop_path": "/bk/p15069.jpg",
+      "release_date": "1996-04-26",
+      "vote_average": 7.4,
+      "genre_ids": [
+        35,
+        878
+      ]
+    },
+    {
+      "id": 15070,
+      "title": "Poolfilm 15070",
+      "overview": "En genererad poolfilm med id 15070 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15070.jpg",
+      "backdrop_path": "/bk/p15070.jpg",
+      "release_date": "1997-11-03",
+      "vote_average": 5.4,
+      "genre_ids": [
+        12,
+        10751
+      ]
+    },
+    {
+      "id": 15071,
+      "title": "Poolfilm 15071",
+      "overview": "En genererad poolfilm med id 15071 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15071.jpg",
+      "backdrop_path": "/bk/p15071.jpg",
+      "release_date": "1998-06-08",
+      "vote_average": 7,
+      "genre_ids": [
+        16,
+        27
+      ],
+      "production_companies": [
+        {
+          "id": 77777,
+          "name": "Nordik Produktion"
+        }
+      ]
+    },
+    {
+      "id": 15072,
+      "title": "Poolfilm 15072",
+      "overview": "En genererad poolfilm med id 15072 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15072.jpg",
+      "backdrop_path": "/bk/p15072.jpg",
+      "release_date": "1999-01-13",
+      "vote_average": 6.8,
+      "genre_ids": [
+        12,
+        878
+      ]
+    },
+    {
+      "id": 15073,
+      "title": "Poolfilm 15073",
+      "overview": "En genererad poolfilm med id 15073 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15073.jpg",
+      "backdrop_path": "/bk/p15073.jpg",
+      "release_date": "2000-08-18",
+      "vote_average": 5.9,
+      "genre_ids": [
+        14,
+        35
+      ]
+    },
+    {
+      "id": 15074,
+      "title": "Poolfilm 15074",
+      "overview": "En genererad poolfilm med id 15074 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15074.jpg",
+      "backdrop_path": "/bk/p15074.jpg",
+      "release_date": "2001-03-23",
+      "vote_average": 7.2,
+      "genre_ids": [
+        16,
+        10749
+      ]
+    },
+    {
+      "id": 15075,
+      "title": "Poolfilm 15075",
+      "overview": "En genererad poolfilm med id 15075 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15075.jpg",
+      "backdrop_path": "/bk/p15075.jpg",
+      "release_date": "2002-10-28",
+      "vote_average": 6.1,
+      "genre_ids": [
+        27,
+        99
+      ]
+    },
+    {
+      "id": 15076,
+      "title": "Poolfilm 15076",
+      "overview": "En genererad poolfilm med id 15076 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15076.jpg",
+      "backdrop_path": "/bk/p15076.jpg",
+      "release_date": "2003-05-05",
+      "vote_average": 4.6,
+      "genre_ids": [
+        28,
+        10402
+      ]
+    },
+    {
+      "id": 15077,
+      "title": "Poolfilm 15077",
+      "overview": "En genererad poolfilm med id 15077 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15077.jpg",
+      "backdrop_path": "/bk/p15077.jpg",
+      "release_date": "2004-12-10",
+      "vote_average": 7.4,
+      "genre_ids": [
+        35,
+        53
+      ]
+    },
+    {
+      "id": 15078,
+      "title": "Poolfilm 15078",
+      "overview": "En genererad poolfilm med id 15078 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15078.jpg",
+      "backdrop_path": "/bk/p15078.jpg",
+      "release_date": "2005-07-15",
+      "vote_average": 5.4,
+      "genre_ids": [
+        878,
+        80
+      ]
+    },
+    {
+      "id": 15079,
+      "title": "Poolfilm 15079",
+      "overview": "En genererad poolfilm med id 15079 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15079.jpg",
+      "backdrop_path": "/bk/p15079.jpg",
+      "release_date": "2006-02-20",
+      "vote_average": 7,
+      "genre_ids": [
+        10749,
+        9648
+      ]
+    },
+    {
+      "id": 15080,
+      "title": "Poolfilm 15080",
+      "overview": "En genererad poolfilm med id 15080 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15080.jpg",
+      "backdrop_path": "/bk/p15080.jpg",
+      "release_date": "2007-09-25",
+      "vote_average": 6.8,
+      "genre_ids": [
+        10751,
+        12
+      ]
+    },
+    {
+      "id": 15081,
+      "title": "Poolfilm 15081",
+      "overview": "En genererad poolfilm med id 15081 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15081.jpg",
+      "backdrop_path": "/bk/p15081.jpg",
+      "release_date": "2008-04-02",
+      "vote_average": 5.9,
+      "genre_ids": [
+        18,
+        10751
+      ]
+    },
+    {
+      "id": 15082,
+      "title": "Poolfilm 15082",
+      "overview": "En genererad poolfilm med id 15082 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15082.jpg",
+      "backdrop_path": "/bk/p15082.jpg",
+      "release_date": "2009-11-07",
+      "vote_average": 7.2,
+      "genre_ids": [
+        14,
+        9648
+      ]
+    },
+    {
+      "id": 15083,
+      "title": "Poolfilm 15083",
+      "overview": "En genererad poolfilm med id 15083 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15083.jpg",
+      "backdrop_path": "/bk/p15083.jpg",
+      "release_date": "2016-06-12",
+      "vote_average": 8.3,
+      "genre_ids": [
+        99,
+        10402
+      ]
+    },
+    {
+      "id": 15084,
+      "title": "Poolfilm 15084",
+      "overview": "En genererad poolfilm med id 15084 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15084.jpg",
+      "backdrop_path": "/bk/p15084.jpg",
+      "release_date": "2018-01-17",
+      "vote_average": 8.6,
+      "genre_ids": [
+        53,
+        11871
+      ]
+    },
+    {
+      "id": 15085,
+      "title": "Poolfilm 15085",
+      "overview": "En genererad poolfilm med id 15085 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15085.jpg",
+      "backdrop_path": "/bk/p15085.jpg",
+      "release_date": "2019-08-22",
+      "vote_average": 9,
+      "genre_ids": [
+        35,
+        878
+      ]
+    },
+    {
+      "id": 15086,
+      "title": "Poolfilm 15086",
+      "overview": "En genererad poolfilm med id 15086 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15086.jpg",
+      "backdrop_path": "/bk/p15086.jpg",
+      "release_date": "2020-03-27",
+      "vote_average": 7.9,
+      "genre_ids": [
+        12,
+        10751
+      ],
+      "production_companies": [
+        {
+          "id": 77777,
+          "name": "Nordik Produktion"
+        }
+      ]
+    },
+    {
+      "id": 15087,
+      "title": "Poolfilm 15087",
+      "overview": "En genererad poolfilm med id 15087 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15087.jpg",
+      "backdrop_path": "/bk/p15087.jpg",
+      "release_date": "2021-10-04",
+      "vote_average": 7,
+      "genre_ids": [
+        16,
+        27
+      ]
+    },
+    {
+      "id": 15088,
+      "title": "Poolfilm 15088",
+      "overview": "En genererad poolfilm med id 15088 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15088.jpg",
+      "backdrop_path": "/bk/p15088.jpg",
+      "release_date": "2022-05-09",
+      "vote_average": 6.8,
+      "genre_ids": [
+        12,
+        878
+      ]
+    },
+    {
+      "id": 15089,
+      "title": "Poolfilm 15089",
+      "overview": "En genererad poolfilm med id 15089 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15089.jpg",
+      "backdrop_path": "/bk/p15089.jpg",
+      "release_date": "2023-12-14",
+      "vote_average": 5.9,
+      "genre_ids": [
+        14,
+        35
+      ]
+    },
+    {
+      "id": 15090,
+      "title": "Poolfilm 15090",
+      "overview": "En genererad poolfilm med id 15090 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15090.jpg",
+      "backdrop_path": "/bk/p15090.jpg",
+      "release_date": "2024-07-19",
+      "vote_average": 7.2,
+      "genre_ids": [
+        16,
+        10749
+      ]
+    },
+    {
+      "id": 15091,
+      "title": "Poolfilm 15091",
+      "overview": "En genererad poolfilm med id 15091 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15091.jpg",
+      "backdrop_path": "/bk/p15091.jpg",
+      "release_date": "1980-02-24",
+      "vote_average": 6.1,
+      "genre_ids": [
+        27,
+        99
+      ]
+    },
+    {
+      "id": 15092,
+      "title": "Poolfilm 15092",
+      "overview": "En genererad poolfilm med id 15092 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15092.jpg",
+      "backdrop_path": "/bk/p15092.jpg",
+      "release_date": "1981-09-01",
+      "vote_average": 4.6,
+      "genre_ids": [
+        28,
+        10402
+      ]
+    },
+    {
+      "id": 15093,
+      "title": "Poolfilm 15093",
+      "overview": "En genererad poolfilm med id 15093 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15093.jpg",
+      "backdrop_path": "/bk/p15093.jpg",
+      "release_date": "1982-04-06",
+      "vote_average": 7.4,
+      "genre_ids": [
+        35,
+        53
+      ]
+    },
+    {
+      "id": 15094,
+      "title": "Poolfilm 15094",
+      "overview": "En genererad poolfilm med id 15094 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15094.jpg",
+      "backdrop_path": "/bk/p15094.jpg",
+      "release_date": "1983-11-11",
+      "vote_average": 5.4,
+      "genre_ids": [
+        878,
+        80
+      ]
+    },
+    {
+      "id": 15095,
+      "title": "Poolfilm 15095",
+      "overview": "En genererad poolfilm med id 15095 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15095.jpg",
+      "backdrop_path": "/bk/p15095.jpg",
+      "release_date": "1984-06-16",
+      "vote_average": 7,
+      "genre_ids": [
+        10749,
+        9648
+      ]
+    },
+    {
+      "id": 15096,
+      "title": "Poolfilm 15096",
+      "overview": "En genererad poolfilm med id 15096 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15096.jpg",
+      "backdrop_path": "/bk/p15096.jpg",
+      "release_date": "1985-01-21",
+      "vote_average": 6.8,
+      "genre_ids": [
+        10751,
+        12
+      ]
+    },
+    {
+      "id": 15097,
+      "title": "Poolfilm 15097",
+      "overview": "En genererad poolfilm med id 15097 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15097.jpg",
+      "backdrop_path": "/bk/p15097.jpg",
+      "release_date": "1986-08-26",
+      "vote_average": 5.9,
+      "genre_ids": [
+        18,
+        10751
+      ]
+    },
+    {
+      "id": 15098,
+      "title": "Poolfilm 15098",
+      "overview": "En genererad poolfilm med id 15098 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15098.jpg",
+      "backdrop_path": "/bk/p15098.jpg",
+      "release_date": "1987-03-03",
+      "vote_average": 7.2,
+      "genre_ids": [
+        14,
+        9648
+      ]
+    },
+    {
+      "id": 15099,
+      "title": "Poolfilm 15099",
+      "overview": "En genererad poolfilm med id 15099 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15099.jpg",
+      "backdrop_path": "/bk/p15099.jpg",
+      "release_date": "1988-10-08",
+      "vote_average": 6.1,
+      "genre_ids": [
+        99,
+        10402
+      ]
+    },
+    {
+      "id": 15100,
+      "title": "Poolfilm 15100",
+      "overview": "En genererad poolfilm med id 15100 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15100.jpg",
+      "backdrop_path": "/bk/p15100.jpg",
+      "release_date": "1989-05-13",
+      "vote_average": 4.6,
+      "genre_ids": [
+        53,
+        11871
+      ]
+    },
+    {
+      "id": 15101,
+      "title": "Poolfilm 15101",
+      "overview": "En genererad poolfilm med id 15101 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15101.jpg",
+      "backdrop_path": "/bk/p15101.jpg",
+      "release_date": "1990-12-18",
+      "vote_average": 7.4,
+      "genre_ids": [
+        35,
+        878
+      ],
+      "production_companies": [
+        {
+          "id": 77777,
+          "name": "Nordik Produktion"
+        }
+      ]
+    },
+    {
+      "id": 15102,
+      "title": "Poolfilm 15102",
+      "overview": "En genererad poolfilm med id 15102 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15102.jpg",
+      "backdrop_path": "/bk/p15102.jpg",
+      "release_date": "1991-07-23",
+      "vote_average": 5.4,
+      "genre_ids": [
+        12,
+        10751
+      ]
+    },
+    {
+      "id": 15103,
+      "title": "Poolfilm 15103",
+      "overview": "En genererad poolfilm med id 15103 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15103.jpg",
+      "backdrop_path": "/bk/p15103.jpg",
+      "release_date": "1992-02-28",
+      "vote_average": 7,
+      "genre_ids": [
+        16,
+        27
+      ]
+    },
+    {
+      "id": 15104,
+      "title": "Poolfilm 15104",
+      "overview": "En genererad poolfilm med id 15104 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15104.jpg",
+      "backdrop_path": "/bk/p15104.jpg",
+      "release_date": "1993-09-05",
+      "vote_average": 6.8,
+      "genre_ids": [
+        12,
+        878
+      ]
+    },
+    {
+      "id": 15105,
+      "title": "Poolfilm 15105",
+      "overview": "En genererad poolfilm med id 15105 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15105.jpg",
+      "backdrop_path": "/bk/p15105.jpg",
+      "release_date": "1994-04-10",
+      "vote_average": 5.9,
+      "genre_ids": [
+        14,
+        35
+      ]
+    },
+    {
+      "id": 15106,
+      "title": "Poolfilm 15106",
+      "overview": "En genererad poolfilm med id 15106 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15106.jpg",
+      "backdrop_path": "/bk/p15106.jpg",
+      "release_date": "1995-11-15",
+      "vote_average": 7.2,
+      "genre_ids": [
+        16,
+        10749
+      ]
+    },
+    {
+      "id": 15107,
+      "title": "Poolfilm 15107",
+      "overview": "En genererad poolfilm med id 15107 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15107.jpg",
+      "backdrop_path": "/bk/p15107.jpg",
+      "release_date": "1996-06-20",
+      "vote_average": 6.1,
+      "genre_ids": [
+        27,
+        99
+      ]
+    },
+    {
+      "id": 15108,
+      "title": "Poolfilm 15108",
+      "overview": "En genererad poolfilm med id 15108 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15108.jpg",
+      "backdrop_path": "/bk/p15108.jpg",
+      "release_date": "1997-01-25",
+      "vote_average": 4.6,
+      "genre_ids": [
+        28,
+        10402
+      ]
+    },
+    {
+      "id": 15109,
+      "title": "Poolfilm 15109",
+      "overview": "En genererad poolfilm med id 15109 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15109.jpg",
+      "backdrop_path": "/bk/p15109.jpg",
+      "release_date": "1998-08-02",
+      "vote_average": 7.4,
+      "genre_ids": [
+        35,
+        53
+      ]
+    },
+    {
+      "id": 15110,
+      "title": "Poolfilm 15110",
+      "overview": "En genererad poolfilm med id 15110 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15110.jpg",
+      "backdrop_path": "/bk/p15110.jpg",
+      "release_date": "1999-03-07",
+      "vote_average": 5.4,
+      "genre_ids": [
+        878,
+        80
+      ]
+    },
+    {
+      "id": 15111,
+      "title": "Poolfilm 15111",
+      "overview": "En genererad poolfilm med id 15111 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15111.jpg",
+      "backdrop_path": "/bk/p15111.jpg",
+      "release_date": "2000-10-12",
+      "vote_average": 7,
+      "genre_ids": [
+        10749,
+        9648
+      ]
+    },
+    {
+      "id": 15112,
+      "title": "Poolfilm 15112",
+      "overview": "En genererad poolfilm med id 15112 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15112.jpg",
+      "backdrop_path": "/bk/p15112.jpg",
+      "release_date": "2001-05-17",
+      "vote_average": 6.8,
+      "genre_ids": [
+        10751,
+        12
+      ]
+    },
+    {
+      "id": 15113,
+      "title": "Poolfilm 15113",
+      "overview": "En genererad poolfilm med id 15113 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15113.jpg",
+      "backdrop_path": "/bk/p15113.jpg",
+      "release_date": "2002-12-22",
+      "vote_average": 5.9,
+      "genre_ids": [
+        18,
+        10751
+      ]
+    },
+    {
+      "id": 15114,
+      "title": "Poolfilm 15114",
+      "overview": "En genererad poolfilm med id 15114 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15114.jpg",
+      "backdrop_path": "/bk/p15114.jpg",
+      "release_date": "2003-07-27",
+      "vote_average": 7.2,
+      "genre_ids": [
+        14,
+        9648
+      ]
+    },
+    {
+      "id": 15115,
+      "title": "Poolfilm 15115",
+      "overview": "En genererad poolfilm med id 15115 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15115.jpg",
+      "backdrop_path": "/bk/p15115.jpg",
+      "release_date": "2004-02-04",
+      "vote_average": 6.1,
+      "genre_ids": [
+        99,
+        10402
+      ]
+    },
+    {
+      "id": 15116,
+      "title": "Poolfilm 15116",
+      "overview": "En genererad poolfilm med id 15116 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15116.jpg",
+      "backdrop_path": "/bk/p15116.jpg",
+      "release_date": "2005-09-09",
+      "vote_average": 4.6,
+      "genre_ids": [
+        53,
+        11871
+      ],
+      "production_companies": [
+        {
+          "id": 77777,
+          "name": "Nordik Produktion"
+        }
+      ]
+    },
+    {
+      "id": 15117,
+      "title": "Poolfilm 15117",
+      "overview": "En genererad poolfilm med id 15117 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15117.jpg",
+      "backdrop_path": "/bk/p15117.jpg",
+      "release_date": "2006-04-14",
+      "vote_average": 7.4,
+      "genre_ids": [
+        35,
+        878
+      ]
+    },
+    {
+      "id": 15118,
+      "title": "Poolfilm 15118",
+      "overview": "En genererad poolfilm med id 15118 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15118.jpg",
+      "backdrop_path": "/bk/p15118.jpg",
+      "release_date": "2007-11-19",
+      "vote_average": 5.4,
+      "genre_ids": [
+        12,
+        10751
+      ]
+    },
+    {
+      "id": 15119,
+      "title": "Poolfilm 15119",
+      "overview": "En genererad poolfilm med id 15119 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15119.jpg",
+      "backdrop_path": "/bk/p15119.jpg",
+      "release_date": "2008-06-24",
+      "vote_average": 7,
+      "genre_ids": [
+        16,
+        27
+      ]
+    },
+    {
+      "id": 15120,
+      "title": "Poolfilm 15120",
+      "overview": "En genererad poolfilm med id 15120 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15120.jpg",
+      "backdrop_path": "/bk/p15120.jpg",
+      "release_date": "2009-01-01",
+      "vote_average": 6.8,
+      "genre_ids": [
+        12,
+        878
+      ]
+    },
+    {
+      "id": 15121,
+      "title": "Poolfilm 15121",
+      "overview": "En genererad poolfilm med id 15121 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15121.jpg",
+      "backdrop_path": "/bk/p15121.jpg",
+      "release_date": "2010-08-06",
+      "vote_average": 7.7,
+      "genre_ids": [
+        14,
+        35
+      ]
+    },
+    {
+      "id": 15122,
+      "title": "Poolfilm 15122",
+      "overview": "En genererad poolfilm med id 15122 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15122.jpg",
+      "backdrop_path": "/bk/p15122.jpg",
+      "release_date": "2011-03-11",
+      "vote_average": 8,
+      "genre_ids": [
+        16,
+        10749
+      ]
+    },
+    {
+      "id": 15123,
+      "title": "Poolfilm 15123",
+      "overview": "En genererad poolfilm med id 15123 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15123.jpg",
+      "backdrop_path": "/bk/p15123.jpg",
+      "release_date": "2012-10-16",
+      "vote_average": 8.3,
+      "genre_ids": [
+        27,
+        99
+      ]
+    },
+    {
+      "id": 15124,
+      "title": "Poolfilm 15124",
+      "overview": "En genererad poolfilm med id 15124 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15124.jpg",
+      "backdrop_path": "/bk/p15124.jpg",
+      "release_date": "2013-05-21",
+      "vote_average": 8.6,
+      "genre_ids": [
+        28,
+        10402
+      ]
+    },
+    {
+      "id": 15125,
+      "title": "Poolfilm 15125",
+      "overview": "En genererad poolfilm med id 15125 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15125.jpg",
+      "backdrop_path": "/bk/p15125.jpg",
+      "release_date": "2014-12-26",
+      "vote_average": 9,
+      "genre_ids": [
+        35,
+        53
+      ]
+    },
+    {
+      "id": 15126,
+      "title": "Poolfilm 15126",
+      "overview": "En genererad poolfilm med id 15126 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15126.jpg",
+      "backdrop_path": "/bk/p15126.jpg",
+      "release_date": "2015-07-03",
+      "vote_average": 7.9,
+      "genre_ids": [
+        878,
+        80
+      ]
+    },
+    {
+      "id": 15127,
+      "title": "Poolfilm 15127",
+      "overview": "En genererad poolfilm med id 15127 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15127.jpg",
+      "backdrop_path": "/bk/p15127.jpg",
+      "release_date": "2016-02-08",
+      "vote_average": 8.1,
+      "genre_ids": [
+        10749,
+        9648
+      ]
+    },
+    {
+      "id": 15128,
+      "title": "Poolfilm 15128",
+      "overview": "En genererad poolfilm med id 15128 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15128.jpg",
+      "backdrop_path": "/bk/p15128.jpg",
+      "release_date": "2017-09-13",
+      "vote_average": 7.5,
+      "genre_ids": [
+        10751,
+        12
+      ]
+    },
+    {
+      "id": 15129,
+      "title": "Poolfilm 15129",
+      "overview": "En genererad poolfilm med id 15129 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15129.jpg",
+      "backdrop_path": "/bk/p15129.jpg",
+      "release_date": "2018-04-18",
+      "vote_average": 7.7,
+      "genre_ids": [
+        18,
+        10751
+      ]
+    },
+    {
+      "id": 15130,
+      "title": "Poolfilm 15130",
+      "overview": "En genererad poolfilm med id 15130 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15130.jpg",
+      "backdrop_path": "/bk/p15130.jpg",
+      "release_date": "2019-11-23",
+      "vote_average": 8,
+      "genre_ids": [
+        14,
+        9648
+      ]
+    },
+    {
+      "id": 15131,
+      "title": "Poolfilm 15131",
+      "overview": "En genererad poolfilm med id 15131 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15131.jpg",
+      "backdrop_path": "/bk/p15131.jpg",
+      "release_date": "2020-06-28",
+      "vote_average": 8.3,
+      "genre_ids": [
+        99,
+        10402
+      ],
+      "production_companies": [
+        {
+          "id": 77777,
+          "name": "Nordik Produktion"
+        }
+      ]
+    },
+    {
+      "id": 15132,
+      "title": "Poolfilm 15132",
+      "overview": "En genererad poolfilm med id 15132 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15132.jpg",
+      "backdrop_path": "/bk/p15132.jpg",
+      "release_date": "2021-01-05",
+      "vote_average": 4.6,
+      "genre_ids": [
+        53,
+        11871
+      ]
+    },
+    {
+      "id": 15133,
+      "title": "Poolfilm 15133",
+      "overview": "En genererad poolfilm med id 15133 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15133.jpg",
+      "backdrop_path": "/bk/p15133.jpg",
+      "release_date": "2022-08-10",
+      "vote_average": 7.4,
+      "genre_ids": [
+        35,
+        878
+      ]
+    },
+    {
+      "id": 15134,
+      "title": "Poolfilm 15134",
+      "overview": "En genererad poolfilm med id 15134 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15134.jpg",
+      "backdrop_path": "/bk/p15134.jpg",
+      "release_date": "2023-03-15",
+      "vote_average": 5.4,
+      "genre_ids": [
+        12,
+        10751
+      ]
+    },
+    {
+      "id": 15135,
+      "title": "Poolfilm 15135",
+      "overview": "En genererad poolfilm med id 15135 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15135.jpg",
+      "backdrop_path": "/bk/p15135.jpg",
+      "release_date": "2024-10-20",
+      "vote_average": 7,
+      "genre_ids": [
+        16,
+        27
+      ]
+    },
+    {
+      "id": 15136,
+      "title": "Poolfilm 15136",
+      "overview": "En genererad poolfilm med id 15136 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15136.jpg",
+      "backdrop_path": "/bk/p15136.jpg",
+      "release_date": "1980-05-25",
+      "vote_average": 6.8,
+      "genre_ids": [
+        12,
+        878
+      ]
+    },
+    {
+      "id": 15137,
+      "title": "Poolfilm 15137",
+      "overview": "En genererad poolfilm med id 15137 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15137.jpg",
+      "backdrop_path": "/bk/p15137.jpg",
+      "release_date": "1981-12-02",
+      "vote_average": 5.9,
+      "genre_ids": [
+        14,
+        35
+      ]
+    },
+    {
+      "id": 15138,
+      "title": "Poolfilm 15138",
+      "overview": "En genererad poolfilm med id 15138 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15138.jpg",
+      "backdrop_path": "/bk/p15138.jpg",
+      "release_date": "1982-07-07",
+      "vote_average": 7.2,
+      "genre_ids": [
+        16,
+        10749
+      ]
+    },
+    {
+      "id": 15139,
+      "title": "Poolfilm 15139",
+      "overview": "En genererad poolfilm med id 15139 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15139.jpg",
+      "backdrop_path": "/bk/p15139.jpg",
+      "release_date": "1983-02-12",
+      "vote_average": 6.1,
+      "genre_ids": [
+        27,
+        99
+      ]
+    },
+    {
+      "id": 15140,
+      "title": "Poolfilm 15140",
+      "overview": "En genererad poolfilm med id 15140 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15140.jpg",
+      "backdrop_path": "/bk/p15140.jpg",
+      "release_date": "1984-09-17",
+      "vote_average": 4.6,
+      "genre_ids": [
+        28,
+        10402
+      ]
+    },
+    {
+      "id": 15141,
+      "title": "Poolfilm 15141",
+      "overview": "En genererad poolfilm med id 15141 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15141.jpg",
+      "backdrop_path": "/bk/p15141.jpg",
+      "release_date": "1985-04-22",
+      "vote_average": 7.4,
+      "genre_ids": [
+        35,
+        53
+      ]
+    },
+    {
+      "id": 15142,
+      "title": "Poolfilm 15142",
+      "overview": "En genererad poolfilm med id 15142 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15142.jpg",
+      "backdrop_path": "/bk/p15142.jpg",
+      "release_date": "1986-11-27",
+      "vote_average": 5.4,
+      "genre_ids": [
+        878,
+        80
+      ]
+    },
+    {
+      "id": 15143,
+      "title": "Poolfilm 15143",
+      "overview": "En genererad poolfilm med id 15143 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15143.jpg",
+      "backdrop_path": "/bk/p15143.jpg",
+      "release_date": "1987-06-04",
+      "vote_average": 7,
+      "genre_ids": [
+        10749,
+        9648
+      ]
+    },
+    {
+      "id": 15144,
+      "title": "Poolfilm 15144",
+      "overview": "En genererad poolfilm med id 15144 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15144.jpg",
+      "backdrop_path": "/bk/p15144.jpg",
+      "release_date": "1988-01-09",
+      "vote_average": 6.8,
+      "genre_ids": [
+        10751,
+        12
+      ]
+    },
+    {
+      "id": 15145,
+      "title": "Poolfilm 15145",
+      "overview": "En genererad poolfilm med id 15145 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15145.jpg",
+      "backdrop_path": "/bk/p15145.jpg",
+      "release_date": "1989-08-14",
+      "vote_average": 5.9,
+      "genre_ids": [
+        18,
+        10751
+      ]
+    },
+    {
+      "id": 15146,
+      "title": "Poolfilm 15146",
+      "overview": "En genererad poolfilm med id 15146 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15146.jpg",
+      "backdrop_path": "/bk/p15146.jpg",
+      "release_date": "1990-03-19",
+      "vote_average": 7.2,
+      "genre_ids": [
+        14,
+        9648
+      ],
+      "production_companies": [
+        {
+          "id": 77777,
+          "name": "Nordik Produktion"
+        }
+      ]
+    },
+    {
+      "id": 15147,
+      "title": "Poolfilm 15147",
+      "overview": "En genererad poolfilm med id 15147 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15147.jpg",
+      "backdrop_path": "/bk/p15147.jpg",
+      "release_date": "1991-10-24",
+      "vote_average": 6.1,
+      "genre_ids": [
+        99,
+        10402
+      ]
+    },
+    {
+      "id": 15148,
+      "title": "Poolfilm 15148",
+      "overview": "En genererad poolfilm med id 15148 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15148.jpg",
+      "backdrop_path": "/bk/p15148.jpg",
+      "release_date": "1992-05-01",
+      "vote_average": 4.6,
+      "genre_ids": [
+        53,
+        11871
+      ]
+    },
+    {
+      "id": 15149,
+      "title": "Poolfilm 15149",
+      "overview": "En genererad poolfilm med id 15149 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15149.jpg",
+      "backdrop_path": "/bk/p15149.jpg",
+      "release_date": "1993-12-06",
+      "vote_average": 7.4,
+      "genre_ids": [
+        35,
+        878
+      ]
+    },
+    {
+      "id": 15150,
+      "title": "Poolfilm 15150",
+      "overview": "En genererad poolfilm med id 15150 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15150.jpg",
+      "backdrop_path": "/bk/p15150.jpg",
+      "release_date": "1994-07-11",
+      "vote_average": 5.4,
+      "genre_ids": [
+        12,
+        10751
+      ]
+    },
+    {
+      "id": 15151,
+      "title": "Poolfilm 15151",
+      "overview": "En genererad poolfilm med id 15151 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15151.jpg",
+      "backdrop_path": "/bk/p15151.jpg",
+      "release_date": "1995-02-16",
+      "vote_average": 7,
+      "genre_ids": [
+        16,
+        27
+      ]
+    },
+    {
+      "id": 15152,
+      "title": "Poolfilm 15152",
+      "overview": "En genererad poolfilm med id 15152 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15152.jpg",
+      "backdrop_path": "/bk/p15152.jpg",
+      "release_date": "1996-09-21",
+      "vote_average": 6.8,
+      "genre_ids": [
+        12,
+        878
+      ]
+    },
+    {
+      "id": 15153,
+      "title": "Poolfilm 15153",
+      "overview": "En genererad poolfilm med id 15153 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15153.jpg",
+      "backdrop_path": "/bk/p15153.jpg",
+      "release_date": "1997-04-26",
+      "vote_average": 5.9,
+      "genre_ids": [
+        14,
+        35
+      ]
+    },
+    {
+      "id": 15154,
+      "title": "Poolfilm 15154",
+      "overview": "En genererad poolfilm med id 15154 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15154.jpg",
+      "backdrop_path": "/bk/p15154.jpg",
+      "release_date": "1998-11-03",
+      "vote_average": 7.2,
+      "genre_ids": [
+        16,
+        10749
+      ]
+    },
+    {
+      "id": 15155,
+      "title": "Poolfilm 15155",
+      "overview": "En genererad poolfilm med id 15155 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15155.jpg",
+      "backdrop_path": "/bk/p15155.jpg",
+      "release_date": "1999-06-08",
+      "vote_average": 6.1,
+      "genre_ids": [
+        27,
+        99
+      ]
+    },
+    {
+      "id": 15156,
+      "title": "Poolfilm 15156",
+      "overview": "En genererad poolfilm med id 15156 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15156.jpg",
+      "backdrop_path": "/bk/p15156.jpg",
+      "release_date": "2000-01-13",
+      "vote_average": 4.6,
+      "genre_ids": [
+        28,
+        10402
+      ]
+    },
+    {
+      "id": 15157,
+      "title": "Poolfilm 15157",
+      "overview": "En genererad poolfilm med id 15157 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15157.jpg",
+      "backdrop_path": "/bk/p15157.jpg",
+      "release_date": "2001-08-18",
+      "vote_average": 7.4,
+      "genre_ids": [
+        35,
+        53
+      ]
+    },
+    {
+      "id": 15158,
+      "title": "Poolfilm 15158",
+      "overview": "En genererad poolfilm med id 15158 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15158.jpg",
+      "backdrop_path": "/bk/p15158.jpg",
+      "release_date": "2002-03-23",
+      "vote_average": 5.4,
+      "genre_ids": [
+        878,
+        80
+      ]
+    },
+    {
+      "id": 15159,
+      "title": "Poolfilm 15159",
+      "overview": "En genererad poolfilm med id 15159 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15159.jpg",
+      "backdrop_path": "/bk/p15159.jpg",
+      "release_date": "2003-10-28",
+      "vote_average": 7,
+      "genre_ids": [
+        10749,
+        9648
+      ]
+    },
+    {
+      "id": 15160,
+      "title": "Poolfilm 15160",
+      "overview": "En genererad poolfilm med id 15160 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15160.jpg",
+      "backdrop_path": "/bk/p15160.jpg",
+      "release_date": "2004-05-05",
+      "vote_average": 6.8,
+      "genre_ids": [
+        10751,
+        12
+      ]
+    },
+    {
+      "id": 15161,
+      "title": "Poolfilm 15161",
+      "overview": "En genererad poolfilm med id 15161 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15161.jpg",
+      "backdrop_path": "/bk/p15161.jpg",
+      "release_date": "2005-12-10",
+      "vote_average": 5.9,
+      "genre_ids": [
+        18,
+        10751
+      ]
+    },
+    {
+      "id": 15162,
+      "title": "Poolfilm 15162",
+      "overview": "En genererad poolfilm med id 15162 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15162.jpg",
+      "backdrop_path": "/bk/p15162.jpg",
+      "release_date": "2006-07-15",
+      "vote_average": 7.2,
+      "genre_ids": [
+        14,
+        9648
+      ]
+    },
+    {
+      "id": 15163,
+      "title": "Poolfilm 15163",
+      "overview": "En genererad poolfilm med id 15163 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15163.jpg",
+      "backdrop_path": "/bk/p15163.jpg",
+      "release_date": "2007-02-20",
+      "vote_average": 6.1,
+      "genre_ids": [
+        99,
+        10402
+      ]
+    },
+    {
+      "id": 15164,
+      "title": "Poolfilm 15164",
+      "overview": "En genererad poolfilm med id 15164 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15164.jpg",
+      "backdrop_path": "/bk/p15164.jpg",
+      "release_date": "2008-09-25",
+      "vote_average": 4.6,
+      "genre_ids": [
+        53,
+        11871
+      ]
+    },
+    {
+      "id": 15165,
+      "title": "Poolfilm 15165",
+      "overview": "En genererad poolfilm med id 15165 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15165.jpg",
+      "backdrop_path": "/bk/p15165.jpg",
+      "release_date": "2009-04-02",
+      "vote_average": 7.4,
+      "genre_ids": [
+        35,
+        878
+      ]
+    },
+    {
+      "id": 15166,
+      "title": "Poolfilm 15166",
+      "overview": "En genererad poolfilm med id 15166 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15166.jpg",
+      "backdrop_path": "/bk/p15166.jpg",
+      "release_date": "2010-11-07",
+      "vote_average": 7.9,
+      "genre_ids": [
+        12,
+        10751
+      ]
+    },
+    {
+      "id": 15167,
+      "title": "Poolfilm 15167",
+      "overview": "En genererad poolfilm med id 15167 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15167.jpg",
+      "backdrop_path": "/bk/p15167.jpg",
+      "release_date": "2011-06-12",
+      "vote_average": 8.1,
+      "genre_ids": [
+        16,
+        27
+      ]
+    },
+    {
+      "id": 15168,
+      "title": "Poolfilm 15168",
+      "overview": "En genererad poolfilm med id 15168 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15168.jpg",
+      "backdrop_path": "/bk/p15168.jpg",
+      "release_date": "2012-01-17",
+      "vote_average": 7.5,
+      "genre_ids": [
+        12,
+        878
+      ]
+    },
+    {
+      "id": 15169,
+      "title": "Poolfilm 15169",
+      "overview": "En genererad poolfilm med id 15169 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15169.jpg",
+      "backdrop_path": "/bk/p15169.jpg",
+      "release_date": "2013-08-22",
+      "vote_average": 7.7,
+      "genre_ids": [
+        14,
+        35
+      ]
+    },
+    {
+      "id": 15170,
+      "title": "Poolfilm 15170",
+      "overview": "En genererad poolfilm med id 15170 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15170.jpg",
+      "backdrop_path": "/bk/p15170.jpg",
+      "release_date": "2014-03-27",
+      "vote_average": 8,
+      "genre_ids": [
+        16,
+        10749
+      ]
+    },
+    {
+      "id": 15171,
+      "title": "Poolfilm 15171",
+      "overview": "En genererad poolfilm med id 15171 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15171.jpg",
+      "backdrop_path": "/bk/p15171.jpg",
+      "release_date": "2015-10-04",
+      "vote_average": 8.3,
+      "genre_ids": [
+        27,
+        99
+      ]
+    },
+    {
+      "id": 15172,
+      "title": "Poolfilm 15172",
+      "overview": "En genererad poolfilm med id 15172 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15172.jpg",
+      "backdrop_path": "/bk/p15172.jpg",
+      "release_date": "2016-05-09",
+      "vote_average": 8.6,
+      "genre_ids": [
+        28,
+        10402
+      ]
+    },
+    {
+      "id": 15173,
+      "title": "Poolfilm 15173",
+      "overview": "En genererad poolfilm med id 15173 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15173.jpg",
+      "backdrop_path": "/bk/p15173.jpg",
+      "release_date": "2017-12-14",
+      "vote_average": 9,
+      "genre_ids": [
+        35,
+        53
+      ]
+    },
+    {
+      "id": 15174,
+      "title": "Poolfilm 15174",
+      "overview": "En genererad poolfilm med id 15174 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15174.jpg",
+      "backdrop_path": "/bk/p15174.jpg",
+      "release_date": "2018-07-19",
+      "vote_average": 7.9,
+      "genre_ids": [
+        878,
+        80
+      ]
+    },
+    {
+      "id": 15175,
+      "title": "Poolfilm 15175",
+      "overview": "En genererad poolfilm med id 15175 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15175.jpg",
+      "backdrop_path": "/bk/p15175.jpg",
+      "release_date": "2019-02-24",
+      "vote_average": 8.1,
+      "genre_ids": [
+        10749,
+        9648
+      ]
+    },
+    {
+      "id": 15176,
+      "title": "Poolfilm 15176",
+      "overview": "En genererad poolfilm med id 15176 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15176.jpg",
+      "backdrop_path": "/bk/p15176.jpg",
+      "release_date": "2020-09-01",
+      "vote_average": 7.5,
+      "genre_ids": [
+        10751,
+        12
+      ]
+    },
+    {
+      "id": 15177,
+      "title": "Poolfilm 15177",
+      "overview": "En genererad poolfilm med id 15177 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15177.jpg",
+      "backdrop_path": "/bk/p15177.jpg",
+      "release_date": "2021-04-06",
+      "vote_average": 5.9,
+      "genre_ids": [
+        18,
+        10751
+      ]
+    },
+    {
+      "id": 15178,
+      "title": "Poolfilm 15178",
+      "overview": "En genererad poolfilm med id 15178 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15178.jpg",
+      "backdrop_path": "/bk/p15178.jpg",
+      "release_date": "2022-11-11",
+      "vote_average": 7.2,
+      "genre_ids": [
+        14,
+        9648
+      ]
+    },
+    {
+      "id": 15179,
+      "title": "Poolfilm 15179",
+      "overview": "En genererad poolfilm med id 15179 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15179.jpg",
+      "backdrop_path": "/bk/p15179.jpg",
+      "release_date": "2023-06-16",
+      "vote_average": 6.1,
+      "genre_ids": [
+        99,
+        10402
+      ]
+    },
+    {
+      "id": 15180,
+      "title": "Poolfilm 15180",
+      "overview": "En genererad poolfilm med id 15180 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15180.jpg",
+      "backdrop_path": "/bk/p15180.jpg",
+      "release_date": "2024-01-21",
+      "vote_average": 4.6,
+      "genre_ids": [
+        53,
+        11871
+      ]
+    },
+    {
+      "id": 15181,
+      "title": "Poolfilm 15181",
+      "overview": "En genererad poolfilm med id 15181 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15181.jpg",
+      "backdrop_path": "/bk/p15181.jpg",
+      "release_date": "1980-08-26",
+      "vote_average": 7.4,
+      "genre_ids": [
+        35,
+        878
+      ]
+    },
+    {
+      "id": 15182,
+      "title": "Poolfilm 15182",
+      "overview": "En genererad poolfilm med id 15182 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15182.jpg",
+      "backdrop_path": "/bk/p15182.jpg",
+      "release_date": "1981-03-03",
+      "vote_average": 5.4,
+      "genre_ids": [
+        12,
+        10751
+      ]
+    },
+    {
+      "id": 15183,
+      "title": "Poolfilm 15183",
+      "overview": "En genererad poolfilm med id 15183 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15183.jpg",
+      "backdrop_path": "/bk/p15183.jpg",
+      "release_date": "1982-10-08",
+      "vote_average": 7,
+      "genre_ids": [
+        16,
+        27
+      ]
+    },
+    {
+      "id": 15184,
+      "title": "Poolfilm 15184",
+      "overview": "En genererad poolfilm med id 15184 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15184.jpg",
+      "backdrop_path": "/bk/p15184.jpg",
+      "release_date": "1983-05-13",
+      "vote_average": 6.8,
+      "genre_ids": [
+        12,
+        878
+      ]
+    },
+    {
+      "id": 15185,
+      "title": "Poolfilm 15185",
+      "overview": "En genererad poolfilm med id 15185 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15185.jpg",
+      "backdrop_path": "/bk/p15185.jpg",
+      "release_date": "1984-12-18",
+      "vote_average": 5.9,
+      "genre_ids": [
+        14,
+        35
+      ]
+    },
+    {
+      "id": 15186,
+      "title": "Poolfilm 15186",
+      "overview": "En genererad poolfilm med id 15186 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15186.jpg",
+      "backdrop_path": "/bk/p15186.jpg",
+      "release_date": "1985-07-23",
+      "vote_average": 7.2,
+      "genre_ids": [
+        16,
+        10749
+      ]
+    },
+    {
+      "id": 15187,
+      "title": "Poolfilm 15187",
+      "overview": "En genererad poolfilm med id 15187 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15187.jpg",
+      "backdrop_path": "/bk/p15187.jpg",
+      "release_date": "1986-02-28",
+      "vote_average": 6.1,
+      "genre_ids": [
+        27,
+        99
+      ]
+    },
+    {
+      "id": 15188,
+      "title": "Poolfilm 15188",
+      "overview": "En genererad poolfilm med id 15188 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15188.jpg",
+      "backdrop_path": "/bk/p15188.jpg",
+      "release_date": "1987-09-05",
+      "vote_average": 4.6,
+      "genre_ids": [
+        28,
+        10402
+      ]
+    },
+    {
+      "id": 15189,
+      "title": "Poolfilm 15189",
+      "overview": "En genererad poolfilm med id 15189 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15189.jpg",
+      "backdrop_path": "/bk/p15189.jpg",
+      "release_date": "1988-04-10",
+      "vote_average": 7.4,
+      "genre_ids": [
+        35,
+        53
+      ]
+    },
+    {
+      "id": 15190,
+      "title": "Poolfilm 15190",
+      "overview": "En genererad poolfilm med id 15190 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15190.jpg",
+      "backdrop_path": "/bk/p15190.jpg",
+      "release_date": "1989-11-15",
+      "vote_average": 5.4,
+      "genre_ids": [
+        878,
+        80
+      ]
+    },
+    {
+      "id": 15191,
+      "title": "Poolfilm 15191",
+      "overview": "En genererad poolfilm med id 15191 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15191.jpg",
+      "backdrop_path": "/bk/p15191.jpg",
+      "release_date": "1990-06-20",
+      "vote_average": 7,
+      "genre_ids": [
+        10749,
+        9648
+      ]
+    },
+    {
+      "id": 15192,
+      "title": "Poolfilm 15192",
+      "overview": "En genererad poolfilm med id 15192 för fixtures sök- och filtermaskin.",
+      "poster_path": "/po/p15192.jpg",
+      "backdrop_path": "/bk/p15192.jpg",
+      "release_date": "1991-01-25",
+      "vote_average": 6.8,
+      "genre_ids": [
+        10751,
+        12
+      ]
+    }
+  ],
+  "total_pages": 10,
+  "total_results": 192
+}

@@ -1,0 +1,67 @@
+/*
+ * FilterChips — Upptäck filter row. DESIGN.md §4 pins chip radius
+ * --radius-md (the comps show pills, but comps anchor layout/density/
+ * mood only). Active chip = --accent text on --accent-surface: exactly
+ * DESIGN.md §2 contrast pairs 7 and 14, both PASS. Row wraps on narrow
+ * screens (comp-upptack-390: several chip rows) and becomes one
+ * horizontally scrollable row on wide (comp-upptack-1440). Focus ring
+ * --focus-ring per DESIGN.md §5.
+ */
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-8);
+}
+
+.chip {
+  flex-shrink: 0;
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  color: var(--text-secondary);
+  font-weight: var(--font-medium);
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.chip:hover {
+  background: var(--surface-hover);
+  border-color: var(--border-strong);
+  color: var(--text-primary);
+}
+
+.chip:active {
+  background: var(--surface-active);
+}
+
+.chip[aria-pressed="true"] {
+  background: var(--accent-surface);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.chip[aria-pressed="true"]:hover {
+  color: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
+.chip:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+@media (min-width: 60rem) {
+  .chips {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: var(--space-1);
+    scrollbar-width: none;
+  }
+
+  .chips::-webkit-scrollbar {
+    display: none;
+  }
+}

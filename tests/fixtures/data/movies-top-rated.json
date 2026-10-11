@@ -1,0 +1,40 @@
+{
+  "page": 1,
+  "results": [
+    {
+      "id": 13001,
+      "title": "Smultronstället i Skåne",
+      "overview": "En emeritus professor kör till sommarstaden för att sälja huset och möts av varje sommardag han aldrig levde ut.",
+      "poster_path": "/po/smultron.jpg",
+      "backdrop_path": "/bk/smultron.jpg",
+      "release_date": "1957-09-26",
+      "vote_average": 9.1,
+      "genre_ids": [18, 10749],
+      "media_type": "movie"
+    },
+    {
+      "id": 13002,
+      "title": "Ansikte mot ansikte i Visby",
+      "overview": "En psykoanalytiker i Almedalen tappat greppet om sina egna drömreportage och söker hjälp hos en kollega på Fårö.",
+      "poster_path": "/po/visby.jpg",
+      "backdrop_path": "/bk/visby.jpg",
+      "release_date": "1976-10-18",
+      "vote_average": 8.6,
+      "genre_ids": [18],
+      "media_type": "movie"
+    },
+    {
+      "id": 13003,
+      "title": "Kärleken är blind i Norrköping",
+      "overview": "Ett par gift sig efter tre veckor, och alla i kvarteret har en åsikt om hur det ska gå innan bröllopstårtan torkat.",
+      "poster_path": "/po/blind.jpg",
+      "backdrop_path": "/bk/blind.jpg",
+      "release_date": "1965-03-22",
+      "vote_average": 8.3,
+      "genre_ids": [10749, 35],
+      "media_type": "movie"
+    }
+  ],
+  "total_pages": 1,
+  "total_results": 3
+}

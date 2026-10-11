@@ -1,0 +1,143 @@
+/*
+ * StartPage — startsida page chrome (DESIGN.md §5 "Startsida (main)"). The
+ * full-bleed cinematic hero (backdrop + scrim + title + meta, NO CTA per the
+ * COMP-NOTES re-pin) plus its zero-shift skeleton and the shared visually-
+ * hidden utility. Rail chrome lives in MovieRail.module.css (each module owns
+ * its own layout). Colours/spacing are DESIGN.md tokens only — no hex.
+ */
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12); /* section rhythm (DESIGN.md §4) */
+  padding-bottom: var(--space-16);
+}
+
+/*
+ * Hero: full-bleed backdrop ≈ 60vh desktop / 420px mobile (DESIGN.md §4). The
+ * skeleton shares the exact box so the loaded hero swaps in with zero layout
+ * shift. overflow:hidden clips the fill-image to the rounded-free full edge.
+ */
+.hero,
+.heroSkeleton {
+  position: relative;
+  height: 420px;
+  overflow: hidden;
+  background: var(--bg-secondary);
+}
+
+@media (min-width: 768px) {
+  .hero,
+  .heroSkeleton {
+    height: 60vh;
+  }
+}
+
+.heroImage {
+  object-fit: cover; /* cover the full-bleed frame, never distort */
+  z-index: 0;
+}
+
+/* Pinned --backdrop-scrim (DESIGN.md §1): the to-right + bottom gradients put
+   alpha ≥ 0.85 behind the bottom-left copy block (the §2 scrim rule), so
+   --text-on-image (white) and --rating-gold stay legible over any backdrop. */
+.heroScrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: var(--backdrop-scrim);
+  pointer-events: none;
+}
+
+.heroContent {
+  position: absolute;
+  inset: auto 0 0 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-6) var(--rail-scroll);
+  max-width: 46rem;
+}
+
+.heroTitle {
+  margin: 0;
+  font-size: var(--text-2xl); /* steps up to --text-3xl on wider screens */
+  font-weight: var(--font-semibold);
+  line-height: var(--lh-tight);
+  color: var(--text-on-image);
+  text-wrap: balance;
+  overflow-wrap: break-word;
+}
+
+@media (min-width: 768px) {
+  .heroTitle {
+    font-size: var(--text-3xl); /* DESIGN.md §3 hero type step (marked DELTA) */
+    padding-left: var(--space-6);
+  }
+}
+
+/* Meta row "ÅR · GENRE · ★ BETYG" (COMP-NOTES). White copy sits in the scrim's
+   ≥ 0.85-alpha zone (row 12 worst case) → AA-legible on any artwork. */
+.heroMeta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2);
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--text-on-image);
+}
+
+.heroSep {
+  color: var(--text-on-image);
+  opacity: 0.85;
+}
+
+.heroRating {
+  color: var(--rating-gold); /* #fbbf24 on ≥0.85 scrim: ≥ 12:1 (DESIGN §2) */
+  font-weight: var(--font-medium);
+}
+
+/* Honest loading placeholder: a calm surface block at the exact hero size
+   (no fake poster/artwork), aria-hidden — the swap-in carries the content. */
+.heroSkeleton {
+  background: linear-gradient(
+    100deg,
+    var(--bg-secondary) 40%,
+    var(--surface-hover) 50%,
+    var(--bg-secondary) 60%
+  );
+  background-size: 200% 100%;
+  animation: heroShimmer 1.6s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heroSkeleton {
+    animation: none;
+  }
+}
+
+@keyframes heroShimmer {
+  from {
+    background-position: 180% 0;
+  }
+  to {
+    background-position: -80% 0;
+  }
+}
+
+/* Standard visually-hidden: the document h1 when the hero is absent. */
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}

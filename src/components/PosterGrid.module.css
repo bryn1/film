@@ -1,0 +1,23 @@
+/*
+ * PosterGrid — results grid (DESIGN.md §5: <ul>, 2 cols @375 → 6 cols
+ * @≥1440, grid auto-fill, rail grid gap --space-4). The column formula:
+ * min = max(160px, (100% − 5×gap)/6) ⇒ under ~1050px the 160px floor gives
+ * 2–5 fluid columns; from ~1440px the sixth-column expression caps the grid
+ * at exactly 6, no media queries. Skeleton.module.css mirrors this line.
+ */
+
+.grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(max(160px, (100% - 5 * var(--space-4)) / 6), 1fr)
+  );
+}
+
+.cell {
+  min-width: 0;
+}

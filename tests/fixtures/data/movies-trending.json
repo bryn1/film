@@ -1,0 +1,62 @@
+{
+  "page": 1,
+  "results": [
+    {
+      "id": 11001,
+      "title": "Ronja Rövardotter",
+      "overview": "Ronja föds under en storm i Mattis borg och växer upp som en fri vildling i skogen, till dess att hennes far Björn och Clampa-Tjonnis bråk delar rovardalen i två läger.",
+      "poster_path": "/po/ronja.jpg",
+      "backdrop_path": "/bk/ronja.jpg",
+      "release_date": "1984-12-12",
+      "vote_average": 7.9,
+      "genre_ids": [12, 14, 10751],
+      "media_type": "movie"
+    },
+    {
+      "id": 11002,
+      "title": "Sällskapsresan",
+      "overview": "Stig Helmer-Högklint ger sig ut på en skidsemester med hela släkten och halva charterresan, och bakar för varje stopp på vägen mot Stöten.",
+      "poster_path": "/po/sallskap.jpg",
+      "backdrop_path": "/bk/sallskap.jpg",
+      "release_date": "1980-11-07",
+      "vote_average": 7.4,
+      "genre_ids": [35],
+      "media_type": "movie"
+    },
+    {
+      "id": 11003,
+      "name": "Snabba cash",
+      "overview": "Efter att fadern försvinner hamnar en ung man mitt i Stockholms kreditgivningsmiljö, där räntorna är brutala och allt kan ordnas med kontanter.",
+      "poster_path": "/po/snabba.jpg",
+      "backdrop_path": "/bk/snabba.jpg",
+      "first_air_date": "2023-10-20",
+      "vote_average": 7.1,
+      "genre_ids": [80, 18],
+      "media_type": "tv"
+    },
+    {
+      "id": 11004,
+      "title": "Den underbara resan",
+      "overview": "Toby och Mia ger sig ut på en semester i familjens vita husvagn längs kusten, men resan blir mindre underbara för varje platt däck och förbytt skylt.",
+      "poster_path": null,
+      "backdrop_path": "/bk/underbar.jpg",
+      "release_date": "1991-12-27",
+      "vote_average": 6.8,
+      "genre_ids": [35, 10751],
+      "media_type": "movie"
+    },
+    {
+      "id": 11005,
+      "title": "Folk och rövare i Kamomilla stad",
+      "overview": "I Kamomilla stad regerar en korrumperad kommunstämma, men den lilla flickan Lotta struntar i protokollen och ställer till det för både rövare och råd.",
+      "poster_path": "/po/kamomilla.jpg",
+      "backdrop_path": "/bk/kamomilla.jpg",
+      "release_date": "1981-09-05",
+      "vote_average": 7.2,
+      "genre_ids": [35, 10751],
+      "media_type": "movie"
+    }
+  ],
+  "total_pages": 1,
+  "total_results": 5
+}

@@ -1,0 +1,14 @@
+{
+  "genres": [
+    { "id": 28, "name": "Action" },
+    { "id": 12, "name": "Äventyr" },
+    { "id": 16, "name": "Animerad" },
+    { "id": 35, "name": "Komedi" },
+    { "id": 18, "name": "Drama" },
+    { "id": 10749, "name": "Roman" },
+    { "id": 878, "name": "Science fiction" },
+    { "id": 27, "name": "Skäckfilm" },
+    { "id": 14, "name": "Fantasy" },
+    { "id": 10751, "name": "Familj" }
+  ]
+}

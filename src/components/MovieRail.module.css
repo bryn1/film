@@ -1,0 +1,58 @@
+/*
+ * MovieRail — horizontal, scroll-snap movie row (DESIGN.md §5; COMP-NOTES:
+ * native scroll, NO carousel buttons — the arrow glyphs in the comps are
+ * decoration only). Card width yields ~2.2 posters @375 and ~6 @1440; the
+ * scrollbar is hidden but the region stays keyboard/trackpad scrollable (the
+ * <ul> is tabIndex=0 + role="list", aria-labelled by the rail heading).
+ * Colours/spacing are DESIGN.md tokens only — no hex.
+ */
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* Rail/section headings are --text-md semibold (DESIGN.md §3). Guttered to
+   match the scroller's inline padding so the heading lines up with the first
+   poster. */
+.heading {
+  margin: 0;
+  padding-inline: var(--rail-scroll);
+  font-size: var(--text-md);
+  font-weight: var(--font-semibold);
+  line-height: var(--lh-tight);
+  color: var(--text-primary);
+}
+
+/*
+ * Horizontal scroller. Cards carry no links (no detail routes exist), so the
+ * scroll region itself is the keyboard target: tabIndex=0 + role="list" keeps
+ * it focusable and announced even with the scrollbar hidden. Native
+ * overflow-x scroll — no fake carousel mechanism.
+ */
+.scroller {
+  list-style: none;
+  margin: 0;
+  padding: 0 var(--rail-scroll);
+  display: flex;
+  gap: var(--space-4);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--rail-scroll);
+  scrollbar-width: none; /* Firefox: hide, still scrollable */
+  -ms-overflow-style: none; /* legacy Edge/IE: hide */
+}
+
+.scroller::-webkit-scrollbar {
+  display: none; /* WebKit: hide the bar, keep the gesture */
+}
+
+/* clamp(154px, 42vw, 224px): ~2.2 cards visible @375 (157.5px + gap), ~6
+   @1440 (224px + gap). min-width:0 lets a long title clamp inside the card. */
+.item {
+  flex: 0 0 auto;
+  width: clamp(154px, 42vw, 224px);
+  min-width: 0;
+  scroll-snap-align: start;
+}

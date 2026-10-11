@@ -1,0 +1,79 @@
+{
+  "id": 15001,
+  "title": "Drama på Dramaten",
+  "original_title": "Drama på Dramaten",
+  "tagline": "Pjäsen som blev hennes liv.",
+  "overview": "En debuterande regissör sätter upp en pjäs om sin egen släkt, men roligheten börjar spilla över i pauserna.",
+  "genres": [
+    {
+      "id": 18,
+      "name": "Drama"
+    }
+  ],
+  "release_date": "2015-03-13",
+  "runtime": 118,
+  "vote_average": 7.3,
+  "poster_path": "/po/dramaten.jpg",
+  "backdrop_path": "/bk/dramaten.jpg",
+  "production_companies": [
+    {
+      "id": 55555,
+      "name": "Småland Film AB"
+    }
+  ],
+  "credits": {
+    "cast": [
+      {
+        "id": 16001,
+        "name": "Märta Lindqvist",
+        "character": "Klara",
+        "profile_path": "/pe/p16001.jpg",
+        "order": 0
+      },
+      {
+        "id": 16002,
+        "name": "Jan-Olof Ström",
+        "character": "Regissören",
+        "profile_path": "/pe/p16002.jpg",
+        "order": 0
+      },
+      {
+        "id": 16003,
+        "name": "Petra Öhgren",
+        "character": "Skådespelerskan",
+        "profile_path": "/pe/p16003.jpg",
+        "order": 0
+      },
+      {
+        "id": 16004,
+        "name": "Bosse Granqvist",
+        "character": "Teaterchefen",
+        "profile_path": "/pe/p16004.jpg",
+        "order": 0
+      },
+      {
+        "id": 16005,
+        "name": "Ylva Persbrant",
+        "character": "Rekvistan",
+        "profile_path": "/pe/p16005.jpg",
+        "order": 0
+      }
+    ],
+    "crew": [
+      {
+        "id": 17001,
+        "name": "Görel Sandmark",
+        "job": "Director",
+        "department": "Directing",
+        "profile_path": "/pe/p17001.jpg"
+      },
+      {
+        "id": 17002,
+        "name": "Maja Qwist",
+        "job": "Writer",
+        "department": "Writing",
+        "profile_path": "/pe/p17002.jpg"
+      }
+    ]
+  }
+}

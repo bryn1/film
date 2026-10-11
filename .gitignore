@@ -1,0 +1,42 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+.yarn/install-state.gz
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# local env files
+.env*.local
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# deploy/ is a COMMITTED build artifact (MC 10444, DEPLOY-BUILD.md): the vm106
+# reconciler mirrors repo bytes verbatim — no build step on the host. Keep the
+# rules above ROOT-ANCHORED (/node_modules, /.next/, /build match the repo ROOT
+# only) so deploy/standalone/node_modules and deploy/standalone/.next/static
+# stay committable. Never add an unanchored node_modules or .next ignore.

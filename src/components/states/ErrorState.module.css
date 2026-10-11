@@ -1,0 +1,50 @@
+/*
+ * ErrorState — same calm centered layout as EmptyState (comp-empty-state.png
+ * family), danger-tinted motif-free: the copy carries the meaning. The retry
+ * button is the accent action button of the token set.
+ */
+
+.state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  text-align: center;
+  padding: var(--space-16) var(--space-4);
+}
+
+.title {
+  font-size: var(--text-lg);
+  font-weight: var(--font-semibold);
+  line-height: var(--lh-tight);
+  color: var(--text-primary);
+}
+
+.description {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  max-width: 46ch;
+}
+
+/* Accent action button: --bg-primary copy on --accent computes 6.15:1
+   (same arithmetic as DESIGN.md §2); the brighter -hover/-accent tokens
+   only raise that ratio, so every button state stays ≥4.5:1. */
+.retry {
+  margin-top: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  border: none;
+  border-radius: var(--radius-md);
+  background: var(--accent);
+  color: var(--bg-primary);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  cursor: pointer;
+}
+
+.retry:hover {
+  background: var(--accent-hover);
+}
+
+.retry:active {
+  background: var(--accent-active);
+}

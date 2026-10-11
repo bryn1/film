@@ -1,0 +1,90 @@
+/*
+ * Skeleton — poster-shaped shimmer blocks matching MovieCard's geometry
+ * (2:3 aspect, --poster-radius, caption lines where title/meta sit, so the
+ * real card swaps in without layout shift). Token colors only; shimmer is a
+ * background-position sweep over a surface→surface-hover gradient.
+ */
+
+.wrapper {
+  display: grid;
+  gap: var(--space-4);
+}
+
+/* "card": a single block, wrap-row semantics for one-off placeholders. */
+.card {
+  grid-template-columns: minmax(160px, 220px);
+}
+
+/* "rail": horizontal strip, no wrap — matches MovieRail's scroll row. */
+.rail {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: var(--space-4);
+  overflow: hidden;
+}
+
+.rail .block {
+  flex: 0 0 clamp(150px, 22vw, 220px);
+}
+
+/*
+ * "grid": identical column formula to PosterGrid.module.css (kept WET on
+ * purpose: 2 cols @375 → 6 cols @1440 via auto-fill, no media queries).
+ * The skeleton grid must match the real grid exactly — no layout shift.
+ */
+.grid {
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(max(160px, (100% - 5 * var(--space-4)) / 6), 1fr)
+  );
+}
+
+.block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.poster {
+  aspect-ratio: 2 / 3;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--poster-radius);
+  background-image: linear-gradient(
+    100deg,
+    var(--surface) 40%,
+    var(--surface-hover) 50%,
+    var(--surface) 60%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.6s linear infinite;
+}
+
+.titleLine {
+  height: var(--text-sm);
+  width: 80%;
+  border-radius: var(--radius-sm);
+  background-color: var(--surface);
+}
+
+.metaLine {
+  height: var(--text-xs);
+  width: 45%;
+  border-radius: var(--radius-sm);
+  background-color: var(--surface);
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 180% 0;
+  }
+  to {
+    background-position: -80% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .poster {
+    animation: none;
+  }
+}

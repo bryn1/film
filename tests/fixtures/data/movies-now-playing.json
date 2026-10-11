@@ -1,0 +1,51 @@
+{
+  "page": 1,
+  "results": [
+    {
+      "id": 12001,
+      "title": "Nattskiftet",
+      "overview": "En nattsjuksköterska på en liten landsortsklinik upptäcker att patienterna på avdelning sex aldrig riktigt sover.",
+      "poster_path": "/po/nattskiftet.jpg",
+      "backdrop_path": "/bk/nattskiftet.jpg",
+      "release_date": "2026-02-13",
+      "vote_average": 6.5,
+      "genre_ids": [27, 18],
+      "media_type": "movie"
+    },
+    {
+      "id": 12002,
+      "title": "Hamntarna",
+      "overview": "Tre systrar återvänder till Bara för att sälja barndomshemmet — och upptäcker vem som egentligen ägde grunden till det.",
+      "poster_path": "/po/hamntarna.jpg",
+      "backdrop_path": "/bk/hamntarna.jpg",
+      "release_date": "2026-03-06",
+      "vote_average": 7.0,
+      "genre_ids": [28, 80],
+      "media_type": "movie"
+    },
+    {
+      "id": 12003,
+      "title": "Is över Mälaren",
+      "overview": "En dokumentär skildrar de sista vintermånaderna då gångvägen mellan Adelsö och fastlandet fortfarande bars av naturis.",
+      "poster_path": "/po/malaren.jpg",
+      "backdrop_path": "/bk/malaren.jpg",
+      "release_date": "2026-01-30",
+      "vote_average": 7.8,
+      "genre_ids": [99],
+      "media_type": "movie"
+    },
+    {
+      "id": 12004,
+      "title": "Discodax",
+      "overview": "En företdig dansbandsprofil startar nattklubb i en nedlagd idrottshall och lovar publiken både glitter och igenkänning.",
+      "poster_path": "/po/discodax.jpg",
+      "backdrop_path": "/bk/discodax.jpg",
+      "release_date": "2026-04-17",
+      "vote_average": 5.9,
+      "genre_ids": [35, 10402],
+      "media_type": "movie"
+    }
+  ],
+  "total_pages": 1,
+  "total_results": 4
+}

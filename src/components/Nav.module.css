@@ -1,0 +1,97 @@
+/* Nav — sticky header per comp-start-1440 (one row: wordmark, links,
+   search right) and comp-start-390 (wordmark + search on the first row,
+   links compact below). DESIGN.md tokens only. */
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--bg-primary);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+/* Off-screen until focused; first focusable element on every page. */
+.skipLink {
+  position: absolute;
+  top: var(--space-2);
+  left: var(--space-4);
+  z-index: 20;
+  padding: var(--space-2) var(--space-4);
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  transform: translateY(-200%);
+}
+
+.skipLink:focus-visible {
+  transform: none;
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-6);
+  max-width: 90rem;
+  margin-inline: auto;
+  padding: var(--space-3) var(--space-4);
+}
+
+.wordmark {
+  order: 1;
+  font-size: var(--text-md);
+  font-weight: var(--font-bold);
+  color: var(--text-primary);
+}
+
+.links {
+  order: 3;
+  flex-basis: 100%;
+  display: flex;
+  gap: var(--space-6);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.links a {
+  display: inline-block;
+  padding: var(--space-1) 0;
+  border-bottom: 2px solid transparent;
+  color: var(--text-secondary);
+}
+
+.links a:hover {
+  color: var(--text-primary);
+}
+
+.links a[aria-current="page"] {
+  border-bottom-color: var(--accent);
+  color: var(--text-primary);
+}
+
+.search {
+  order: 2;
+  flex: 1 1 12rem;
+  max-width: 22rem;
+  margin-left: auto;
+}
+
+/* Desktop: wordmark · links · search pushed right (comp-start-1440). */
+@media (min-width: 48rem) {
+  .nav {
+    padding: var(--space-4) var(--space-6);
+  }
+
+  .links {
+    order: 2;
+    flex-basis: auto;
+    margin-left: var(--space-2);
+  }
+
+  .search {
+    order: 3;
+    flex: 0 1 20rem;
+  }
+}

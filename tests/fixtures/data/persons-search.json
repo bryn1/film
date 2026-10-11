@@ -1,0 +1,115 @@
+{
+  "page": 1,
+  "total_pages": 1,
+  "total_results": 4,
+  "results": [
+    {
+      "id": 20001,
+      "name": "Ingrid Kallsjö",
+      "known_for": [
+        {
+          "id": 9011,
+          "title": "Trollbindaren",
+          "media_type": "tv",
+          "poster_path": null
+        },
+        {
+          "id": 15031,
+          "title": "Poolfilm 15031",
+          "media_type": "movie",
+          "poster_path": "/po/p15031.jpg"
+        },
+        {
+          "id": 15044,
+          "title": "Poolfilm 15044",
+          "media_type": "movie",
+          "poster_path": "/po/p15044.jpg"
+        },
+        {
+          "id": 15057,
+          "title": "Poolfilm 15057",
+          "media_type": "movie",
+          "poster_path": "/po/p15057.jpg"
+        },
+        {
+          "id": 15070,
+          "title": "Poolfilm 15070",
+          "media_type": "movie",
+          "poster_path": "/po/p15070.jpg"
+        },
+        {
+          "id": 15083,
+          "title": "Poolfilm 15083",
+          "media_type": "movie",
+          "poster_path": "/po/p15083.jpg"
+        }
+      ]
+    },
+    {
+      "id": 20002,
+      "name": "Bertil Noreen",
+      "known_for": [
+        {
+          "id": 15008,
+          "title": "Poolfilm 15008",
+          "media_type": "movie",
+          "poster_path": "/po/p15008.jpg"
+        },
+        {
+          "id": 15042,
+          "title": "Poolfilm 15042",
+          "media_type": "movie",
+          "poster_path": "/po/p15042.jpg"
+        },
+        {
+          "id": 15077,
+          "title": "Poolfilm 15077",
+          "media_type": "movie",
+          "poster_path": "/po/p15077.jpg"
+        },
+        {
+          "id": 15103,
+          "title": "Poolfilm 15103",
+          "media_type": "movie",
+          "poster_path": "/po/p15103.jpg"
+        },
+        {
+          "id": 15118,
+          "title": "Poolfilm 15118",
+          "media_type": "movie",
+          "poster_path": "/po/p15118.jpg"
+        },
+        {
+          "id": 15152,
+          "title": "Poolfilm 15152",
+          "media_type": "movie",
+          "poster_path": "/po/p15152.jpg"
+        }
+      ]
+    },
+    {
+      "id": 20003,
+      "name": "Saga Ljungman",
+      "known_for": [
+        {
+          "id": 9021,
+          "title": "Skärgårdsradion",
+          "media_type": "tv",
+          "poster_path": null
+        }
+      ]
+    },
+    {
+      "id": 20004,
+      "name": "Nils Bergfjord",
+      "known_for": [
+        {
+          "id": 15002,
+          "title": "Bröllopet på Öland",
+          "media_type": "movie",
+          "poster_path": "/po/oland.jpg"
+        }
+      ]
+    }
+  ]
+}

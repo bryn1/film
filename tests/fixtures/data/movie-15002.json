@@ -1,0 +1,76 @@
+{
+  "id": 15002,
+  "title": "Bröllopet på Öland",
+  "original_title": "Bröllopet på Öland",
+  "tagline": " Två familjer, ett bröllop, en ö.",
+  "overview": "Ett bröllop på en solig ö sätter två familjer på kollisionskurs redan vid välkomstdrinken.",
+  "genres": [
+    {
+      "id": 18,
+      "name": "Drama"
+    },
+    {
+      "id": 10749,
+      "name": "Romantik"
+    }
+  ],
+  "release_date": "2017-06-09",
+  "runtime": 104,
+  "vote_average": 6.6,
+  "poster_path": "/po/oland.jpg",
+  "backdrop_path": "/bk/oland.jpg",
+  "production_companies": [
+    {
+      "id": 55555,
+      "name": "Småland Film AB"
+    }
+  ],
+  "credits": {
+    "cast": [
+      {
+        "id": 16011,
+        "name": "Anna-Bella Holm",
+        "character": "Bruden",
+        "profile_path": "/pe/p16011.jpg",
+        "order": 0
+      },
+      {
+        "id": 16012,
+        "name": "Kjell-Rune Pettersson",
+        "character": "Fadern",
+        "profile_path": "/pe/p16012.jpg",
+        "order": 0
+      },
+      {
+        "id": 16013,
+        "name": "Ditte Hultberg",
+        "character": "Mordbrudern",
+        "profile_path": "/pe/p16013.jpg",
+        "order": 0
+      },
+      {
+        "id": 16014,
+        "name": "Emil Sandberg",
+        "character": "Bestmannen",
+        "profile_path": "/pe/p16014.jpg",
+        "order": 0
+      }
+    ],
+    "crew": [
+      {
+        "id": 17001,
+        "name": "Hasse Norling Ek",
+        "job": "Director",
+        "department": "Directing",
+        "profile_path": "/pe/p17001.jpg"
+      },
+      {
+        "id": 17002,
+        "name": "Maja Qwist",
+        "job": "Writer",
+        "department": "Writing",
+        "profile_path": "/pe/p17002.jpg"
+      }
+    ]
+  }
+}
