@@ -1,0 +1,173 @@
+#!/usr/bin/env python3
+"""
+server.py — vm106 launcher for the film app (MC 10444, PLAN-t10 §4).
+
+systemd starts THIS file (hosting.yaml exec) with $PORT = the outer port nginx
+proxying. The trailing slash STRIPS the /film prefix —
+while the committed Next build (basePath "/film" baked) answers /film/* only.
+So the launcher re-prefixes: it spawns the committed standalone build
+(deploy/standalone/server.js) on a loopback inner port and forwards every
+request to it with root_path prepended. The prepend is IDEMPOTENT and the
+target is canonicalized WITHOUT a trailing slash (direct /film/... requests
+pass through; a nginx-stripped "/" becomes "/film"; both answer 200 straight
+— no 308 bounce for the client).
+
+Supervision: if the node child exits, this launcher exits non-zero so the
+unit's Restart=on-failure restarts the pair. stdlib only — no venv, no
+requirements.txt (the unit then runs /usr/bin/python3 per the render contract).
+
+The variable name `root_path` is deliberate and lowercase: reconcile.py's
+PREFIX_REWRITER_RE is case-sensitive and matches this literal token — the
+fleet's blessed prefix-rewrite shape.
+"""
+import os
+import shutil
+import signal
+import socket
+import subprocess
+import sys
+import threading
+import time
+from http.client import HTTPConnection
+from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+
+root_path = "/film"
+APP_DIR = os.path.dirname(os.path.abspath(__file__))
+STANDALONE = os.path.join(APP_DIR, "deploy", "standalone")
+ENTRY = os.path.join(STANDALONE, "server.js")
+
+# RFC 2616 §13.5.1 connection-scoped headers: never forwarded either way.
+HOP_BY_HOP = frozenset({
+    "connection", "keep-alive", "proxy-authenticate", "proxy-authorization",
+    "te", "trailer", "trailers", "transfer-encoding", "upgrade",
+})
+UPSTREAM_TIMEOUT = 30
+
+
+def re_prefix(path):
+    """root_path + path, idempotent (segment-boundary check), canonicalized to
+    the NO-trailing-slash form the basePath build answers with 200:
+    next start 308s "/film/" -> "/film", and that Location through the nginx
+    `location = /film` 301 -> /film/ would loop. So: never forward a trailing
+    slash after root_path — "/" -> "/film", "/film/" -> "/film",
+    "/film/discover/" -> "/film/discover"; queries ride along untouched."""
+    target = path if path == root_path or path.startswith(root_path + "/") \
+        else f"{root_path}{path}"
+    path_part, sep, query = target.partition("?")
+    if path_part.endswith("/"):
+        path_part = path_part[:-1]
+    return path_part + sep + query
+
+
+def die(msg):
+    sys.exit(f"film-launcher: {msg}")
+
+
+PORT = int(os.environ.get("PORT") or 0)  # unit contract: Environment=PORT=<port>
+if not PORT:
+    die("PORT env missing — the systemd unit contract supplies it")
+NODE = shutil.which("node")
+if NODE is None:  # typed fail-fast: journalctl names the cause (D1 path)
+    die("node binary absent on this host; app cannot serve (MC 10444 D1)")
+if not os.path.exists(ENTRY):
+    die(f"committed artifact missing: {ENTRY} (see DEPLOY-BUILD.md)")
+
+
+def pick_inner_port():
+    s = socket.socket()
+    s.bind(("127.0.0.1", 0))
+    port = s.getsockname()[1]
+    s.close()
+    return port
+
+
+INNER = pick_inner_port()
+# HOSTNAME=127.0.0.1: standalone server.js binds process.env.HOSTNAME — loopback
+# only, same doctrine as the outer bind. cwd=STANDALONE: the artifact is self-contained.
+APP = subprocess.Popen(
+    [NODE, "server.js"],
+    cwd=STANDALONE,
+    env={**os.environ, "PORT": str(INNER), "HOSTNAME": "127.0.0.1"},
+)
+
+
+def watch_child():
+    code = APP.wait()
+    print(f"film-launcher: node child exited (code={code}); launcher exiting non-zero "
+          "so systemd Restart=on-failure restarts the pair", file=sys.stderr, flush=True)
+    os._exit(code if isinstance(code, int) and 0 < code < 256 else 1)
+
+
+def forward_signal(signum, _frame):
+    APP.terminate()
+    sys.exit(0)
+
+
+class Handler(BaseHTTPRequestHandler):
+    protocol_version = "HTTP/1.1"  # keep-alive upstream + accurate Content-Length below
+
+    def _tunnel(self):
+        length = int(self.headers.get("Content-Length") or 0)
+        body = self.rfile.read(length) if length else None
+        try:
+            conn = HTTPConnection("127.0.0.1", INNER, timeout=UPSTREAM_TIMEOUT)
+            headers = [(k, v) for k, v in self.headers.items()
+                       if k.lower() not in HOP_BY_HOP]
+            conn.request(self.command, re_prefix(self.path),
+                         body=body, headers=dict(headers))
+            resp = conn.getresponse()
+            data = resp.read()  # de-chunks; we re-frame with our own Content-Length
+        except OSError as exc:  # node still booting, died mid-request, or timed out
+            data = b'{"ok":false,"error":{"code":"UPSTREAM_UNAVAILABLE","message":"film app not reachable"}}'
+            self.send_response(502)
+            self.send_header("Content-Type", "application/json")
+            self.send_header("Content-Length", str(len(data)))
+            self.end_headers()
+            if self.command != "HEAD":
+                self.wfile.write(data)
+            print(f"film-launcher: upstream error: {exc}", file=sys.stderr, flush=True)
+            return
+        self.send_response(resp.status, resp.reason)
+        for k, v in resp.getheaders():
+            low = k.lower()
+            if low in HOP_BY_HOP or (low == "content-length" and self.command != "HEAD"):
+                continue  # HEAD keeps upstream's Content-Length (describes the GET body)
+            self.send_header(k, v)
+        if self.command != "HEAD":
+            self.send_header("Content-Length", str(len(data)))
+        self.end_headers()
+        if self.command != "HEAD":
+            self.wfile.write(data)
+        conn.close()
+
+    do_GET = do_POST = do_HEAD = do_PUT = do_DELETE = do_PATCH = do_OPTIONS = _tunnel
+
+    def log_message(self, fmt, *args):  # journal-bound access line, one per request
+        print(f"film-launcher: {self.address_string()} {fmt % args}", file=sys.stderr, flush=True)
+
+
+def wait_for_inner(deadline_s=30):
+    """Don't accept outer traffic until node's port answers (staging gate probes
+    immediately; a refused inner connect would surface as a false 502)."""
+    end = time.monotonic() + deadline_s
+    while time.monotonic() < end:
+        if APP.poll() is not None:
+            die(f"node child exited during startup (code={APP.returncode})")
+        try:
+            with socket.create_connection(("127.0.0.1", INNER), timeout=0.5):
+                return
+        except OSError:
+            time.sleep(0.1)
+    die(f"node child did not start serving within {deadline_s}s")
+
+
+if __name__ == "__main__":
+    signal.signal(signal.SIGTERM, forward_signal)
+    signal.signal(signal.SIGINT, forward_signal)
+    threading.Thread(target=watch_child, daemon=True).start()
+    wait_for_inner()
+    print(f"film-launcher: serving :{PORT} -> 127.0.0.1:{INNER}{root_path}/ "
+          f"(node pid {APP.pid})", file=sys.stderr, flush=True)
+    # 127.0.0.1 ONLY (fleet doctrine vm106-render-apps.py L15): the public path
+    # is nginx + the Cloudflare tunnel, never this socket.
+    ThreadingHTTPServer(("127.0.0.1", PORT), Handler).serve_forever()

@@ -1,0 +1,11 @@
+{
+  "name": "film",
+  "type": "service",
+  "root": ".",
+  "exec": "server.py",
+  "port": 8161,
+  "title": "Film",
+  "description": "Svensk filmsida över TMDB — startsida, upptäck och sök.",
+  "tags": ["film", "tmdb", "nextjs"],
+  "mirror": { "cachebust": "off", "exclude": ["/.next/**"] }
+}
