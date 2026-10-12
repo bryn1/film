@@ -19,7 +19,9 @@
 >
 > **Hosted deltas at port (prefix seam + hosting files):** `next.config.mjs`
 > gains `output:"standalone"` + build-time `basePath` from
-> `NEXT_PUBLIC_BASE_PATH`; the raw-ref sweep goes through ONE home,
+> `NEXT_PUBLIC_BASE_PATH` + `trailingSlash:true` (canonical URL shape carries
+> the trailing slash — see Hosting → nginx/Launcher rows, MC 10444 fix-cycle
+> 1); the raw-ref sweep goes through ONE home,
 > `src/lib/basePath.ts` (`BASE`), consumed by `useApi.ts` (fetch) and the form
 > `action`s of `SearchField.tsx` + `FilterBar.tsx` — basePath rewrites `<Link>`
 > hrefs but NOT raw fetches/actions (DA gate MC 10444 FIX-1); `package.json`
@@ -178,7 +180,10 @@ File hygiene ~250/400 (header reason if >400), tests ≤600, fixtures/config/dat
 `d65d7ae`: largest src file is 218 lines (`Discover.tsx`) — no src file above the 250 soft cap,
 so no header reason lines are required; the largest test file is `app.integration.test.mjs` at
 562/600 (after the commit-0 relocation), `detail-search.test.mjs` next at 501/600 — both
-legal. No TODO/FIXME markers in src or tests. Commits authored
+legal. `server.py` at `d55be2a` is 260 lines — 10 over the ~250 soft line, well under the 400
+hard cap; its module header carries the standing single-file reason (stdlib-only launcher, no
+venv/requirements — the render contract runs ONE file), and the growth since 173 lines is the
+documented vendored-node block + canonical-shape docstrings. No TODO/FIXME markers in src or tests. Commits authored
 `git -c user.name="<profile> (<card id>)" -c user.email="<profile>@agent-town.local"` — never `git config`.
 
 ## Hosting (vm106 — sibbamala.com/film)
@@ -189,9 +194,9 @@ Chain (MC 10444, PLAN-t10 §§1–4 — the hosting rows this port adds):
 |---|---|
 | Discover | **public under bryn1 + a valid `hosting.yaml` at the root IS the deploy signal** — the reconciler (`RECONCILE_ORGS=bryn1`, hosting.yaml required) picks the repo up on a ~15-min tick; there is no separate publish step. name→path: `film` ⇒ `sibbamala.com/film/`. |
 | Unit | `vm106-app-film.service` (rendered from the production template); `ExecStart=/usr/bin/python3 <workdir>/server.py`; env contract = `HOME` + `PORT=8161` ONLY — **no `EnvironmentFile` anywhere ⇒ no `TMDB_API_KEY` reaches the hosted app today (B2 blocker, owner decision D2 open).** |
-| Launcher | `server.py` (stdlib only, no venv) binds **127.0.0.1:8161** (fleet doctrine: services bind loopback only, the internet path is the Cloudflare tunnel), spawns `node deploy/standalone/server.js` on an ephemeral loopback inner port (`PORT`/`HOSTNAME` env), and forwards every request re-prefixed with `root_path="/film"`. If the node child exits, the launcher exits non-zero so `Restart=on-failure` restarts the pair. Lowercase literal `root_path` = the shape reconcile.py's case-sensitive `PREFIX_REWRITER_RE` blesses. |
-| nginx | `location = /film { return 301 /film/; }` + `location /film/ { proxy_pass http://127.0.0.1:8161/; }` — the trailing slash **strips** the `/film` prefix before the app; the launcher re-prefixes it back for the basePath-baked build (§4 mismatch resolved here, not in nginx). |
-| Artifact | `deploy/standalone/` is **committed** — the mirror has no build step, served bytes ARE repo bytes (same-commit drift rule in [DEPLOY-BUILD.md](../DEPLOY-BUILD.md)). `hosting.yaml` `mirror` block: `cachebust:"off"` (built Next bytes ship untouched; rewriting minified JS refs is unbounded risk) + root-anchored `/.next/**` defensive exclude — `deploy/standalone/.next/static` is **intentionally served** (root anchor can't reach it, mirror.py `_glob_re` rule). |
+| Launcher | `server.py` (stdlib only, no venv) binds **127.0.0.1:8161** (fleet doctrine: services bind loopback only, the internet path is the Cloudflare tunnel), resolves node — system `node` when on PATH, else the **vendored runtime** `deploy/vendor/node-v20.20.2-linux-x64.tar.xz` (committed, MC 10444 owner-go: the vm106 lane is python3+static — tarball sha256 verified against the pinned constant BEFORE reading any member, ONLY the `bin/node` member extracted atomically under `$HOME`, `--version` gate before anything execs it; missing tarball = typed fail-fast, the D1 path) — then spawns `node deploy/standalone/server.js` on an ephemeral loopback inner port (`PORT`/`HOSTNAME` env). Forwards every request re-prefixed with `root_path="/film"`: the prepend is idempotent and the path passes **AS GIVEN** — the canonical shape carries the trailing slash (`trailingSlash:true`), so "/" → "/film/" and "/film/..." pass through, both served 200 straight; a bare "/film..." gets ONE app-level 308 with a RELATIVE, scheme-preserving Location. If the node child exits, the launcher exits non-zero so `Restart=on-failure` restarts the pair. Lowercase literal `root_path` = the shape reconcile.py's case-sensitive `PREFIX_REWRITER_RE` blesses. |
+| nginx | `location = /film { return 301 /film/; }` + `location /film/ { proxy_pass http://127.0.0.1:8161/; }` — the trailing slash on `proxy_pass` **strips** the `/film` prefix before the app; the launcher re-prefixes it back for the basePath-baked build (§4 mismatch resolved here, not in nginx). **Canonical = WITH trailing slash** (`next.config.mjs trailingSlash:true`, MC 10444 fix-cycle 1): every router link/prefetch emits `/film/…`, so the browser hot path sees ZERO redirects and never touches the exact-match rule. WHY that rule must stay off the hot path: behind the Cloudflare TLS tunnel its `absolute_redirect` Location was `http://sibbamala.com/film/` — navigation dropped to HTTP and RSC/subresource fetches died as mixed-content errors (measured live finding; fixed at `d55be2a`). The rule remains only as the entry hop for bare external `/film` links. |
+| Artifact | `deploy/standalone/` is **committed** — the mirror has no build step, served bytes ARE repo bytes (same-commit drift rule in [DEPLOY-BUILD.md](../DEPLOY-BUILD.md)); `deploy/vendor/` likewise carries the committed pinned-node tarball (Launcher row). `hosting.yaml` `mirror` block: `cachebust:"off"` (built Next bytes ship untouched; rewriting minified JS refs is unbounded risk) + root-anchored `/.next/**` defensive exclude — `deploy/standalone/.next/static` is **intentionally served** (root anchor can't reach it, mirror.py `_glob_re` rule). |
 | Keyless state (honest) | Without D2 the hosted copy serves its **fail-closed keyless product**: pages render 200 with the error block and the `Kunde inte nå filmdatabasen` fallback, `/api/*` envelopes return 503 `TMDB_NOT_CONFIGURED` — zero film data, zero crashes. That is a DEGRADED product, not a malfunction; do not report it as "shows films". |
 
 Prefix-safety gates: `basePath:"/film"` is baked at build time so every served HTML

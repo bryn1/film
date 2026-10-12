@@ -42,6 +42,13 @@ past ~3800 files, trim before pushing (cap trip = repo never mirrors = dark).
 ## Runtime shape
 
 `systemd → /usr/bin/python3 server.py` (outer `$PORT` 8161, 127.0.0.1 only)
-`→ node deploy/standalone/server.js` (random loopback inner port) — server.py
+`→ node deploy/standalone/server.js` (random loopback inner port; node = system
+`node` or the committed `deploy/vendor/` pinned runtime) — server.py
 re-prefixes `/film/*` because nginx `location /film/` strips the prefix before
-proxying. Full chain: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
+proxying. Canonical URLs carry the trailing slash (`next.config.mjs
+trailingSlash:true`): the shipped build answers `/film/…` 200 straight, so the
+browser hot path never hits the nginx `location = /film` 301 — behind the
+TLS tunnel that rule answers an absolute `http://` Location (TLS drop; MC 10444
+live finding, fixed `d55be2a`). The flag ships a different URL shape, so it
+falls under the drift rule above: change it ⇒ rebuild + recommit `deploy/`.
+Full chain: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
