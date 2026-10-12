@@ -20,14 +20,17 @@ The variable name `root_path` is deliberate and lowercase: reconcile.py's
 PREFIX_REWRITER_RE is case-sensitive and matches this literal token — the
 fleet's blessed prefix-rewrite shape.
 """
+import hashlib
 import os
 import shutil
 import signal
 import socket
 import subprocess
 import sys
+import tempfile
 import threading
 import time
+import tarfile
 from http.client import HTTPConnection
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
@@ -35,6 +38,19 @@ root_path = "/film"
 APP_DIR = os.path.dirname(os.path.abspath(__file__))
 STANDALONE = os.path.join(APP_DIR, "deploy", "standalone")
 ENTRY = os.path.join(STANDALONE, "server.js")
+
+# Vendored Node fallback (MC 10444 follow-up): the vm106 hosting lane is
+# python3+static and must stay host-untouched, so the app ships the official
+# runtime and extracts ONLY its bin/node member when no system node exists.
+# Pinned sha256 of deploy/vendor/node-v20.20.2-linux-x64.tar.xz from the
+# freshly fetched https://nodejs.org/dist/v20.20.2/SHASUMS256.txt. That file
+# lists archive hashes only (no per-file entry for the raw bin/node — checked
+# 2026-10-12), so the TARBALL sha256 is verified once before extraction and
+# the extracted binary must then pass `--version` before anything execs it.
+NODE_VERSION = "v20.20.2"
+NODE_TARBALL_SHA256 = "df770b2a6f130ed8627c9782c988fda9669fa23898329a61a871e32f965e007d"
+VENDOR_TARBALL = os.path.join(APP_DIR, "deploy", "vendor",
+                              f"node-{NODE_VERSION}-linux-x64.tar.xz")
 
 # RFC 2616 §13.5.1 connection-scoped headers: never forwarded either way.
 HOP_BY_HOP = frozenset({
@@ -63,12 +79,78 @@ def die(msg):
     sys.exit(f"film-launcher: {msg}")
 
 
+def node_version(node_bin):
+    """stdout of `node_bin --version`, or None on exec error/timeout (15s)."""
+    try:
+        out = subprocess.run([node_bin, "--version"], capture_output=True,
+                             text=True, timeout=15)
+    except (OSError, subprocess.TimeoutExpired):
+        return None
+    v = out.stdout.strip()
+    return v if out.returncode == 0 and v.startswith("v") else None
+
+
+def extract_vendored_node(target):
+    """Extract ONLY member node-<ver>-linux-x64/bin/node from VENDOR_TARBALL
+    into `target` (under RUNTIME/bin). Tarball sha256 verified BEFORE reading
+    any member (see NODE_TARBALL_SHA256 comment). Race discipline: unique tmp
+    name (same filesystem as target) + atomic os.replace, so a concurrent boot
+    never reads a half-written binary and no writer can clobber another's
+    tmp; makedirs(exist_ok=True) is the tolerated FileExistsError re-check."""
+    if not os.path.exists(VENDOR_TARBALL):
+        die(f"no system node and vendored runtime missing: {VENDOR_TARBALL} "
+            "(MC 10444 D1)")
+    digest = hashlib.sha256()
+    with open(VENDOR_TARBALL, "rb") as f:
+        for chunk in iter(lambda: f.read(1 << 20), b""):
+            digest.update(chunk)
+    if digest.hexdigest() != NODE_TARBALL_SHA256:
+        die(f"vendored tarball sha256 mismatch: {VENDOR_TARBALL}")
+    os.makedirs(os.path.dirname(target), exist_ok=True)
+    tmp = f"{target}.tmp.{os.getpid()}"
+    try:
+        with tarfile.open(VENDOR_TARBALL, "r:xz") as tar:
+            src = tar.extractfile(f"node-{NODE_VERSION}-linux-x64/bin/node")
+            if src is None:
+                die(f"member bin/node absent from {VENDOR_TARBALL}")
+            with open(tmp, "wb") as out:
+                shutil.copyfileobj(src, out)
+        os.chmod(tmp, 0o755)
+        os.replace(tmp, target)  # atomic publish: readers see old or complete
+    except (OSError, tarfile.TarError) as exc:
+        try:
+            os.unlink(tmp)
+        except OSError:
+            pass
+        die(f"vendored node extraction failed: {exc}")
+
+
+def resolve_node():
+    """(a) shutil.which("node") as always; else (b) the app-vendored runtime,
+    extracted on first boot into RUNTIME and reused while it answers
+    --version. Journal always names kind + path + version."""
+    node = shutil.which("node")
+    if node is not None:
+        print(f"film-launcher: node resolved: system ({node} "
+              f"{node_version(node) or '--version failed'})",
+              file=sys.stderr, flush=True)
+        return node
+    target = os.path.join(os.environ.get("HOME") or tempfile.gettempdir(),
+                          f"film-node-{NODE_VERSION}", "bin", "node")
+    if node_version(target) is None:  # absent OR incomplete -> (re-)extract
+        extract_vendored_node(target)
+        if node_version(target) is None:
+            die(f"extracted vendored node fails --version: {target} "
+                "(never exec an unverified runtime)")
+    print(f"film-launcher: node resolved: vendored ({target} "
+          f"{node_version(target)})", file=sys.stderr, flush=True)
+    return target
+
+
 PORT = int(os.environ.get("PORT") or 0)  # unit contract: Environment=PORT=<port>
 if not PORT:
     die("PORT env missing — the systemd unit contract supplies it")
-NODE = shutil.which("node")
-if NODE is None:  # typed fail-fast: journalctl names the cause (D1 path)
-    die("node binary absent on this host; app cannot serve (MC 10444 D1)")
+NODE = resolve_node()  # typed fail-fast inside: journalctl names the cause (D1 path)
 if not os.path.exists(ENTRY):
     die(f"committed artifact missing: {ENTRY} (see DEPLOY-BUILD.md)")
 
