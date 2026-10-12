@@ -123,8 +123,10 @@ on /search — field↔URL sync before any JS).
   — pure shaping + `fetchMovieDetail` (delegates its one call to `tmdbFetch`; also
   `normalizePeople` knownFor movie-only ≤4 and `normalizeCompanies` "" ⇒ field OMITTED);
   `src/lib/api/query.ts` (T9) — the ONLY validation layer for discover params (routes do no
-  numeric math); `src/lib/tmdb/types.ts`; `src/lib/api/envelope.ts`; `src/lib/useApi.ts`
-  (client fetch hook — components never call TMDB directly).
+  numeric math); `src/lib/tmdb/types.ts`; `src/lib/api/envelope.ts`;
+  `src/lib/basePath.ts` (hosted delta — the ONE `BASE` home, consumed by
+  `useApi`/`SearchField`/`FilterBar`, see the header note); `src/lib/useApi.ts`
+  (client fetch hook — components never call TMDB directly; fetches via `BASE`).
 - **Tests/fixtures**: FOUR suite files (gates re-derived at TIP `d65d7ae`; CLOSING counted
   actuals) —
   `tests/app.integration.test.mjs` (562 lines, 19 gates: contract, envelope, negatives,
@@ -177,7 +179,7 @@ File hygiene ~250/400 (header reason if >400), tests ≤600, fixtures/config/dat
 so no header reason lines are required; the largest test file is `app.integration.test.mjs` at
 562/600 (after the commit-0 relocation), `detail-search.test.mjs` next at 501/600 — both
 legal. No TODO/FIXME markers in src or tests. Commits authored
-`git -c user.name="<profile> (10252.1)" -c user.email="<profile>@agent-town.local"` — never `git config`.
+`git -c user.name="<profile> (<card id>)" -c user.email="<profile>@agent-town.local"` — never `git config`.
 
 ## Hosting (vm106 — sibbamala.com/film)
 

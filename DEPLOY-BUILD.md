@@ -21,8 +21,10 @@ public            →  deploy/standalone/public
 ```
 
 `basePath` is BUILD-TIME (`NEXT_PUBLIC_BASE_PATH` drives `next.config.mjs`
-basePath and the `useApi.ts` fetch prefix — the only two files the prefix
-touches). Local dev stays unprefixed: env unset ⇒ `BASE=""`.
+basePath and the ONE `BASE` seam in `src/lib/basePath.ts` — consumed by
+`useApi.ts` (fetch) and the form `action`s of `SearchField.tsx` +
+`FilterBar.tsx`; rebuild `deploy/` after ANY of them). Local dev stays
+unprefixed: env unset ⇒ `BASE=""`.
 
 ## Drift rule (release-command law)
 
