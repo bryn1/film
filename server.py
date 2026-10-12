@@ -8,9 +8,11 @@ while the committed Next build (basePath "/film" baked) answers /film/* only.
 So the launcher re-prefixes: it spawns the committed standalone build
 (deploy/standalone/server.js) on a loopback inner port and forwards every
 request to it with root_path prepended. The prepend is IDEMPOTENT and the
-target is canonicalized WITHOUT a trailing slash (direct /film/... requests
-pass through; a nginx-stripped "/" becomes "/film"; both answer 200 straight
-— no 308 bounce for the client).
+path passes through AS GIVEN — canonical shape carries the trailing slash
+(next.config trailingSlash:true, MC 10444 fix-cycle 1): a nginx-stripped "/"
+becomes "/film/" and direct "/film/..." requests pass through, both served
+200 straight; a bare "/film..." gets ONE app-level scheme-preserving 308 to
+canonical. The browser hot path sees ZERO redirects.
 
 Supervision: if the node child exits, this launcher exits non-zero so the
 unit's Restart=on-failure restarts the pair. stdlib only — no venv, no
@@ -61,17 +63,20 @@ UPSTREAM_TIMEOUT = 30
 
 
 def re_prefix(path):
-    """root_path + path, idempotent (segment-boundary check), canonicalized to
-    the NO-trailing-slash form the basePath build answers with 200:
-    next start 308s "/film/" -> "/film", and that Location through the nginx
-    `location = /film` 301 -> /film/ would loop. So: never forward a trailing
-    slash after root_path — "/" -> "/film", "/film/" -> "/film",
-    "/film/discover/" -> "/film/discover"; queries ride along untouched."""
+    """root_path + path, idempotent (segment-boundary check): forward what
+    nginx hands us, prefixed — the canonical URL shape carries the trailing
+    slash (next.config trailingSlash:true), so "/" becomes "/film/" (served
+    200 straight) and "/film/..." passes through untouched. A bare external
+    "/film..." is forwarded unchanged and gets ONE app-level 308 to the
+    canonical URL — Next's Location is relative, scheme-preserving, fine —
+    while the browser hot path never sees a redirect. (The old shape here
+    STRIPPED the trailing slash so next start 308'd "/film/" -> "/film" and
+    the nginx `location = /film` 301 answered an absolute http:// Location
+    behind the TLS tunnel — MC 10444 live finding.) Query partitioned and
+    rejoined explicitly: the query rides along untouched."""
     target = path if path == root_path or path.startswith(root_path + "/") \
         else f"{root_path}{path}"
     path_part, sep, query = target.partition("?")
-    if path_part.endswith("/"):
-        path_part = path_part[:-1]
     return path_part + sep + query
 
 

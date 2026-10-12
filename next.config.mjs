@@ -6,6 +6,14 @@ const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
 const nextConfig = {
   basePath,
+  // Canonical trailing slash (MC 10444 fix-cycle 1, live browser finding): with
+  // it the router emits /film/… for every link/prefetch, so the browser hot
+  // path never hits the nginx `location = /film` exact-match rule — whose
+  // absolute_redirect Location was http://sibbamala.com/film/ behind the TLS
+  // tunnel (measured: navigation dropped to HTTP, subresource/RSC prefetches
+  // died as mixed-content errors). Bare /film… now gets at most ONE
+  // app-level, scheme-preserving 308 to canonical; hot path: zero redirects.
+  trailingSlash: true,
   output: "standalone",
   images: {
     remotePatterns: [
