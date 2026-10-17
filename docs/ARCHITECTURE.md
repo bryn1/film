@@ -25,7 +25,8 @@
 > `/movie/[id]`), tier-1 media pills on `/discover`, three TV rails on
 > `/`, the `/search/multi` fan-out with a fourth result section, and
 > `tests/tv.test.mjs` (fixture 3007 / app 3230 / keyless 3231) — five
-> suite files, 60 gates.
+> suite files / 60 gates as of MC 10610; six files / 67 gates at this commit (MC 10877
+> + MC 10612) — see the T10c paragraph below and the Tests section.
 >
 > **MC 10612 T10c re-derived at this commit (2026-10-17, plan
 > `.audits/202610111724-bab658dd/out/PLAN-t10c.md` Rev 1, DA-SHIP): the
@@ -118,7 +119,7 @@ fallback+live cannot coexist); the DYNAMIC routes (`/discover`, `/search*`) serv
 **LIVE** field instead (label `for="site-search"`, no `action`; the input carries `value="<q>"`
 on /search — field↔URL sync before any JS).
 
-## Modules (actual tree — re-derived at b706a91)
+## Modules (actual tree — re-derived at ca2c1e5)
 
 - **Pages/routes** (App Router): `src/app/layout.tsx` (root: `lang="sv"`, `data-theme="dark"`,
   Inter via `next/font`, Nav shell + `<main id="main">`), `src/app/page.tsx` (startsida,
@@ -257,7 +258,7 @@ on /search — field↔URL sync before any JS).
   pointed at via `TMDB_BASE_URL`/`TMDB_IMAGE_BASE`.
   Node stdlib only — the suites add no dependency. One mechanism, no others.
 
-## Dependencies (unchanged from template; re-verified against `package.json` at b706a91)
+## Dependencies (unchanged from template; re-verified against `package.json` at ca2c1e5)
 
 runtime: next 14.1.3, react ^18, react-dom ^18 · dev: typescript ^5, eslint ^8, eslint-config-next
 14.1.3, @types/*. **Build rule: add NO new dependency** — the app uses plain fetch, no SDK, no

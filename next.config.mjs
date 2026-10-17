@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 // basePath is BUILD-time (MC 10444): the committed deploy/ artifact is built with
-// NEXT_PUBLIC_BASE_PATH=/film for sibbamala.com/film; local dev and the 48-gate test
+// NEXT_PUBLIC_BASE_PATH=/film for sibbamala.com/film; local dev and the 67-gate test
 // suite build unprefixed (env unset ⇒ ""). Never a runtime knob.
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
