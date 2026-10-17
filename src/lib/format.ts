@@ -30,35 +30,49 @@ export const COPY = {
     title: "Något gick fel",
     description: "Vi kunde inte hämta filmerna just nu.",
   },
-  discoverH1: "Upptäck filmer",
+  /** Discover h1 PER TYPE (MC 10610 §2): the URL-reflecting-h1 mechanism
+   *  /search uses for q; movie canon unchanged, tv twin added. */
+  discoverH1: {
+    movie: "Upptäck filmer",
+    tv: "Upptäck TV-serier",
+  },
   searchH1: {
     /** q present ⇒ h1 is `${forQuery} "${q}"`; q absent/blank ⇒ `bare`. */
     forQuery: "Sökresultat för",
     bare: "Sökresultat",
   },
-  /** /movie/[id] labels (§7a, MC 10333 T9). */
+  /** /movie/[id] + /tv/[id] labels (§7a, MC 10333 T9; tv twins §3). */
   detail: {
     handling: "Handling",
     cast: "Rollista",
     director: "Regissör",
     runtime: "Speltid",
+    /** tv meta row label — the episode_run_time[0] twin of "Speltid". */
+    episodeRuntime: "Avsnittslängd",
+    /** tv meta row label — "Säsonger: N". */
+    seasons: "Säsonger",
     notAvailable: "Inte tillgänglig",
   },
-  /** /search section headings (§7c). */
+  /** /search section headings (§7c + MC 10610 §5 tv twin). */
   sections: {
     movies: "Filmer",
+    tvShows: "TV-serier",
     people: "Personer",
     companies: "Produktionsbolag",
   },
-  /** /discover FilterBar labels + buttons (§7b). */
+  /** /discover FilterBar labels + buttons (§7b; tv twins MC 10610 §2 —
+   *  label ids stay, only the visible strings twin). */
   filters: {
     minScore: "Betyg från",
     maxScore: "Betyg till",
     yearFrom: "År från",
     yearTo: "År till",
-    count: "Antal filmer",
-    submit: "Visa filmer",
+    count: { movie: "Antal filmer", tv: "Antal serier" },
+    submit: { movie: "Visa filmer", tv: "Visa serier" },
     clear: "Rensa filter",
+    /** Tier-1 pills (MC 10610 §2). */
+    typeMovie: "Filmer",
+    typeTv: "TV-serier",
   },
 } as const;
 

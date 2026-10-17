@@ -220,18 +220,20 @@ after(async () => {
  * S1 (FIRST = fresh-cache position): /api/search attribution + shape.
  * Cold URL ⇒ the ring shows exactly what the seam sent upstream: ALL
  * THREE fan-out paths, each with query + language=sv-SE + bearer.
+ * MC 10610 §5: /search/movie became /search/multi (still THREE calls)
+ * and the envelope grew the tv section — both truth-updates pinned here.
  * ------------------------------------------------------------------ */
 test("S1: /api/search?q=ronja answers ok + the title match, reaching all THREE search paths with bearer + sv-SE", async () => {
   await resetRing();
   const { status, json } = await api(APP_PORT, "/api/search?q=ronja");
   assert.equal(status, 200);
   assert.equal(json.ok, true);
-  assert.deepEqual(Object.keys(json.data).sort(), ["companies", "movies", "people"]);
+  assert.deepEqual(Object.keys(json.data).sort(), ["companies", "movies", "people", "tv"]);
   assert.equal(json.data.movies.length, 1, "fixture filters movies by query substring");
   assert.equal(json.data.movies[0].title, "Ronja Rövardotter");
   assert.ok(Array.isArray(json.data.people) && Array.isArray(json.data.companies), "sections always arrays");
   const requests = await ring();
-  for (const path of ["/search/movie", "/search/person", "/search/company"]) {
+  for (const path of ["/search/multi", "/search/person", "/search/company"]) {
     const entry = requests.find((request) => request.path === path);
     assert.ok(entry, `${path} must be called (three-way fan-out, C3-6d)`);
     assert.equal(entry.query.query, "ronja", `${path}: q must reach upstream as query`);
@@ -241,7 +243,7 @@ test("S1: /api/search?q=ronja answers ok + the title match, reaching all THREE s
 });
 
 /* -------------------------- S2: persons ---------------------------- */
-test("S2: a person-name q with no title match fills the people section — knownFor movie-only, ≤4, movie ids ⊆ pool", async () => {
+test("S2: a person-name q with no title match fills the people section — knownFor movie|tv, ≤4, movie-typed ids ⊆ pool", async () => {
   const unique = "ingrid";
   const { status, json } = await api(APP_PORT, `/api/search?q=${unique}`);
   assert.equal(status, 200);
@@ -249,35 +251,56 @@ test("S2: a person-name q with no title match fills the people section — known
   assert.ok(json.data.people.length >= 1, "person fixture must match");
   const person = json.data.people.find((p) => p.name === "Ingrid Kallsjö");
   assert.ok(person, `expected Ingrid Kallsjö among ${json.data.people.map((p) => p.name)}`);
-  // Expectation DERIVED from the fixture JSON at test level (§9): movie
-  // media_type only, first 4 — the fixture carries 4 movies + 2 tv entries.
+  // Expectation DERIVED from the fixture JSON at test level (§9): the
+  // media filter is movie|tv since MC 10610 §3 (a movie-only filter cuts
+  // the fixture's FIRST entry, tv 9011 — order + content redden deepEqual),
+  // first 4, every entry mediaType-tagged with title ?? name.
   const source = JSON.parse(
     readFileSync(join(HERE, "fixtures", "data", "persons-search.json"), "utf8"),
   );
   const raw = source.results.find((p) => p.name === "Ingrid Kallsjö");
   assert.equal(raw.known_for.filter((k) => k.media_type === "movie").length, 5, "fixture carries 5 movie + 1 tv known_for (TV-cutoff falsifier armed)");
   const expected = raw.known_for
-    .filter((k) => k.media_type === "movie")
+    .filter((k) => k.media_type === "movie" || k.media_type === "tv")
     .slice(0, 4)
-    .map((k) => ({ id: k.id, title: k.title }));
-  assert.deepEqual(person.knownFor, expected, "knownFor: movie-only, ≤4, in fixture order");
+    .map((k) => ({
+      id: k.id,
+      title: k.title ?? k.name ?? "",
+      mediaType: k.media_type === "tv" ? "tv" : "movie",
+    }));
+  assert.deepEqual(person.knownFor, expected, "knownFor: movie|tv, ≤4, in fixture order, mediaType-tagged");
   const poolIds = new Set(
     JSON.parse(
       readFileSync(join(HERE, "fixtures", "data", "movies-discover-pool.json"), "utf8"),
     ).results.map((movie) => movie.id),
   );
-  assert.ok(expected.every((k) => poolIds.has(k.id)), "known_for movie ids exist in the pool (§6 overlap)");
-  // Second TV-cutoff falsifier (DA-verdict-c6 P2-1): the q=saga path hits
-  // the tv-only person 20003, whose single known_for entry (id 9021) is
-  // NOT in the pool — movie filter intact it must serve knownFor: [],
-  // filter deleted it would serve the dead /movie/9021 link (red here,
-  // independent of the 20001 reordering above).
+  assert.ok(
+    expected.filter((k) => k.mediaType === "movie").every((k) => poolIds.has(k.id)),
+    "known_for MOVIE ids exist in the pool (§6 overlap); tv ids route /tv/<id> — the movie pool is not their universe",
+  );
+  // The saga falsifier INVERTED by MC 10610 §3 (was: tv-only person must
+  // serve [] proving the movie filter survived). With the filter widened
+  // to movie|tv, person 20003's single tv entry (id 9021, still outside
+  // the movie pool) must now be SERVED, mediaType-tagged — a link keyed
+  // by mediaType renders live /tv/9021, never the dead /movie/9021. An
+  // app still movie-only serves [] here: red. Both directions pinned.
   const saga = await api(APP_PORT, "/api/search?q=saga");
   assert.equal(saga.status, 200);
   const tvOnly = saga.json.data.people.find((p) => p.id === 20003);
   assert.ok(tvOnly, "tv-only person (20003) must match q=saga");
-  assert.equal(poolIds.has(9021), false, "fixture pin: 9021 is outside the movie pool (dead link if served)");
-  assert.deepEqual(tvOnly.knownFor, [], "tv-only person must serve knownFor: [] — movie filter never deleted (§3)");
+  assert.equal(poolIds.has(9021), false, "fixture pin: 9021 is outside the movie pool (would be a dead movie link)");
+  const sagaRaw = source.results.find((p) => p.id === 20003);
+  assert.ok(sagaRaw, "fixture pin: person 20003 exists in persons-search.json");
+  const expectedTvOnly = sagaRaw.known_for.map((k) => ({
+    id: k.id,
+    title: k.title ?? k.name ?? "",
+    mediaType: k.media_type === "tv" ? "tv" : "movie",
+  }));
+  assert.ok(
+    expectedTvOnly.length === 1 && expectedTvOnly[0].mediaType === "tv",
+    "fixture pin: 20003 carries exactly one tv known_for",
+  );
+  assert.deepEqual(tvOnly.knownFor, expectedTvOnly, "tv-only person now SERVES its known_for via the movie|tv filter — an app still movie-only answers [] (red)");
 });
 
 /* ------------------------- S3: companies ---------------------------- */
@@ -299,11 +322,11 @@ test("S3: company matches fill the companies section — empty origin_country OM
 });
 
 /* ------------------- relocated search-state gates -------------------- */
-test("empty search results are 200 ok with ALL THREE sections empty (UI empty state, never an error)", async () => {
+test("empty search results are 200 ok with ALL FOUR sections empty (UI empty state, never an error)", async () => {
   const { status, json } = await api(APP_PORT, "/api/search?q=tomtest");
   assert.equal(status, 200);
   assert.equal(json.ok, true);
-  assert.deepEqual(json.data, { movies: [], people: [], companies: [] });
+  assert.deepEqual(json.data, { movies: [], tv: [], people: [], companies: [] });
 });
 
 test("search normalizes `query` upstream for any query string (fresh cache key)", async () => {
@@ -314,11 +337,11 @@ test("search normalizes `query` upstream for any query string (fresh cache key)"
   assert.equal(json.ok, true);
   assert.deepEqual(
     json.data,
-    { movies: [], people: [], companies: [] },
+    { movies: [], tv: [], people: [], companies: [] },
     "unique query matches no fixture entry anywhere",
   );
   const requests = await ring();
-  const search = requests.find((entry) => entry.path === "/search/movie");
+  const search = requests.find((entry) => entry.path === "/search/multi");
   assert.ok(search, "unique query must force a fresh upstream call");
   assert.equal(search.query.query, unique);
 });

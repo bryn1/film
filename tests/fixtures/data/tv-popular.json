@@ -1,0 +1,47 @@
+{
+  "page": 1,
+  "total_pages": 1,
+  "total_results": 4,
+  "results": [
+    {
+      "id": 13301,
+      "name": "Fjärrkontrollen",
+      "overview": "En familj, ett hus, två fjärrkontroller.",
+      "poster_path": "/po/tv13301.jpg",
+      "backdrop_path": "/bk/tv13301.jpg",
+      "first_air_date": "2024-03-03",
+      "vote_average": 7.0,
+      "genre_ids": [35, 10751]
+    },
+    {
+      "id": 13302,
+      "name": "Gränslandet",
+      "overview": "Tulltjänstemannen som började ställa frågor.",
+      "poster_path": "/po/tv13302.jpg",
+      "backdrop_path": "/bk/tv13302.jpg",
+      "first_air_date": "2022-10-12",
+      "vote_average": 7.9,
+      "genre_ids": [80, 18]
+    },
+    {
+      "id": 13303,
+      "name": "Badhuset",
+      "overview": "Sommarsäsong på stadens gamla badhus.",
+      "poster_path": "/po/tv13303.jpg",
+      "backdrop_path": null,
+      "first_air_date": "2023-06-21",
+      "vote_average": 6.7,
+      "genre_ids": [10751, 35]
+    },
+    {
+      "id": 13304,
+      "name": "Ekot av dig",
+      "overview": "Röstskådespelerskan som hittade sitt eget arkiv.",
+      "poster_path": "/po/tv13304.jpg",
+      "backdrop_path": "/bk/tv13304.jpg",
+      "first_air_date": "2021-11-08",
+      "vote_average": 7.4,
+      "genre_ids": [18]
+    }
+  ]
+}

@@ -1,6 +1,7 @@
-/* FilterBar — the /discover numeric filter row (ARCHITECT-PLAN Rev 4.1
-   §4g, MC 10333 T9). DESIGN tokens only; sits above FilterChips, same
-   page rhythm as the Discover module. */
+/* FilterBar — the /discover filter form + tier-1 media pills
+   (ARCHITECT-PLAN Rev 4.1 §4g, MC 10333 T9; pills MC 10610 §2). DESIGN
+   tokens only; sits above FilterChips, same page rhythm as the Discover
+   module. */
 
 .bar {
   display: flex;
@@ -59,4 +60,39 @@
 .clear:hover {
   color: var(--text-primary);
   border-color: var(--border-default);
+}
+
+/* Tier-1 media pills (MC 10610 §2). THE RULE lives in FilterBar.tsx:
+   the pill buttons are LAST in TREE order (implicit-submit safety);
+   this `order: -2` is the CSS-only visual reorder that places the row
+   first WITHOUT touching the DOM. Own flex row (tier 1 sits above the
+   numeric fields, genres keep their own nav row below the bar). */
+.typeGroup {
+  order: -2;
+  flex: 1 0 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.typePill {
+  padding: var(--space-1) var(--space-4);
+  color: var(--text-secondary);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-full);
+  font-weight: var(--font-medium);
+  cursor: pointer;
+}
+
+.typePill:hover {
+  color: var(--text-primary);
+  border-color: var(--border-default);
+}
+
+/* Server-computed pressed state (SSR HTML, no JS needed). */
+.typePill[aria-pressed="true"] {
+  color: var(--text-on-image);
+  background: var(--accent);
+  border-color: var(--accent);
 }

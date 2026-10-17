@@ -6,9 +6,15 @@
  * The ApiEnvelope shapes are the exact JSON of every /api/* route.
  */
 
+/** The media axis (MC 10610 T10b): movie is the default everywhere —
+ *  an absent ?type= is movie (parseMediaType's ruling), tv is opt-in. */
+export type MediaType = "movie" | "tv";
+
 /** Normalized movie as the app (and every API response) knows it. */
 export interface Movie {
   id: number;
+  /** Routing axis for the card (MovieCard links /tv/<id> only for "tv"). */
+  mediaType: MediaType;
   title: string;
   overview: string;
   posterPath: string | null;
@@ -32,8 +38,11 @@ export interface Genre {
 export interface Person {
   id: number;
   name: string;
-  /** Movie media_type only, ≤4 entries (normalizePeople enforces both). */
-  knownFor: { id: number; title: string }[];
+  /** movie|tv media_type only, ≤4 entries (normalizePeople enforces
+   *  both; MC 10610 §5 widened movie-only → movie|tv — a tv chip's link
+   *  is LIVE because /tv/[id] now exists, the dead-/movie-link
+   *  invariant is satisfied, not deleted). */
+  knownFor: { id: number; title: string; mediaType: MediaType }[];
 }
 
 /** Normalized production company (§3): "" origin_country ⇒ field OMITTED. */
@@ -61,11 +70,18 @@ export interface MovieDetail extends Movie {
   /** First crew member with job === "Director"; null when absent. */
   director: string | null;
   cast: CastMember[];
+  /** tv detail: episode_run_time[0] (ARRAY — empty/missing ⇒ null ⇒ the
+   *  meta row is omitted); movie detail: always null (MC 10610 §3). */
+  episodeRunTime: number | null;
+  /** tv detail: number_of_seasons; movie detail: always null. */
+  numberOfSeasons: number | null;
 }
 
-/** /api/search success shape (§3): three sections, each possibly empty. */
+/** /api/search success shape (§3 + MC 10610 §5): four sections, each
+ *  possibly empty; `tv` is the /search/multi media_type==="tv" split. */
 export interface SearchSections {
   movies: Movie[];
+  tv: Movie[];
   people: Person[];
   companies: Company[];
 }
@@ -83,6 +99,9 @@ export interface TmdbMovieRaw {
   first_air_date?: string | null;
   vote_average?: number | null;
   genre_ids?: number[] | null;
+  /** multi/trending carry it per result; list endpoints per type do not
+   *  — normalizeMovie's fallback supplies the type for those (MC 10610 §3). */
+  media_type?: string | null;
 }
 
 /** TMDB paginated list responses (trending, now_playing, top_rated, search, discover). */
@@ -137,10 +156,14 @@ export interface TmdbCreditsRaw {
   crew?: TmdbCrewRaw[] | null;
 }
 
-/** /movie/<id>?append_to_response=credits response shape. */
+/** /movie|tv/<id>?append_to_response=credits response shape. */
 export interface TmdbMovieDetailRaw extends TmdbMovieRaw {
   tagline?: string | null;
   runtime?: number | null;
+  /** tv detail: ARRAY (the movie scalar assumption BREAKS here — §3). */
+  episode_run_time?: number[] | null;
+  /** tv detail only. */
+  number_of_seasons?: number | null;
   genres?: TmdbGenreRaw[] | null;
   credits?: TmdbCreditsRaw | null;
 }

@@ -1,15 +1,17 @@
 /**
  * detail.ts — normalizers for the /api/search sections and the
- * /movie/[id] detail surface (ARCHITECT-PLAN Rev 4.1 §4b, MC 10333 T9).
- * Pure shaping: this file NEVER issues HTTP — client.ts remains the only
- * file that does (header duty per §4b): fetchMovieDetail merely calls
- * client.ts's tmdbFetch and shapes the response here.
+ * /movie/[id] + /tv/[id] detail surfaces (ARCHITECT-PLAN Rev 4.1 §4b,
+ * MC 10333 T9; tv axis MC 10610 §3). Pure shaping: this file NEVER
+ * issues HTTP — client.ts remains the only file that does (header duty
+ * per §4b): fetchDetail/fetchMovieDetail merely call client.ts's
+ * tmdbFetch and shape the response here.
  */
 
 import { normalizeMovie, tmdbFetch, tmdbImageUrl, type TmdbParams } from "./client";
 import type {
   CastMember,
   Company,
+  MediaType,
   MovieDetail,
   Person,
   TmdbCompanyRaw,
@@ -19,18 +21,35 @@ import type {
 } from "./types";
 
 /**
- * One detail call: /movie/<id> with credits appended (the §4b loader,
- * delegated to client.ts — still the ONLY HTTP in the codebase). A TMDB
- * 404 arrives as a TmdbError with upstreamStatus 404 (the page branch).
+ * One detail call: /<type>/<id> with credits appended (the §4b loader
+ * since MC 10333 T9, the tv arm MC 10610 §3 — still ONE mechanism,
+ * delegated to client.ts, the ONLY HTTP in the codebase). A TMDB 404
+ * arrives as a TmdbError with upstreamStatus 404 (the page branch).
  */
-export async function fetchMovieDetail(id: string): Promise<MovieDetail> {
+export async function fetchDetail(
+  type: MediaType,
+  id: string,
+): Promise<MovieDetail> {
   const params: TmdbParams = { append_to_response: "credits" };
-  const raw = await tmdbFetch<TmdbMovieDetailRaw>(`/movie/${id}`, params);
-  return normalizeDetail(raw);
+  const raw = await tmdbFetch<TmdbMovieDetailRaw>(`/${type}/${id}`, params);
+  return normalizeDetail(raw, type);
 }
 
-/** normalizeMovie + tagline/runtime/Genre[]/director/cast ≤12 (§4b). */
-export function normalizeDetail(raw: TmdbMovieDetailRaw): MovieDetail {
+/**
+ * One movie detail call — name and signature PINNED (existing D-gates
+ * read the route through it); it delegates to the one fetchDetail (§3).
+ */
+export async function fetchMovieDetail(id: string): Promise<MovieDetail> {
+  return fetchDetail("movie", id);
+}
+
+/** normalizeMovie + tagline/runtime/Genre[]/director/cast ≤12 (§4b);
+ *  tv fields per §3: episodeRunTime from the ARRAY episode_run_time[0]
+ *  (empty/missing ⇒ null ⇒ the meta row is omitted), numberOfSeasons. */
+export function normalizeDetail(
+  raw: TmdbMovieDetailRaw,
+  type: MediaType = "movie",
+): MovieDetail {
   const crew = raw.credits?.crew ?? [];
   const cast: CastMember[] = (raw.credits?.cast ?? []).slice(0, 12).map((c) => ({
     id: c.id,
@@ -39,9 +58,11 @@ export function normalizeDetail(raw: TmdbMovieDetailRaw): MovieDetail {
     profileUrl: tmdbImageUrl(c.profile_path, "w185"),
   }));
   return {
-    ...normalizeMovie(raw),
+    ...normalizeMovie(raw, type),
     tagline: raw.tagline ?? "",
     runtime: raw.runtime ?? null,
+    episodeRunTime: raw.episode_run_time?.[0] ?? null,
+    numberOfSeasons: raw.number_of_seasons ?? null,
     genres: (raw.genres ?? []).map((g) => ({ id: g.id, name: g.name ?? "" })),
     director: crew.find((c) => c.job === "Director")?.name ?? null,
     cast,
@@ -49,9 +70,11 @@ export function normalizeDetail(raw: TmdbMovieDetailRaw): MovieDetail {
 }
 
 /**
- * Person[] from a /search/person response. knownFor keeps MOVIE
- * media_type entries only, max 4 (§3: TV noise never renders a dead
- * /movie/<id> link; VERIFIED-DA).
+ * Person[] from a /search/person response. knownFor keeps movie|tv
+ * media_type entries, max 4 (§3, MC 10610 §5 widen): the old "TV noise
+ * never renders a dead /movie/<id> link" invariant stays SATISFIED —
+ * tv entries carry mediaType and their chip links /tv/<id>, a route
+ * that now exists.
  */
 export function normalizePeople(
   response: TmdbPagedResponse<TmdbPersonRaw>,
@@ -60,9 +83,13 @@ export function normalizePeople(
     id: raw.id,
     name: raw.name ?? "",
     knownFor: (raw.known_for ?? [])
-      .filter((entry) => entry.media_type === "movie")
+      .filter((entry) => entry.media_type === "movie" || entry.media_type === "tv")
       .slice(0, 4)
-      .map((entry) => ({ id: entry.id, title: entry.title ?? entry.name ?? "" })),
+      .map((entry) => ({
+        id: entry.id,
+        title: entry.title ?? entry.name ?? "",
+        mediaType: entry.media_type === "tv" ? ("tv" as const) : ("movie" as const),
+      })),
   }));
 }
 

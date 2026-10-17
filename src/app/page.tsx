@@ -4,9 +4,17 @@
  * COMP-NOTES canon verbatim; states are honest (never a fake poster).
  *
  * Data wiring (one fetch per concern, reuse-first — no duplicate requests):
- *   - /api/trending, /api/now-playing, /api/top-rated → the three rails, each
- *     with its OWN useApi so their loading/error/empty states are INDEPENDENT
- *     (one rail failing never blanks the others) — COMP "each with its own".
+ *   - /api/trending, /api/now-playing, /api/top-rated → the three movie
+ *     rails, each with its OWN useApi so their loading/error/empty states
+ *     are INDEPENDENT (one rail failing never blanks the others) — COMP
+ *     "each with its own".
+ *   - ?type=tv twins of the same three (MC 10610 §4, owner clarifier:
+ *     TV gets rails on home too): THREE more mounts, mounted LAST, the
+ *     three tv rails rendered BELOW the three movie rails; the tv lists
+ *     are independent of every movie rail (same rule, not a new one).
+ *     HERO STAYS MOVIE-ONLY (ruling §4): the hero reads the MOVIE
+ *     trending/now-playing only — the tv fetches never enter
+ *     firstWithBackdrop — one hero mechanism, one shape.
  *   - /api/genres → id→name map for the hero meta row (genreIds arrive on each
  *     Movie; names come from here; comma-separated sv-SE list).
  *
@@ -72,6 +80,9 @@ export default function StartPage() {
   const trending = useApi<Movie[]>("/api/trending");
   const nowPlaying = useApi<Movie[]>("/api/now-playing");
   const topRated = useApi<Movie[]>("/api/top-rated");
+  const tvTrending = useApi<Movie[]>("/api/trending?type=tv");
+  const tvOnAir = useApi<Movie[]>("/api/now-playing?type=tv");
+  const tvTopRated = useApi<Movie[]>("/api/top-rated?type=tv");
   const genres = useApi<Genre[]>("/api/genres");
 
   // genre id → name, rebuilt only when the (86400 s-cached) genre list lands.
@@ -158,6 +169,29 @@ export default function StartPage() {
         loading={topRated.loading}
         error={topRated.error ?? undefined}
         onRetry={topRated.retry}
+      />
+      {/* The three tv rails below the movie rails (MC 10610 §4) — the
+          same MovieRail mechanism; tv cards route /tv/<id> themselves. */}
+      <MovieRail
+        title="Trending TV"
+        movies={tvTrending.data ?? []}
+        loading={tvTrending.loading}
+        error={tvTrending.error ?? undefined}
+        onRetry={tvTrending.retry}
+      />
+      <MovieRail
+        title="Vad på TV nu"
+        movies={tvOnAir.data ?? []}
+        loading={tvOnAir.loading}
+        error={tvOnAir.error ?? undefined}
+        onRetry={tvOnAir.retry}
+      />
+      <MovieRail
+        title="Toppbetygsatta TV"
+        movies={tvTopRated.data ?? []}
+        loading={tvTopRated.loading}
+        error={tvTopRated.error ?? undefined}
+        onRetry={tvTopRated.retry}
       />
     </div>
   );

@@ -11,6 +11,7 @@
 
 import type {
   Genre,
+  MediaType,
   Movie,
   TmdbGenresResponse,
   TmdbGenreRaw,
@@ -131,10 +132,16 @@ export function tmdbImageUrl(
 
 /** Strip TMDB noise to the pinned normalized Movie (PLAN §5). TV entries of
  *  mixed rails carry title/date in `name`/`first_air_date` — folded in so a
- *  rail card is never silently titleless. */
-export function normalizeMovie(raw: TmdbMovieRaw): Movie {
+ *  rail card is never silently titleless. `fallback` (MC 10610 §3) is the
+ *  media axis for raws WITHOUT media_type (per-type list endpoints carry
+ *  none): raw media_type "tv" always wins, else the caller's type. */
+export function normalizeMovie(
+  raw: TmdbMovieRaw,
+  fallback: MediaType = "movie",
+): Movie {
   return {
     id: raw.id,
+    mediaType: raw.media_type === "tv" ? "tv" : fallback,
     title: raw.title ?? raw.name ?? "",
     overview: raw.overview ?? "",
     posterPath: raw.poster_path ?? null,
@@ -147,11 +154,15 @@ export function normalizeMovie(raw: TmdbMovieRaw): Movie {
   };
 }
 
-/** Normalized Movie[] from a paginated TMDB list response. */
+/** Normalized Movie[] from a paginated TMDB list response; `fallback`
+ *  tags entries of endpoints that carry no per-result media_type (§3). */
 export function normalizeMovies(
   response: TmdbPagedResponse<TmdbMovieRaw>,
+  fallback?: MediaType,
 ): Movie[] {
-  return (response.results ?? []).map(normalizeMovie);
+  return (response.results ?? []).map((raw) =>
+    normalizeMovie(raw, fallback),
+  );
 }
 
 function normalizeGenre(raw: TmdbGenreRaw): Genre {

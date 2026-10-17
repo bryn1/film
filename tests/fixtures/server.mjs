@@ -8,11 +8,21 @@
  * /movie/now_playing, /movie/top_rated, /movie/popular, /discover/movie,
  * /search/movie, /search/person, /search/company, /movie/<id> (literal
  * lists resolve BEFORE the id regex — F-11c), /genre/movie/list — plus
- * real PNGs at /t/p/<size><path> so next/image resolves. Honours
+ * the MC 10610 T10b tv surface: /trending/tv/day, /tv/on_the_air,
+ * /tv/top_rated, /tv/popular (literal — resolve before /tv/<id>),
+ * /discover/tv (pool.mjs mechanics on the tv pool, first_air_date.*
+ * date selector), /tv/<id> (own detail map — id 15003 exists only as
+ * tv), /genre/tv/list, and /search/mixed… /search/multi (mixed
+ * media_type entries incl. MOVIE/TV ID OVERLAP 11001 + a person-noise
+ * entry; same query discipline: 400 without query, X-FQuery echo).
+ * Real PNGs at /t/p/<size><path> so next/image resolves. Honours
  * `Authorization: Bearer …` (401 without), `language` (sv-SE ⇒ Swedish
- * genre names, anything else ⇒ English) and `query` (400 without on the
- * three /search/* endpoints, echoed back in X-FQuery so fixture-side
- * assertions can see what the app actually sent).
+ * genre names, anything else ⇒ English on the movie list; the tv list
+ * ships its one Swedish set — sv is the app's only upstream language)
+ * and `query` (400 without on the four /search/* endpoints, echoed back
+ * in X-FQuery so fixture-side assertions can see what the app sent).
+ * Unknown params (include_adult) are inert by design — the ring records
+ * them for attribution.
  *
  * /discover/movie now speaks the 192-item FILTER POOL (pool.mjs):
  * filtering (genre ∩ vote/date/company) happens first, matches sort by
@@ -38,7 +48,7 @@ import { readFileSync } from "node:fs";
 import { deflateSync } from "node:zlib";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
-import { filterPool, pageWindow } from "./pool.mjs";
+import { filterPool, pageWindow, TV_DATES } from "./pool.mjs";
 
 const PORT = Number(process.env.FIXTURE_PORT ?? 3001);
 const DATA_DIR = join(dirname(fileURLToPath(import.meta.url)), "data");
@@ -142,12 +152,24 @@ const PAGED_FIXTURES = {
   "/movie/now_playing": "movies-now-playing.json",
   "/movie/top_rated": "movies-top-rated.json",
   "/movie/popular": "movies-popular.json",
+  // tv arms (MC 10610 §6): literal paths — they resolve BEFORE the
+  // /tv/<id> regex, so a list name can never fall into the id branch.
+  "/trending/tv/day": "tv-trending.json",
+  "/tv/on_the_air": "tv-on-the-air.json",
+  "/tv/top_rated": "tv-top-rated.json",
+  "/tv/popular": "tv-popular.json",
 };
 
 /** Pool ids carrying a full detail+credits document (/movie/<id> surface). */
 const DETAIL_FIXTURES = {
   15001: "movie-15001.json",
   15002: "movie-15002.json",
+};
+
+/** tv detail documents (/tv/<id> surface, MC 10610 §6): id 15003 exists
+ *  ONLY as tv — /movie/15003 stays the D2 404 pin while /tv/15003 serves. */
+const DETAIL_FIXTURES_TV = {
+  15003: "tv-15003.json",
 };
 
 const server = createServer((req, res) => {
@@ -224,6 +246,25 @@ const server = createServer((req, res) => {
     });
   }
 
+  // /discover/tv (MC 10610 §6): the SAME pool mechanics with the tv date
+  // selector — no poison pins here (the F-2 poisons are movie-surface
+  // facts; tv keeps clean mechanics only).
+  if (url.pathname === "/discover/tv") {
+    const params = url.searchParams;
+    const matches = filterPool(
+      fixture("tv-discover-pool.json").results,
+      params,
+      TV_DATES,
+    );
+    const page = Math.max(1, parseInt(params.get("page") ?? "1", 10) || 1);
+    return send(res, 200, {
+      page,
+      results: pageWindow(matches, page),
+      total_pages: Math.max(1, Math.ceil(matches.length / 18)),
+      total_results: matches.length,
+    });
+  }
+
   if (url.pathname === "/search/movie") {
     const query = url.searchParams.get("query");
     if (!query) {
@@ -255,6 +296,32 @@ const server = createServer((req, res) => {
         total_pages: 1,
         total_results: results.length,
       },
+      headers,
+    );
+  }
+
+  // /search/multi (MC 10610 §6): mixed media_type entries — movie AND tv
+  // (with the deliberate id-11001 OVERLAP the S1/T7 gates prove inert)
+  // plus one person-noise entry the app must DROP. Same discipline as
+  // /search/movie: 400 without query, X-FQuery echo, full-needle
+  // substring on title ?? name.
+  if (url.pathname === "/search/multi") {
+    const query = url.searchParams.get("query");
+    if (!query) {
+      return send(res, 400, {
+        status: 7,
+        status_message: "Invalid query: query is required. (fixture)",
+      });
+    }
+    const headers = { "X-FQuery": query };
+    const needle = query.toLowerCase();
+    const results = fixture("search-multi-mixed.json").results.filter((entry) =>
+      (entry.title ?? entry.name ?? "").toLowerCase().includes(needle),
+    );
+    return send(
+      res,
+      200,
+      { page: 1, results, total_pages: 1, total_results: results.length },
       headers,
     );
   }
@@ -298,10 +365,32 @@ const server = createServer((req, res) => {
     return send(res, 200, fixture(known));
   }
 
+  // /tv/<id> detail+credits (MC 10610 §6). AFTER the literal
+  // PAGED_FIXTURES map (so /tv/popular &co never fall into the id regex —
+  // the F-11c rule applied to the tv surface too).
+  const tvDetail = /^\/tv\/(\d+)$/.exec(url.pathname);
+  if (tvDetail) {
+    const known = DETAIL_FIXTURES_TV[tvDetail[1]];
+    if (!known) {
+      return send(res, 404, {
+        status: 34,
+        status_message: `The tv id ${tvDetail[1]} does not exist. (fixture)`,
+      });
+    }
+    return send(res, 200, fixture(known));
+  }
+
   if (url.pathname === "/genre/movie/list") {
     // language is honoured: only sv-SE gets the Swedish names.
     const sv = url.searchParams.get("language") === "sv-SE";
     return send(res, 200, fixture(sv ? "genres-sv.json" : "genres-en.json"));
+  }
+
+  // /genre/tv/list (MC 10610 §6): the tv list ships its ONE Swedish set
+  // for every language — sv is the app's only upstream language, and the
+  // honouring rule itself is pinned by the movie list's sv/en branch.
+  if (url.pathname === "/genre/tv/list") {
+    return send(res, 200, fixture("genres-tv-sv.json"));
   }
 
   return send(res, 404, {

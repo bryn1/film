@@ -1,11 +1,12 @@
 /**
  * MovieCard — the shared poster card (PLAN-placement.md §5 pin:
  * MovieCard{movie, priority?}). Presentational only: no fetch. Since MC
- * 10333 T9 the card LINKS to /movie/<id> — the detail route exists now,
- * so the card is the way into a film (the old "no link, detail pages out
- * of scope — dead CTAs forbidden" pin retired with the route; a LINK TO
- * A REAL PAGE is the live-CTA side of the same no-fake-content rule).
- * The card IS the content of the parent's <li>.
+ * 10333 T9 the card LINKS to the detail route — the card is the way into
+ * a title (a LINK TO A REAL PAGE is the live-CTA side of the
+ * no-fake-content rule). Since MC 10610 §3 the card SELF-ROUTES on its
+ * mediaType: /tv/<id> for tv (+ a small "TV" badge), /movie/<id> for
+ * movie — movie markup stays byte-identical (badge only when tv), so
+ * PosterGrid/MovieRail need NO prop change.
  *
  * Poster source is movie.posterUrl — the w500 display URL built SERVER-side
  * per PLAN §5 RE-PIN (types.ts has carried it required since c3dc38f);
@@ -33,11 +34,22 @@ const POSTER_SIZES =
 export function MovieCard({ movie, priority = false }: MovieCardProps) {
   const year = formatReleaseYear(movie.releaseDate);
   const hasRating = movie.voteAverage > 0;
+  const isTv = movie.mediaType === "tv";
 
   return (
-    <Link href={`/movie/${movie.id}`} className={styles.cardLink}>
+    <Link
+      href={isTv ? `/tv/${movie.id}` : `/movie/${movie.id}`}
+      className={styles.cardLink}
+    >
       <div className={styles.card}>
       <div className={styles.posterFrame}>
+        {isTv && (
+          // Type badge ONLY on tv cards (MC 10610 §3 — the one card
+          // mechanism shared by rails, grids and the search sections).
+          <span className={styles.badge} aria-hidden="true">
+            TV
+          </span>
+        )}
         {movie.posterUrl ? (
           <Image
             src={movie.posterUrl}

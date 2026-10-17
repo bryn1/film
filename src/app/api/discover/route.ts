@@ -1,13 +1,15 @@
 /**
- * GET /api/discover (ARCHITECT-PLAN Rev 4.1 §3/§4d, MC 10333 T9).
- * Validation lives entirely in query.ts (the route does no math itself):
- * no recognized param present ⇒ "/movie/popular" ("Alla", byte-stable,
- * existing gate); ANY recognized param present ⇒ "/discover/movie" with
- * sort_by=popularity.desc + the mapped filters. `count` fans pages
+ * GET /api/discover (ARCHITECT-PLAN Rev 4.1 §3/§4d, MC 10333 T9; the
+ * media axis MC 10610 §1). Validation lives entirely in query.ts (the
+ * route does no math itself). Three-way branch (§1): NO recognized param
+ * present ⇒ "/movie/popular" ("Alla", byte-stable, existing gate) · type
+ * only (no filters) ⇒ popular PER TYPE ("/tv/popular" symmetry, T5) ·
+ * filters ⇒ "/discover/<type>" with sort_by=popularity.desc +
+ * include_adult=false (F-C) + the mapped filters. `count` fans pages
  * 1..ceil(count/20) out IN PARALLEL (page 1 carries NO page param — the
- * ring page-set is {none} ∪ {2..N} exactly), merges ascending, dedupes by
- * id first-occurrence and slices to count. ANY page failing fails the
- * whole request closed (a partial merge would silently reorder).
+ * ring page-set is {none} ∪ {2..N} exactly), merges ascending, dedupes
+ * by id first-occurrence and slices to count. ANY page failing fails
+ * the whole request closed (a partial merge would silently reorder).
  * Spekar ENDAST TMDB-id (slug→id är sidans jobb, via /api/genres).
  */
 
@@ -20,10 +22,12 @@ export async function GET(request: Request): Promise<Response> {
   try {
     const query = buildDiscoverParams(new URL(request.url).searchParams);
     if ("error" in query) return fail("BAD_REQUEST", query.error);
-    if (!query.hasAny) {
-      const popular =
-        await tmdbFetch<TmdbPagedResponse<TmdbMovieRaw>>("/movie/popular");
-      return ok(normalizeMovies(popular));
+    if (!query.hasAny || !query.hasFilters) {
+      // Popular "Alla" list — per type (movie arm byte-stable pin).
+      const popular = await tmdbFetch<TmdbPagedResponse<TmdbMovieRaw>>(
+        `/${query.type}/popular`,
+      );
+      return ok(normalizeMovies(popular, query.type));
     }
     // Pages in parallel; page 1 deliberately carries no `page` param (§3).
     const fetches: Promise<TmdbPagedResponse<TmdbMovieRaw>>[] = [];
@@ -31,7 +35,10 @@ export async function GET(request: Request): Promise<Response> {
       const params =
         page === 1 ? query.params : { ...query.params, page };
       fetches.push(
-        tmdbFetch<TmdbPagedResponse<TmdbMovieRaw>>("/discover/movie", params),
+        tmdbFetch<TmdbPagedResponse<TmdbMovieRaw>>(
+          `/discover/${query.type}`,
+          params,
+        ),
       );
     }
     const pagesData = await Promise.all(fetches); // any failure ⇒ fail-closed
@@ -47,7 +54,7 @@ export async function GET(request: Request): Promise<Response> {
     }
     const sliced =
       query.count === null ? merged : merged.slice(0, query.count);
-    return ok(normalizeMovies({ results: sliced }));
+    return ok(normalizeMovies({ results: sliced }, query.type));
   } catch (error) {
     if (error instanceof TmdbError) {
       return fail(

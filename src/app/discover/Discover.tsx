@@ -21,6 +21,12 @@
  *    never the user's numeric params).
  *  - genres request failed → chips degrade to "Alla" only, pressed, and
  *    the results section shows the error state instead of a grid.
+ * The media axis (MC 10610 §2): params.type is the eighth prop
+ * (movie|tv, page-normalized). The genre list fetches
+ * /api/genres?type=tv under tv (names AND ids are tv's); the API fetch
+ * carries type=tv; discoverUrl re-serializes it (movie ⇒ omitted, URLs
+ * byte-stable) so chip pushes NEVER drop the tier. Everything else —
+ * the state machine above — is type-agnostic.
  * h1: unchanged (DA P2-1) — page.tsx owns the single h1; FilterBar is a
  * SERVER sibling outside Suspense (S5); nothing here renders a heading.
  */
@@ -35,10 +41,11 @@ import { EmptyState } from "@/components/states/EmptyState";
 import { ErrorState } from "@/components/states/ErrorState";
 import { COPY, TMDB_KEY_MARKER } from "@/lib/format";
 import { useApi } from "@/lib/useApi";
-import type { Genre, Movie } from "@/lib/tmdb/types";
+import type { Genre, MediaType, Movie } from "@/lib/tmdb/types";
 import styles from "./Discover.module.css";
 
-/** The seven raw ?params page.tsx read (§3); "" ≡ absent everywhere. */
+/** The raw ?params page.tsx read (§3 + the MC 10610 type axis);
+ *  "" ≡ absent everywhere; type is normalized movie|tv by the page. */
 export interface UrlParams {
   filter: string;
   minScore: string;
@@ -47,9 +54,13 @@ export interface UrlParams {
   yearTo: string;
   count: string;
   company: string;
+  type: MediaType;
 }
 
-/** UrlParams keys → wire param names (§3 table). */
+/** UrlParams keys → wire param names (§3 table). `type` is REQUIRED in
+ *  the list per the §4h re-serialization law: chip pushes re-serialize
+ *  ALL active params — omitting it would silently DROP the media tier
+ *  on every chip push (the regression most likely to ship green, §7.4). */
 const PARAM_KEYS: [keyof UrlParams, string][] = [
   ["filter", "filter"],
   ["minScore", "min_score"],
@@ -58,23 +69,28 @@ const PARAM_KEYS: [keyof UrlParams, string][] = [
   ["yearTo", "year_to"],
   ["count", "count"],
   ["company", "company"],
+  ["type", "type"],
 ];
 
-/** /discover URL carrying exactly the non-empty params of `next` (§4h). */
+/** /discover URL carrying exactly the non-empty params of `next` (§4h);
+ *  type is EMITTED ONLY AS tv — movie URLs stay byte-stable (§2). */
 function discoverUrl(next: UrlParams): string {
   const qs = new URLSearchParams();
   for (const [key, wire] of PARAM_KEYS) {
+    if (key === "type" && next[key] === "movie") continue;
     if (next[key] !== "") qs.set(wire, next[key]);
   }
   const s = qs.toString();
   return s === "" ? "/discover" : `/discover?${s}`;
 }
 
-/** /api/discover URL for the resolved filters (genre id from the chip). */
+/** /api/discover URL for the resolved filters (genre id from the chip);
+ *  type is passed only as tv (the API's absent ≡ movie). */
 function resultsUrl(genreId: number | null, params: UrlParams): string {
   const qs = new URLSearchParams();
   if (genreId !== null) qs.set("genre", String(genreId));
   for (const [key, wire] of PARAM_KEYS) {
+    if (key === "type" && params[key] === "movie") continue;
     if (key !== "filter" && params[key] !== "") qs.set(wire, params[key]);
   }
   const s = qs.toString();
@@ -85,12 +101,19 @@ export function Discover({ params }: { params: UrlParams }) {
   const router = useRouter();
   const filter = params.filter;
 
+  // The chip list swaps per type (MC 10610 §2): names AND ids arrive from
+  // the type's OWN /api/genres list (tv ids differ — nothing is ever
+  // hardcoded; slugify reused verbatim: "Action & äventyr" →
+  // "action-aventyr"). A movie slug typed under type=tv hits the EXISTING
+  // unknown-filter path below — no new code.
   const {
     data: genres,
     loading: genresLoading,
     error: genresError,
     retry: retryGenres,
-  } = useApi<Genre[]>("/api/genres");
+  } = useApi<Genre[]>(
+    params.type === "tv" ? "/api/genres?type=tv" : "/api/genres",
+  );
 
   const slugToId = useMemo(() => {
     const map = new Map<string, number>();

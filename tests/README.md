@@ -39,7 +39,18 @@ and the §7b/§7c shell (S1–S6). Each owns its OWN fixture + app boot:
 `discover-filters` on `FILTERS_FIXTURE_PORT`/`FILTERS_APP_PORT` (defaults
 3005/3228), `detail-search` on `DS_FIXTURE_PORT`/`DS_APP_PORT` (defaults
 3006/3229) — disjoint from 3001/3211–3213 and 3004/3227, so the
-documented glob runs all four files concurrently without port races.
+documented glob runs the files concurrently without port races.
+
+`tests/tv.test.mjs` (MC 10610 T10b) gates the media axis: gates T1–T10
+over the `?type=` API switch (trending/genres/discover fan-out + year
+mapping, strict 400, popular-arm byte pins, the `/tv/[id]` SSR detail,
+the `/search/multi` split with its three-call fan-out, the tier-1 pills'
+served bytes incl. the T9 tree-order/implicit-submit pin) and the KEYLESS
+tv surface. It boots its OWN fixture + keyed app + keyless twin on
+`TV_FIXTURE_PORT`/`TV_APP_PORT`/`TV_NOKEY_PORT` (defaults 3007/3230/3231 —
+3007 is the port the image allow-list row `next.config.mjs` names for
+this file, and the NOKEY precedent is 3212's keyless twin), making the
+glob a five-file concurrent run.
 
 Port caveat (measured TEST-c2): the `next/image` allow-list gate in
 `app.integration.test.mjs` is baked at BUILD time by `next.config.mjs`

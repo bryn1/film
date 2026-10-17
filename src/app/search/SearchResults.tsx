@@ -5,11 +5,14 @@
  * loading → PosterGrid's skeleton grid;
  * TMDB_NOT_CONFIGURED (503) → honest missing-key state, no retry (it cannot help);
  * any other error → ErrorState with retry;
- * ok + ALL THREE sections empty → "Inga träffar" + "Rensa sökning";
- * ok + anything → three sections, each rendered ONLY when it has items
- *   (§7c): h2 "Filmer" → count line (role="status" — films ONLY) +
- *   PosterGrid; h2 "Personer" → name + knownFor chips linking /movie/<id>;
- *   h2 "Produktionsbolag" → name + country, "" origin_country OMITS the
+ * ok + ALL FOUR sections empty → "Inga träffar" + "Rensa sökning";
+ * ok + anything → four sections, each rendered ONLY when it has items
+ *   (§7c + MC 10610 §5): h2 "Filmer" → count line (role="status" — films
+ *   ONLY) + PosterGrid; h2 "TV-serier" → its OWN count line + grid (tv
+ *   cards self-route /tv/<id> per MovieCard); h2 "Personer" → name +
+ *   knownFor chips linking /movie/<id> OR /tv/<id> by the entry's
+ *   mediaType (both routes exist — no dead chip); h2
+ *   "Produktionsbolag" → name + country, "" origin_country OMITS the
  *   country span entirely (F-11d), each links /discover?company=<id>.
  *
  * h1 invariant (DA P2-1): q arrives as a PROP from page.tsx (the server
@@ -104,6 +107,22 @@ function ResultsForQuery({ q }: { q: string }) {
               <PosterGrid movies={data.movies} loading={false} />
             </section>
           )}
+          {data.tv.length > 0 && (
+            // TV-serier section (MC 10610 §5): its OWN role=status count
+            // line (pinned) — cards render through the one PosterGrid
+            // mechanism and self-route /tv/<id>.
+            <section aria-labelledby="section-tv">
+              <h2 id="section-tv" className={styles.sectionHeading}>
+                {COPY.sections.tvShows}
+              </h2>
+              <p role="status" className={styles.count}>
+                {data.tv.length === 1
+                  ? "1 träff"
+                  : `${data.tv.length} träffar`}
+              </p>
+              <PosterGrid movies={data.tv} loading={false} />
+            </section>
+          )}
           {data.people.length > 0 && (
             <section aria-labelledby="section-people">
               <h2 id="section-people" className={styles.sectionHeading}>
@@ -115,8 +134,12 @@ function ResultsForQuery({ q }: { q: string }) {
                     <span className={styles.entryName}>{person.name}</span>
                     {person.knownFor.map((film) => (
                       <Link
-                        key={film.id}
-                        href={`/movie/${film.id}`}
+                        key={`${film.mediaType}-${film.id}`}
+                        href={
+                          film.mediaType === "tv"
+                            ? `/tv/${film.id}`
+                            : `/movie/${film.id}`
+                        }
                         className={styles.chip}
                       >
                         {film.title}
@@ -163,6 +186,7 @@ function ResultsForQuery({ q }: { q: string }) {
 function isEmpty(sections: SearchSections): boolean {
   return (
     sections.movies.length === 0 &&
+    sections.tv.length === 0 &&
     sections.people.length === 0 &&
     sections.companies.length === 0
   );

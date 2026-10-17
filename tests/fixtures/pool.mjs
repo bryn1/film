@@ -9,22 +9,41 @@
  * size 20 (TMDB parity); page k≥2 starts at item (k−1)·18+1 (1-based) ⇒
  * overlap = items 18k+1 and 18k+2 exactly; out-of-range page ⇒ empty
  * window; `page` absent ⇒ page 1. Filtering (genre ∩ vote/date/company)
- * happens BEFORE paging. Fixture-helper file — line-cap exempt.
+ * happens BEFORE paging. The date selector is injectable (MC 10610 §6:
+ * TV_DATES for /discover/tv) — movie mechanics byte-identical.
+ * Fixture-helper file — line-cap exempt.
  */
 
 /**
- * filterPool(items, params) → matches sorted id-ascending.
+ * filterPool(items, params, dateKeys?) → matches sorted id-ascending.
  * `params` carries raw TMDB selector strings (URLSearchParams#get output or
  * the plain-object twin); absent/empty selectors are inactive.
+ *
+ * `dateKeys` (MC 10610 §6) generalizes the ONE hardcoded-date assumption:
+ * the movie default (primary_release_date.* params matched against
+ * item.release_date) stays byte-identical for every 2-arg caller — the
+ * tv pool passes TV_DATES (first_air_date.* against item.first_air_date).
+ * Mechanics otherwise: genre ∩ vote ∩ date ∩ company, filter BEFORE page.
  */
-export function filterPool(items, params) {
+export const MOVIE_DATES = {
+  gte: "primary_release_date.gte",
+  lte: "primary_release_date.lte",
+  field: "release_date",
+};
+export const TV_DATES = {
+  gte: "first_air_date.gte",
+  lte: "first_air_date.lte",
+  field: "first_air_date",
+};
+
+export function filterPool(items, params, dateKeys = MOVIE_DATES) {
   const genre = params.get ? params.get("with_genres") : params.with_genres;
   const company = params.get ? params.get("with_companies") : params.with_companies;
   const pick = (name) => (params.get ? params.get(name) : params[name]);
   const gte = num(pick("vote_average.gte"));
   const lte = num(pick("vote_average.lte"));
-  const dGte = pick("primary_release_date.gte") || null;
-  const dLte = pick("primary_release_date.lte") || null;
+  const dGte = pick(dateKeys.gte) || null;
+  const dLte = pick(dateKeys.lte) || null;
   return items
     .filter((item) => {
       if (genre && !item.genre_ids.includes(Number(genre))) return false;
@@ -34,7 +53,7 @@ export function filterPool(items, params) {
       }
       if (gte !== null && item.vote_average < gte) return false;
       if (lte !== null && item.vote_average > lte) return false;
-      const date = item.release_date ?? "";
+      const date = item[dateKeys.field] ?? "";
       if (dGte && date < dGte) return false;
       if (dLte && date > dLte) return false;
       return true;

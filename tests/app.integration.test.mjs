@@ -167,6 +167,11 @@ const MOVIE_KEYS = [
   "backdropUrl",
   "genreIds",
   "id",
+  // MC 10610 T10b: EVERY normalized Movie now carries mediaType (the
+  // card self-routes /movie vs /tv) — key-list truth-update only, no
+  // assertion weakened (orch ruling 10610, deviation named in the build
+  // return); a card rendering tv without the tag reddens T1–T10.
+  "mediaType",
   "overview",
   "posterPath",
   "posterUrl",

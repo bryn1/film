@@ -6,9 +6,17 @@
  * mapped to the upstream TMDB discover params. `count` additionally drives
  * the page fan-out: pages = ceil(count/20), cap 200. Routing rule (§3):
  * hasAny=false only when NO recognized param is present at all.
+ * MC 10610 T10b adds the media axis: parseMediaType (absent/"" ⇒ movie,
+ * "movie"|"tv" pass, anything else ⇒ 400 "Ogiltig mediatyp." — the ONE
+ * strict-400 home), `type` RECOGNIZED (⇒ ?type=tv alone is hasAny) and
+ * `hasFilters` (recognized MINUS type: the discover-vs-popular branch);
+ * the years map per type — movie primary_release_date.*, tv
+ * first_air_date.* (§1: tv discover lacks the movie params — required,
+ * not cosmetic). Both discover arms pass include_adult=false (F-C).
  */
 
 import type { TmdbParams } from "@/lib/tmdb/client";
+import type { MediaType } from "@/lib/tmdb/types";
 
 export const YEAR_MIN = 1878;
 export const YEAR_MAX = 2100;
@@ -20,6 +28,7 @@ export const PAGE_SIZE = 20;
 export const DISCOVER_SORT = "popularity.desc";
 
 const RECOGNIZED = [
+  "type",
   "genre",
   "min_score",
   "max_score",
@@ -29,15 +38,32 @@ const RECOGNIZED = [
   "company",
 ] as const;
 
+/** The media axis parse (MC 10610 §1): absent/"" ⇒ movie; only the two
+ *  exact values pass; anything else 400. Pages paint anything-not-tv as
+ *  movie (page.tsx's own rule) — the API stays strict. */
+export function parseMediaType(
+  sp: URLSearchParams,
+): { value: MediaType } | { error: string } {
+  const raw = sp.get("type");
+  if (raw === null || raw.trim() === "") return { value: "movie" };
+  if (raw === "movie" || raw === "tv") return { value: raw };
+  return { error: "Ogiltig mediatyp." };
+}
+
 export interface DiscoverQuery {
-  /** Upstream discover params (sort_by included). */
+  /** Upstream discover params (sort_by + include_adult included). */
   params: TmdbParams;
   /** Parallel pages to fetch, 1..ceil(count/20). */
   pages: number;
   /** Slice cap after dedup; null when count is off. */
   count: number | null;
-  /** False only when no recognized param is present at all → /movie/popular. */
+  /** False only when no recognized param is present at all → popular. */
   hasAny: boolean;
+  /** Any recognized filter param BESIDES type — false with type-only/absent
+   *  routes to /<type>/popular, true routes to /discover/<type> (§1). */
+  hasFilters: boolean;
+  /** The validated media axis. */
+  type: MediaType;
 }
 
 export type DiscoverQueryResult = { error: string } | DiscoverQuery;
@@ -74,8 +100,19 @@ function year(raw: string | null): Parsed<number> {
 }
 
 export function buildDiscoverParams(sp: URLSearchParams): DiscoverQueryResult {
-  const params: TmdbParams = { sort_by: DISCOVER_SORT };
+  const type = parseMediaType(sp);
+  if ("error" in type) return type;
+  // F-C ruling (MC 10610 §1): the filterable surface passes
+  // include_adult=false EXPLICITLY (TMDB's default is already false — a
+  // public site says so out loud). Rides both discover arms.
+  const params: TmdbParams = {
+    sort_by: DISCOVER_SORT,
+    include_adult: false,
+  };
   const hasAny = RECOGNIZED.some((key) => sp.has(key));
+  const hasFilters = RECOGNIZED.some(
+    (key) => key !== "type" && sp.has(key),
+  );
 
   const genre = positiveInt(
     sp.get("genre"),
@@ -108,13 +145,23 @@ export function buildDiscoverParams(sp: URLSearchParams): DiscoverQueryResult {
   if (from.value !== null && to.value !== null && from.value > to.value) {
     return { error: "Från-år kan inte vara större än till-år." };
   }
-  if (from.value !== null) params["primary_release_date.gte"] = `${from.value}-01-01`;
-  if (to.value !== null) params["primary_release_date.lte"] = `${to.value}-12-31`;
+  // The per-type year swap (§1, VERIFIED against TMDB docs): tv discover
+  // has no primary_release_date.* — the tv selector is first_air_date.*.
+  const yearKey = type.value === "tv" ? "first_air_date" : "primary_release_date";
+  if (from.value !== null) params[`${yearKey}.gte`] = `${from.value}-01-01`;
+  if (to.value !== null) params[`${yearKey}.lte`] = `${to.value}-12-31`;
 
   const count = positiveInt(sp.get("count"), "Antal måste vara ett positivt heltal.");
   if ("error" in count) return count;
   const capped = count.value === null ? null : Math.min(count.value, COUNT_MAX);
   const pages = capped === null ? 1 : Math.ceil(capped / PAGE_SIZE);
 
-  return { params, pages, count: capped, hasAny };
+  return {
+    params,
+    pages,
+    count: capped,
+    hasAny,
+    hasFilters,
+    type: type.value,
+  };
 }

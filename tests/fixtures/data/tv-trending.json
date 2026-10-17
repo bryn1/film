@@ -1,0 +1,67 @@
+{
+  "page": 1,
+  "total_pages": 1,
+  "total_results": 5,
+  "results": [
+    {
+      "id": 13001,
+      "name": "Bryggarna i Båtsfjord",
+      "original_name": "Bryggarna i Båtsfjord",
+      "overview": "Två systrar tar över släktens bryggeri på nordnorska kusten och upptäcker att varje recept har en rival.",
+      "poster_path": "/po/tv13001.jpg",
+      "backdrop_path": "/bk/tv13001.jpg",
+      "first_air_date": "2022-08-15",
+      "vote_average": 7.6,
+      "genre_ids": [18, 35],
+      "media_type": "tv"
+    },
+    {
+      "id": 13002,
+      "name": "Tystnaden i Norrland",
+      "original_name": "Tystnaden i Norrland",
+      "overview": "En kriminalvårdare-returnerar till byn hon lämnade när ett kallt fall tänds om.",
+      "poster_path": "/po/tv13002.jpg",
+      "backdrop_path": "/bk/tv13002.jpg",
+      "first_air_date": "2021-03-02",
+      "vote_average": 8.1,
+      "genre_ids": [80, 18],
+      "media_type": "tv"
+    },
+    {
+      "id": 13003,
+      "name": "Skärgårdsbrand",
+      "original_name": "Skärgårdsbrand",
+      "overview": "Sommarbrandkår på en österbottensk ö — och en eld som ingen kan förklara.",
+      "poster_path": "/po/tv13003.jpg",
+      "backdrop_path": "/bk/tv13003.jpg",
+      "first_air_date": "2023-09-20",
+      "vote_average": 7.2,
+      "genre_ids": [18, 9648],
+      "media_type": "tv"
+    },
+    {
+      "id": 13004,
+      "name": "Provmatarna",
+      "original_name": "Provmatarna",
+      "overview": "Restaurangkritik i miniformat: tre rätter, ett öde.",
+      "poster_path": null,
+      "backdrop_path": null,
+      "first_air_date": "2020-01-13",
+      "vote_average": 6.4,
+      "genre_ids": [35],
+      "media_type": "tv"
+    },
+    {
+      "id": 13005,
+      "name": "Nattåg till Norrköping",
+      "original_name": "Nattåg till Norrköping",
+      "overview": "Sex främlingar, ett sovkupé, inga ursäkter.",
+      "poster_path": "/po/tv13005.jpg",
+      "backdrop_path": "/bk/tv13005.jpg",
+      "first_air_date": "2024-02-27",
+      "vote_average": 8.4,
+      "genre_ids": [18, 10759],
+      "media_type": "tv"
+    }
+  ]
+}

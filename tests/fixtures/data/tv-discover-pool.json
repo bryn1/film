@@ -1,0 +1,400 @@
+{
+  "page": 1,
+  "total_pages": 2,
+  "total_results": 24,
+  "results": [
+    {
+      "id": 16001,
+      "name": "Poolserie 16001",
+      "original_name": "Poolserie 16001",
+      "overview": "Beskrivning för poolserie 16001.",
+      "poster_path": null,
+      "backdrop_path": null,
+      "first_air_date": "1995-01-10",
+      "vote_average": 5.0,
+      "genre_ids": [
+        10759,
+        18
+      ],
+      "production_companies": []
+    },
+    {
+      "id": 16002,
+      "name": "Poolserie 16002",
+      "original_name": "Poolserie 16002",
+      "overview": "Beskrivning för poolserie 16002.",
+      "poster_path": "/po/tv16002.jpg",
+      "backdrop_path": "/bk/tv16002.jpg",
+      "first_air_date": "1998-02-10",
+      "vote_average": 5.5,
+      "genre_ids": [
+        16,
+        35
+      ],
+      "production_companies": []
+    },
+    {
+      "id": 16003,
+      "name": "Poolserie 16003",
+      "original_name": "Poolserie 16003",
+      "overview": "Beskrivning för poolserie 16003.",
+      "poster_path": "/po/tv16003.jpg",
+      "backdrop_path": "/bk/tv16003.jpg",
+      "first_air_date": "2001-03-10",
+      "vote_average": 6.0,
+      "genre_ids": [
+        35,
+        16
+      ],
+      "production_companies": []
+    },
+    {
+      "id": 16004,
+      "name": "Poolserie 16004",
+      "original_name": "Poolserie 16004",
+      "overview": "Beskrivning för poolserie 16004.",
+      "poster_path": "/po/tv16004.jpg",
+      "backdrop_path": null,
+      "first_air_date": "2004-04-10",
+      "vote_average": 6.5,
+      "genre_ids": [
+        18,
+        10759
+      ],
+      "production_companies": [
+        {
+          "id": 88888,
+          "name": "Svea Filmbolag"
+        }
+      ]
+    },
+    {
+      "id": 16005,
+      "name": "Poolserie 16005",
+      "original_name": "Poolserie 16005",
+      "overview": "Beskrivning för poolserie 16005.",
+      "poster_path": "/po/tv16005.jpg",
+      "backdrop_path": "/bk/tv16005.jpg",
+      "first_air_date": "2007-05-10",
+      "vote_average": 7.0,
+      "genre_ids": [
+        10751,
+        80
+      ],
+      "production_companies": []
+    },
+    {
+      "id": 16006,
+      "name": "Poolserie 16006",
+      "original_name": "Poolserie 16006",
+      "overview": "Beskrivning för poolserie 16006.",
+      "poster_path": null,
+      "backdrop_path": "/bk/tv16006.jpg",
+      "first_air_date": "2009-06-10",
+      "vote_average": 7.5,
+      "genre_ids": [
+        9648,
+        10765
+      ],
+      "production_companies": []
+    },
+    {
+      "id": 16007,
+      "name": "Poolserie 16007",
+      "original_name": "Poolserie 16007",
+      "overview": "Beskrivning för poolserie 16007.",
+      "poster_path": "/po/tv16007.jpg",
+      "backdrop_path": null,
+      "first_air_date": "2010-07-10",
+      "vote_average": 8.0,
+      "genre_ids": [
+        10765,
+        9648
+      ],
+      "production_companies": [
+        {
+          "id": 77777,
+          "name": "Nordik Produktion",
+          "origin_country": "SE"
+        }
+      ]
+    },
+    {
+      "id": 16008,
+      "name": "Poolserie 16008",
+      "original_name": "Poolserie 16008",
+      "overview": "Beskrivning för poolserie 16008.",
+      "poster_path": "/po/tv16008.jpg",
+      "backdrop_path": "/bk/tv16008.jpg",
+      "first_air_date": "2012-08-10",
+      "vote_average": 8.5,
+      "genre_ids": [
+        80,
+        10751
+      ],
+      "production_companies": []
+    },
+    {
+      "id": 16009,
+      "name": "Poolserie 16009",
+      "original_name": "Poolserie 16009",
+      "overview": "Beskrivning för poolserie 16009.",
+      "poster_path": "/po/tv16009.jpg",
+      "backdrop_path": "/bk/tv16009.jpg",
+      "first_air_date": "2014-09-10",
+      "vote_average": 9.0,
+      "genre_ids": [
+        10759,
+        18
+      ],
+      "production_companies": []
+    },
+    {
+      "id": 16010,
+      "name": "Poolserie 16010",
+      "original_name": "Poolserie 16010",
+      "overview": "Beskrivning för poolserie 16010.",
+      "poster_path": "/po/tv16010.jpg",
+      "backdrop_path": null,
+      "first_air_date": "2016-10-10",
+      "vote_average": 9.5,
+      "genre_ids": [
+        16,
+        35
+      ],
+      "production_companies": []
+    },
+    {
+      "id": 16011,
+      "name": "Poolserie 16011",
+      "original_name": "Poolserie 16011",
+      "overview": "Beskrivning för poolserie 16011.",
+      "poster_path": null,
+      "backdrop_path": "/bk/tv16011.jpg",
+      "first_air_date": "2018-11-10",
+      "vote_average": 5.0,
+      "genre_ids": [
+        35,
+        16
+      ],
+      "production_companies": []
+    },
+    {
+      "id": 16012,
+      "name": "Poolserie 16012",
+      "original_name": "Poolserie 16012",
+      "overview": "Beskrivning för poolserie 16012.",
+      "poster_path": "/po/tv16012.jpg",
+      "backdrop_path": "/bk/tv16012.jpg",
+      "first_air_date": "2020-12-10",
+      "vote_average": 5.5,
+      "genre_ids": [
+        18,
+        10759
+      ],
+      "production_companies": [
+        {
+          "id": 88888,
+          "name": "Svea Filmbolag"
+        }
+      ]
+    },
+    {
+      "id": 16013,
+      "name": "Poolserie 16013",
+      "original_name": "Poolserie 16013",
+      "overview": "Beskrivning för poolserie 16013.",
+      "poster_path": "/po/tv16013.jpg",
+      "backdrop_path": null,
+      "first_air_date": "2022-01-10",
+      "vote_average": 6.0,
+      "genre_ids": [
+        10751,
+        80
+      ],
+      "production_companies": []
+    },
+    {
+      "id": 16014,
+      "name": "Poolserie 16014",
+      "original_name": "Poolserie 16014",
+      "overview": "Beskrivning för poolserie 16014.",
+      "poster_path": "/po/tv16014.jpg",
+      "backdrop_path": "/bk/tv16014.jpg",
+      "first_air_date": "2024-02-10",
+      "vote_average": 6.5,
+      "genre_ids": [
+        9648,
+        10765
+      ],
+      "production_companies": []
+    },
+    {
+      "id": 16015,
+      "name": "Poolserie 16015",
+      "original_name": "Poolserie 16015",
+      "overview": "Beskrivning för poolserie 16015.",
+      "poster_path": "/po/tv16015.jpg",
+      "backdrop_path": "/bk/tv16015.jpg",
+      "first_air_date": "1995-03-10",
+      "vote_average": 7.0,
+      "genre_ids": [
+        10765,
+        9648
+      ],
+      "production_companies": [
+        {
+          "id": 77777,
+          "name": "Nordik Produktion",
+          "origin_country": "SE"
+        }
+      ]
+    },
+    {
+      "id": 16016,
+      "name": "Poolserie 16016",
+      "original_name": "Poolserie 16016",
+      "overview": "Beskrivning för poolserie 16016.",
+      "poster_path": null,
+      "backdrop_path": null,
+      "first_air_date": "1998-04-10",
+      "vote_average": 7.5,
+      "genre_ids": [
+        80,
+        10751
+      ],
+      "production_companies": []
+    },
+    {
+      "id": 16017,
+      "name": "Poolserie 16017",
+      "original_name": "Poolserie 16017",
+      "overview": "Beskrivning för poolserie 16017.",
+      "poster_path": "/po/tv16017.jpg",
+      "backdrop_path": "/bk/tv16017.jpg",
+      "first_air_date": "2001-05-10",
+      "vote_average": 8.0,
+      "genre_ids": [
+        10759,
+        18
+      ],
+      "production_companies": []
+    },
+    {
+      "id": 16018,
+      "name": "Poolserie 16018",
+      "original_name": "Poolserie 16018",
+      "overview": "Beskrivning för poolserie 16018.",
+      "poster_path": "/po/tv16018.jpg",
+      "backdrop_path": "/bk/tv16018.jpg",
+      "first_air_date": "2004-06-10",
+      "vote_average": 8.5,
+      "genre_ids": [
+        16,
+        35
+      ],
+      "production_companies": []
+    },
+    {
+      "id": 16019,
+      "name": "Poolserie 16019",
+      "original_name": "Poolserie 16019",
+      "overview": "Beskrivning för poolserie 16019.",
+      "poster_path": "/po/tv16019.jpg",
+      "backdrop_path": null,
+      "first_air_date": "2007-07-10",
+      "vote_average": 9.0,
+      "genre_ids": [
+        35,
+        16
+      ],
+      "production_companies": []
+    },
+    {
+      "id": 16020,
+      "name": "Poolserie 16020",
+      "original_name": "Poolserie 16020",
+      "overview": "Beskrivning för poolserie 16020.",
+      "poster_path": "/po/tv16020.jpg",
+      "backdrop_path": "/bk/tv16020.jpg",
+      "first_air_date": "2009-08-10",
+      "vote_average": 9.5,
+      "genre_ids": [
+        18,
+        10759
+      ],
+      "production_companies": [
+        {
+          "id": 88888,
+          "name": "Svea Filmbolag"
+        }
+      ]
+    },
+    {
+      "id": 16021,
+      "name": "Poolserie 16021",
+      "original_name": "Poolserie 16021",
+      "overview": "Beskrivning för poolserie 16021.",
+      "poster_path": null,
+      "backdrop_path": "/bk/tv16021.jpg",
+      "first_air_date": "2010-09-10",
+      "vote_average": 5.0,
+      "genre_ids": [
+        10751,
+        80
+      ],
+      "production_companies": []
+    },
+    {
+      "id": 16022,
+      "name": "Poolserie 16022",
+      "original_name": "Poolserie 16022",
+      "overview": "Beskrivning för poolserie 16022.",
+      "poster_path": "/po/tv16022.jpg",
+      "backdrop_path": null,
+      "first_air_date": "2012-10-10",
+      "vote_average": 5.5,
+      "genre_ids": [
+        9648,
+        10765
+      ],
+      "production_companies": []
+    },
+    {
+      "id": 16023,
+      "name": "Poolserie 16023",
+      "original_name": "Poolserie 16023",
+      "overview": "Beskrivning för poolserie 16023.",
+      "poster_path": "/po/tv16023.jpg",
+      "backdrop_path": "/bk/tv16023.jpg",
+      "first_air_date": "2014-11-10",
+      "vote_average": 6.0,
+      "genre_ids": [
+        10765,
+        9648
+      ],
+      "production_companies": [
+        {
+          "id": 77777,
+          "name": "Nordik Produktion",
+          "origin_country": "SE"
+        }
+      ]
+    },
+    {
+      "id": 16024,
+      "name": "Poolserie 16024",
+      "original_name": "Poolserie 16024",
+      "overview": "Beskrivning för poolserie 16024.",
+      "poster_path": "/po/tv16024.jpg",
+      "backdrop_path": "/bk/tv16024.jpg",
+      "first_air_date": "2016-12-10",
+      "vote_average": 6.5,
+      "genre_ids": [
+        80,
+        10751
+      ],
+      "production_companies": []
+    }
+  ]
+}

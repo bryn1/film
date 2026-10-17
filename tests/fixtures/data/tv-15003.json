@@ -1,0 +1,37 @@
+{
+  "id": 15003,
+  "name": "Säsongernas välde",
+  "original_name": "Säsongernas välde",
+  "tagline": "Vargen kommer, vår och vinter",
+  "overview": "När kraftverket byggs i Norrlandsplatsen försvinner en skogsbruksinspektör. Tre utredare, fyra säsonger, ett samhälle som räknar sitt arv i kubikmeter.",
+  "first_air_date": "2019-04-11",
+  "episode_run_time": [45],
+  "number_of_seasons": 3,
+  "number_of_episodes": 24,
+  "vote_average": 8.1,
+  "popularity": 42.7,
+  "poster_path": "/po/tv-15003.jpg",
+  "backdrop_path": "/bk/tv-15003.jpg",
+  "genres": [
+    { "id": 80, "name": "Brott" },
+    { "id": 18, "name": "Drama" },
+    { "id": 10759, "name": "Action & \u00e4ventyr" }
+  ],
+  "production_companies": [
+    { "id": 77777, "name": "Nordik Produktion", "origin_country": "SE" }
+  ],
+  "credits": {
+    "cast": [
+      { "id": 21001, "name": "Mikael Rooth", "character": "Inspektör Laine", "profile_path": "/pr/mikael.jpg" },
+      { "id": 21002, "name": "Sanna Pekkari", "character": "Utredare Hauki", "profile_path": "/pr/sanna.jpg" },
+      { "id": 21003, "name": "Erik Lundqvist", "character": "Förman Niva", "profile_path": null },
+      { "id": 21004, "name": "Tove Hallberg", "character": "Riksdagsledamot", "profile_path": "/pr/tove.jpg" },
+      { "id": 21005, "name": "Carl Bertilsson", "character": "Tidningsredaktören", "profile_path": null }
+    ],
+    "crew": [
+      { "id": 22001, "name": "Astrid Ekblom", "job": "Director" },
+      { "id": 22002, "name": "Rolf Sandberg", "job": "Writer" },
+      { "id": 22003, "name": "Astrid Ekblom", "job": "Executive Producer" }
+    ]
+  }
+}

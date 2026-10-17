@@ -6,9 +6,10 @@
   "/api/search/route": "app/api/search/route.js",
   "/api/top-rated/route": "app/api/top-rated/route.js",
   "/api/trending/route": "app/api/trending/route.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js",
   "/discover/page": "app/discover/page.js",
+  "/movie/[id]/page": "app/movie/[id]/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
   "/page": "app/page.js",
   "/search/page": "app/search/page.js",
-  "/movie/[id]/page": "app/movie/[id]/page.js"
+  "/tv/[id]/page": "app/tv/[id]/page.js"
 }

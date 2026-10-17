@@ -20,10 +20,12 @@ const nextConfig = {
       // TMDB artwork CDN (default TMDB_IMAGE_BASE host)
       { protocol: "https", hostname: "image.tmdb.org" },
       // fixture image servers of the tests (tests/fixtures/server.mjs, PLAN §5;
-      // 3005 = discover-filters copy, 3006 = detail-search copy, MC 10333 T9)
+      // 3005 = discover-filters copy, 3006 = detail-search copy, MC 10333 T9;
+      // 3007 = tv suite copy, MC 10610 T10b — the ONE row this change adds)
       { protocol: "http", hostname: "localhost", port: "3001" },
       { protocol: "http", hostname: "localhost", port: "3005" },
       { protocol: "http", hostname: "localhost", port: "3006" },
+      { protocol: "http", hostname: "localhost", port: "3007" },
     ],
   },
 };

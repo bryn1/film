@@ -1,0 +1,57 @@
+{
+  "page": 1,
+  "total_pages": 1,
+  "total_results": 5,
+  "results": [
+    {
+      "id": 13101,
+      "name": "Sändningsfönstret",
+      "overview": "Live från redaktionen som aldrig sover.",
+      "poster_path": "/po/tv13101.jpg",
+      "backdrop_path": "/bk/tv13101.jpg",
+      "first_air_date": "2024-11-04",
+      "vote_average": 6.9,
+      "genre_ids": [18]
+    },
+    {
+      "id": 13102,
+      "name": "Kusten runt",
+      "overview": "En cykelsaga i tolv etapper längs två länder.",
+      "poster_path": "/po/tv13102.jpg",
+      "backdrop_path": null,
+      "first_air_date": "2024-06-18",
+      "vote_average": 7.5,
+      "genre_ids": [10762, 35]
+    },
+    {
+      "id": 13103,
+      "name": "Detektivbyrån 4",
+      "overview": "Fjärde fallet: borttappade brev, hittade hemligheter.",
+      "poster_path": "/po/tv13103.jpg",
+      "backdrop_path": "/bk/tv13103.jpg",
+      "first_air_date": "2023-10-30",
+      "vote_average": 7.8,
+      "genre_ids": [9648, 80]
+    },
+    {
+      "id": 13104,
+      "name": "Sommarpratarna",
+      "overview": "Årets sommarvärdar pratar om vattnet de vuxit vid.",
+      "poster_path": null,
+      "backdrop_path": null,
+      "first_air_date": "2025-06-09",
+      "vote_average": 7.1,
+      "genre_ids": [10765]
+    },
+    {
+      "id": 13105,
+      "name": "Vinprovning VIP",
+      "overview": "Tio flaskor, nio gäster, en bluff.",
+      "poster_path": "/po/tv13105.jpg",
+      "backdrop_path": "/bk/tv13105.jpg",
+      "first_air_date": "2024-01-22",
+      "vote_average": 5.8,
+      "genre_ids": [35]
+    }
+  ]
+}

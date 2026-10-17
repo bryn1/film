@@ -1,0 +1,90 @@
+{
+  "page": 1,
+  "total_pages": 1,
+  "total_results": 8,
+  "results": [
+    {
+      "id": 11001,
+      "media_type": "movie",
+      "title": "Ronja Rövardotter",
+      "overview": "Ronja föds under en storm i Mattis borg och växer upp som en fri vildling i skogen.",
+      "poster_path": "/po/ronja.jpg",
+      "backdrop_path": "/bk/ronja.jpg",
+      "release_date": "1984-12-12",
+      "vote_average": 7.9,
+      "genre_ids": [12, 14, 10751]
+    },
+    {
+      "id": 11001,
+      "media_type": "tv",
+      "name": "Ronja och rövare i Kamomilla stad — serien",
+      "overview": "Klassikerna återvänder som animerad serie: Ronja möter Lotta på gränsen mellan två skogar.",
+      "poster_path": "/po/tv-11001.jpg",
+      "backdrop_path": null,
+      "first_air_date": "2023-02-10",
+      "vote_average": 7.1,
+      "genre_ids": [16, 10751]
+    },
+    {
+      "id": 11004,
+      "media_type": "movie",
+      "title": "Den underbara resan",
+      "overview": "Toby och Mia ger sig ut på en semester i familjens vita husvagn längs kusten.",
+      "poster_path": null,
+      "backdrop_path": "/bk/underbar.jpg",
+      "release_date": "1991-12-27",
+      "vote_average": 6.8,
+      "genre_ids": [35, 10751]
+    },
+    {
+      "id": 11005,
+      "media_type": "movie",
+      "title": "Folk och rövare i Kamomilla stad",
+      "overview": "I Kamomilla stad regerar en korrumperad kommunstämma, men den lilla flickan Lotta struntar i protokollen.",
+      "poster_path": "/po/kamomilla.jpg",
+      "backdrop_path": "/bk/kamomilla.jpg",
+      "release_date": "1981-09-05",
+      "vote_average": 7.2,
+      "genre_ids": [35, 10751]
+    },
+    {
+      "id": 13401,
+      "media_type": "tv",
+      "name": "Kamomilla natt — radioserien",
+      "overview": "Berättelserna från Kamomilla stad återberättas som nattserie för radio.",
+      "poster_path": "/po/tv-13401.jpg",
+      "backdrop_path": null,
+      "first_air_date": "2021-10-05",
+      "vote_average": 7.7,
+      "genre_ids": [10762, 16]
+    },
+    {
+      "id": 13402,
+      "media_type": "tv",
+      "name": "Underbara veckan",
+      "overview": "Sju avsnitt, en husvagn, samma familj — men längre.",
+      "poster_path": "/po/tv-13402.jpg",
+      "backdrop_path": "/bk/tv-13402.jpg",
+      "first_air_date": "1993-11-19",
+      "vote_average": 6.5,
+      "genre_ids": [35, 10751]
+    },
+    {
+      "id": 13403,
+      "media_type": "tv",
+      "name": "Sagan om Blekinge",
+      "overview": "Regionalt drama i åtta delar om ett pappersbruk som aldrig fick släcka.",
+      "poster_path": "/po/tv-13403.jpg",
+      "backdrop_path": null,
+      "first_air_date": "2017-01-24",
+      "vote_average": 8.0,
+      "genre_ids": [18]
+    },
+    {
+      "id": 20009,
+      "media_type": "person",
+      "name": "Kamomilla-Karin Lindqvist",
+      "profile_path": "/pr/karin.jpg"
+    }
+  ]
+}
