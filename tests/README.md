@@ -52,6 +52,17 @@ tv surface. It boots its OWN fixture + keyed app + keyless twin on
 this file, and the NOKEY precedent is 3212's keyless twin), making the
 glob a five-file concurrent run.
 
+`tests/tv-arms.test.mjs` (MC 10877 P2-1) gates the two TV rails the T-suite
+never touched: `/api/now-playing?type=tv` (→ `/tv/on_the_air`) and
+`/api/top-rated?type=tv` (→ `/tv/top_rated`) — envelope ids/title/mediaType
+derived from the tv fixtures, the never-touch-`/movie/*` ring pins, and the
+keyless 503 `TMDB_NOT_CONFIGURED` twin of T10 for these two routes (the
+envelope ring then covers all five type-aware routes). It is a SPLIT, not
+an append: `tv.test.mjs` sits at 539 of the 600-line file cap. Own fixture +
+keyed app + keyless twin on `TVARMS_FIXTURE_PORT`/`TVARMS_APP_PORT`/
+`TVARMS_NOKEY_PORT` (defaults 3008/3232/3233 — disjoint from all five
+siblings), making the glob a six-file concurrent run.
+
 Port caveat (measured TEST-c2): the `next/image` allow-list gate in
 `app.integration.test.mjs` is baked at BUILD time by `next.config.mjs`
 (remotePatterns port 3001). With `FIXTURE_PORT` ≠ 3001 the "allows the
