@@ -39,6 +39,10 @@ from the copy canon below + real API data — the comps' own rendered Swedish is
 - Filmdetail `/movie/[id]` (MC 10333 T9): h1 = the movie's own title (no new static copy) ·
   section h2 **Handling**, **Rollista** · director line **Regissör** · runtime line
   **Speltid <n> min** · empty overview: **Inte tillgänglig**
+- Detail meta score links (MC 10612): the score badge LINKS to the title's TMDB page (visible
+  text stays the bare sv-SE rating — no new visible string); label **IMDb** (detail meta, shown
+  ONLY when TMDB carries the id) · aria-labels **Betyg på TMDB <rating>, öppnas i ny flik** /
+  **IMDb, öppnas i ny flik**
 - Upptäck filter bar (T9): labels **Betyg från**, **Betyg till**, **År från**, **År till**,
   **Antal filmer** · submit **Visa filmer** · clear link **Rensa filter** (renders only when
   the URL carries a non-default filter)

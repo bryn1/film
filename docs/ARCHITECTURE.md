@@ -27,6 +27,21 @@
 > `tests/tv.test.mjs` (fixture 3007 / app 3230 / keyless 3231) — five
 > suite files, 60 gates.
 >
+> **MC 10612 T10c re-derived at this commit (2026-10-17, plan
+> `.audits/202610111724-bab658dd/out/PLAN-t10c.md` Rev 1, DA-SHIP): the
+> detail score is a LINK.** Both detail pages' meta rows carry the score
+> badge as an external anchor `https://www.themoviedb.org/{movie|tv}/{id}`
+> (`target=_blank rel="noopener noreferrer"`, aria-label names destination
+> + new tab, visible badge text unchanged) plus an adjacent IMDb link ONLY
+> when the id is known — TMDB's `imdb_id` absent|null|"" all fold to null
+> (`||`, the `normalizeCompanies` F-11d falsy-fold precedent), so no
+> `imdb.com/title//` dead link can render. Data axis: three additive rows
+> (`TmdbMovieDetailRaw.imdb_id`, `MovieDetail.imdbId`, one
+> `normalizeDetail` row) — detail-ONLY, the `Movie`/MOVIE_KEYS list pins
+> untouched. Gates: +D4/D5 (detail-search) +T11/T12 (tv), 0 existing gates
+> updated; the suite is SIX files since MC 10877 landed `tv-arms.test.mjs`
+> (fixture 3008 / app 3232 / keyless 3233) — **67 gates measured**.
+>
 > **Hosted deltas at port (prefix seam + hosting files):** `next.config.mjs`
 > gains `output:"standalone"` + build-time `basePath` from
 > `NEXT_PUBLIC_BASE_PATH` + `trailingSlash:true` (canonical URL shape carries
@@ -63,11 +78,12 @@ Next.js 14.1.3 App Router, TypeScript strict, upstream
 | discover-filters suite (MC 10333 T9; own fixture + app) | `node --test tests/discover-filters.test.mjs` | 3005 / 3228 (env `FILTERS_FIXTURE_PORT`/`FILTERS_APP_PORT`) |
 | detail-search suite (MC 10333 T9; own fixture + app) | `node --test tests/detail-search.test.mjs` | 3006 / 3229 (env `DS_FIXTURE_PORT`/`DS_APP_PORT`) |
 | tv suite (MC 10610 T10b; own fixture + keyed app + KEYLESS twin) | `node --test tests/tv.test.mjs` | 3007 / 3230 / keyless 3231 (env `TV_FIXTURE_PORT`/`TV_APP_PORT`/`TV_NOKEY_PORT`) |
+| tv-arms suite (MC 10877 P2-1; own fixture + keyed app + KEYLESS twin) | `node --test tests/tv-arms.test.mjs` | 3008 / 3232 / keyless 3233 (env `TVARMS_FIXTURE_PORT`/`TVARMS_APP_PORT`/`TVARMS_NOKEY_PORT`) |
 | **hosted (vm106)** | systemd `vm106-app-film.service` → `/usr/bin/python3 server.py` → spawns `node deploy/standalone/server.js` | **8161** (outer `$PORT`, systemd unit contract) / inner port = ephemeral loopback (launcher picks a free 127.0.0.1:0 port) |
 
 Port convention (tests/README): 3000/3210 belong to humans; 3001/3211–3213, 3004/3227,
-3005/3228, 3006/3229 and 3007/3230–3231 to the suites — all five files run concurrently under
-the glob.
+3005/3228, 3006/3229, 3007/3230–3231 and 3008/3232–3233 to the suites — all six files run
+concurrently under the glob.
 Hosted: 8161 inside the reconciler window 8100–8199, both binds **127.0.0.1 only** —
 the public path is nginx + the Cloudflare tunnel.
 No new processes, no containers, no database daemon. One deployable: the Next app.
@@ -85,8 +101,8 @@ run that file with the fixture on 3001 to exercise it (the refusal half passes o
 |---|---|---|
 | `/` (startsida) | static prerender (in manifest `routes`) | h1 lives **inside a client component**: `src/app/page.tsx` is `"use client"`. The prerendered HTML still carries it (initial render = loading state ⇒ sr-only "Trending"); post-hydration the h1 is the hero title when present. |
 | `/discover` | **DYNAMIC (λ)** since MC 10333 T9 — absent from manifest `routes` | SERVER `page.tsx` renders the single h1 OUTSIDE the Suspense boundary (unchanged; the h1 TEXT follows the media tier via `COPY.discoverH1[type]` since MC 10610) and additionally reads the seven §3 filter params + the `type` axis server-side (`one(searchParams.type)` — anything-not-tv PAINTS movie; the strict 400 lives on the API), rendering the SERVER `FilterBar` incl. the tier-1 media pills (S5 + T8/T9: pills and controls are in the served bytes); the client body `Discover.tsx` renders no heading and takes the params as props. |
-| `/movie/[id]` | **DYNAMIC (λ)** — MC 10333 T9 | SERVER page (no client component at all): thin guard+loader shell — `/^\d+$/` guard and TMDB 404 both `notFound()`, other upstream failure renders the COPY error block (D1–D3) — then the SHARED `<DetailContent>` (MC 10610: extraction, not a copy) owns the h1 (the film title) and the whole detail render; fetch via `lib/tmdb/detail.ts`. |
-| `/tv/[id]` | **DYNAMIC (λ)** — MC 10610 T10b | The tv twin: identical guard/404/error-block shape + the SAME `DetailContent` through `fetchDetail("tv", id)`; tv-specific rows are data-driven inside DetailContent (`episode_run_time[0]` ⇒ "Avsnittslängd", `number_of_seasons` ⇒ "Säsonger: N", both null-omitted). T6/T6b. |
+| `/movie/[id]` | **DYNAMIC (λ)** — MC 10333 T9 | SERVER page (no client component at all): thin guard+loader shell — `/^\d+$/` guard and TMDB 404 both `notFound()`, other upstream failure renders the COPY error block (D1–D3) — then the SHARED `<DetailContent>` (MC 10610: extraction, not a copy) owns the h1 (the film title) and the whole detail render; fetch via `lib/tmdb/detail.ts`. The meta row carries the score as the external TMDB link + the conditional IMDb link, `_blank` + `noopener noreferrer` (MC 10612; the 404/error/keyless paths never instantiate DetailContent ⇒ stay link-free, T12). |
+| `/tv/[id]` | **DYNAMIC (λ)** — MC 10610 T10b | The tv twin: identical guard/404/error-block shape + the SAME `DetailContent` through `fetchDetail("tv", id)`; tv-specific rows are data-driven inside DetailContent (`episode_run_time[0]` ⇒ "Avsnittslängd", `number_of_seasons` ⇒ "Säsonger: N", both null-omitted). T6/T6b. The score link's `tv` path segment rides `detail.mediaType` — zero new props (T11, MC 10612). |
 | `/search` | **DYNAMIC (λ)** — absent from manifest `routes` | SERVER `page.tsx` reads `searchParams` and renders the h1 ITSELF (`Sökresultat för "<q>"`; first-of-repeated `?q=`, trimmed); the client body receives the SAME trimmed q as a prop. Since MC 10610 the results carry FOUR sections (filmer / TV-serier / personer / produktionsbolag), each section rendered only when non-empty. |
 
 `/search` dynamic is an **accepted decision** (DA ledger): the required cost of an h1 that reflects
@@ -151,7 +167,11 @@ on /search — field↔URL sync before any JS).
   the pill row visually first (DOM ≠ visual), five controls + hidden `filter` outside Suspense,
   "Rensa filter" PRESERVES the tier under tv (F-B)), DetailContent (MC 10610: the SHARED
   server detail render — h1, meta (runtime|episodeRunTime + seasons rows), Handling, director,
-  cast ≤12 — used by BOTH detail pages, one render two loaders), MovieCard (T9: the card
+  cast ≤12 — used by BOTH detail pages, one render two loaders; MC 10612: the meta row's
+  score is an external raw-`<a>` (an absolute external href is not routing — the skip-link
+  precedent) to `themoviedb.org/{mediaType}/{id}` + a conditional IMDb anchor
+  (`imdbId !== null`), both `target=_blank rel="noopener noreferrer"`, aria-labels COMPOSED
+  from COPY), MovieCard (T9: the card
   LINKS to `/movie/<id>` or `/tv/<id>` by `movie.mediaType` — normalized, so every card knows
   its type; tv cards carry a "TV" badge), PosterGrid, MovieRail, FilterChips,
   states/{EmptyState,ErrorState,Skeleton}.
@@ -159,7 +179,9 @@ on /search — field↔URL sync before any JS).
   (`COPY`: 503/generic error strings, the page `<h1>`s, the detail/section/filter labels
   (COMP-NOTES canon verbatim) and since MC 10610 the TYPE TWINS — `discoverH1`/
   `filters.count`/`filters.submit` per `movie|tv`, `typeMovie`/`typeTv`,
-  `sections.tvShows`, `detail.episodeRuntime`/`detail.seasons`; `TMDB_KEY_MARKER`) and
+  `sections.tvShows`, `detail.episodeRuntime`/`detail.seasons`, MC 10612's
+  `detail.ratingOnTmdb`/`detail.imdb`/`detail.newTab` (detail-link strings — only
+  "IMDb" is COMP-NOTES-visible, the others compose aria-labels); `TMDB_KEY_MARKER`) and
   display formatters (`formatReleaseYear`, `formatRating` sv-SE comma); client-safe by
   contract (no env reads, no fetch). `src/lib/tmdb/client.ts` — the ONLY file that touches
   TMDB (`tmdbFetch`, `tmdbImageUrl`, `normalizeMovie(s)`/`normalizeGenres`, `TmdbError`;
@@ -170,40 +192,53 @@ on /search — field↔URL sync before any JS).
   its type without endpoint knowledge. `src/lib/tmdb/detail.ts` (T9)
   — pure shaping + `fetchDetail(type, id)` (the ONE detail loader, `/{type}/{id}` with the
   credits append) + `fetchMovieDetail` delegating to it (the name is kept — the D-gates'
-  seam), `normalizeDetail` adding `episodeRunTime` (`episode_run_time[0]` else null) and
-  `numberOfSeasons`; `normalizePeople` knownFor **movie|tv** ≤4 (mediaType-tagged,
+  seam), `normalizeDetail` adding `episodeRunTime` (`episode_run_time[0]` else null),
+  `numberOfSeasons` and MC 10612's `imdbId: raw.imdb_id || null` — `||` NOT `??`: TMDB
+  answers imdb_id absent, null OR "" and all three mean unknown; `""` under `??` would
+  render `imdb.com/title//` dead (D5 falsifier; the `normalizeCompanies` ""-omission
+  F-11d precedent); `normalizePeople` knownFor **movie|tv** ≤4 (mediaType-tagged,
   `title ?? name` — the search chip links `/tv/<id>` or `/movie/<id>` by the tag) and
   `normalizeCompanies` "" ⇒ field OMITTED; `src/lib/api/query.ts` (T9) — the ONLY validation
   layer: `buildDiscoverParams` (per-type year mapping, `include_adult=false` on the filter
   arms, `hasAny`/`hasFilters`) + `parseMediaType` the single `?type=` truth (absent ≡ movie,
   exact `movie|tv` pass, else 400 `"Ogiltig mediatyp."`); routes do no numeric math.
   `src/lib/tmdb/types.ts` (`MediaType = "movie" | "tv"`, `Movie.mediaType`,
-  `SearchSections.tv`, `MovieDetail.episodeRunTime/numberOfSeasons`);
+  `SearchSections.tv`, `MovieDetail.episodeRunTime/numberOfSeasons`; MC 10612 adds
+  `TmdbMovieDetailRaw.imdb_id?` + `MovieDetail.imdbId` — detail-ONLY, `Movie` stays
+  key-list-pinned);
   `src/lib/api/envelope.ts`; `src/lib/basePath.ts` (hosted delta — the ONE `BASE` home,
   consumed by `useApi`/`SearchField`/`FilterBar` and NOTHING else — MC 10610 added zero new
   consumers: the pills are BUTTONs inside FilterBar's already-based form);
   `src/lib/useApi.ts` (client fetch hook — components never call TMDB directly; fetches via
   `BASE`).
-- **Tests/fixtures**: FIVE suite files (gates re-derived at this commit — MC 10610 ADDED
-  `tests/tv.test.mjs` and UPDATED four named `detail-search` gates + the one integration
-  key-list, per §5 of its plan) —
+- **Tests/fixtures**: SIX suite files (counts re-derived at this commit — MC 10877
+  ADDED `tests/tv-arms.test.mjs`; MC 10612 ADDED the four score-link gates and UPDATED
+  none; MC 10610 had ADDED `tests/tv.test.mjs` and UPDATED four named `detail-search`
+  gates + the one integration key-list, per §5 of its plan) —
   `tests/app.integration.test.mjs` (567 lines, 19 gates: contract, envelope, negatives,
   attribution, image-allow-list; its `MOVIE_KEYS` pin carries `mediaType` since MC 10610 —
   a key-list truth-update, no assertion weakened), `tests/w4-ssr-shell.test.mjs` (299 lines,
   4 gates: W1–W4 SSR-shell over delivered HTML), `tests/discover-filters.test.mjs` (T9;
   328 lines, 12 gates: F1–F11 + F5b, fixture 3005/app 3228), `tests/detail-search.test.mjs`
-  (T9; 524 lines, 13 gates: S1–S6 + S5b echo + D1–D3 + the three search gates relocated from
+  (T9; 581 lines, 15 gates: S1–S6 + S5b echo + D1–D3 + MC 10612's D4/D5 (score anchor
+  attr-parsed + the `""`-fixture `||`-fold falsifier) + the three search gates relocated from
   integration in commit-0; fixture 3006/app 3229 — MC 10610 §5 UPDATED exactly four of them:
   S1's envelope-keys `deepEqual` (+= `tv`) + its ring path (`/search/movie`→`/search/multi`),
   the "empty search results" whole-object `deepEqual` (+= `tv: []`), the "search normalizes
   query" ring path, and S2's knownFor `deepEqual`s widened `movie|tv` with `mediaType`), and
-  `tests/tv.test.mjs` (MC 10610; 539 lines, 12 gates T1–T10 + T6b/T7b: the `?type=` API
+  `tests/tv.test.mjs` (MC 10610; 575 lines, 14 gates T1–T10 + T6b/T7b + MC 10612's
+  T11/T12: the `?type=` API
   switch, strict-400 `type`, the `/discover/tv` attribution (`first_air_date.gte`, NEVER
   `primary_release_date`), the popular-arm byte pins, `/tv/[id]` SSR bytes, the
   `/search/multi` three-call split with the movie/tv id-overlap inert, the tree-order
-  implicit-submit byte-gate and the keyless twin; own fixture 3007 / app 3230 / keyless
-  3231) — **60 gates total** (43 existing gates UNCHANGED-green + 4 named `detail-search`
-  updates; 48 was the T9 total) against the built app via `next start`. Fixture seam:
+  implicit-submit byte-gate, the keyless twin, and the tv score anchor + link-free keyless
+  block; own fixture 3007 / app 3230 / keyless
+  3231), `tests/tv-arms.test.mjs` (MC 10877 P2-1; 309 lines, 3 gates: the two tv rails
+  `/api/now-playing?type=tv` → `/tv/on_the_air` + `/api/top-rated?type=tv` →
+  `/tv/top_rated` with never-touch-`/movie/*` ring pins and the keyless 503 twin; own
+  fixture 3008 / app 3232 / keyless 3233) — **67 gates measured at this commit** (the 63
+  at base `88d0abe` UNCHANGED-green + 4 new: D4/D5/T11/T12, 0 existing gates updated —
+  PLAN-t10c §3's pin enumeration held) against the built app via `next start`. Fixture seam:
   `tests/fixtures/server.mjs`
   (404 lines; MC 10610 added the literal tv paths `/trending/tv/day` + `/tv/on_the_air` +
   `/tv/top_rated` + `/tv/popular` resolving BEFORE the `/tv/<id>` id regex, `/discover/tv`,
@@ -212,10 +247,13 @@ on /search — field↔URL sync before any JS).
   `filterPool`/`pageWindow`/`distinctUnion` mechanics shared by fixture and gates; `filterPool`
   gained an injectable date selector (`TV_DATES`), default byte-identical for 2-arg callers) +
   `tests/fixtures/data/*.json`
-  (20 fixtures, 3879 lines; `movies-discover-pool.json` is the 192-item filter pool with the
+  (20 fixtures, 3882 lines; `movies-discover-pool.json` is the 192-item filter pool with the
   §6 conjunction rows incl. poisons `99998→500 / 99997→429 / 99999→200∅ / 99996→page≥2-500`,
   scoped to sole-`with_genres` requests; `tv-discover-pool.json` is the 24-item tv pool,
-  `tv-15003.json` the tv detail whose id exists ONLY as tv — `/movie/15003` stays the D2 404),
+  `tv-15003.json` the tv detail whose id exists ONLY as tv — `/movie/15003` stays the D2 404;
+  the three detail docs carry MC 10612's `imdb_id` rows: movie-15001 `tt1234567`,
+  tv-15003 `tt0903624`, movie-15002 `""` — the D5 falsifier fixture, referenced by no
+  earlier gate),
   pointed at via `TMDB_BASE_URL`/`TMDB_IMAGE_BASE`.
   Node stdlib only — the suites add no dependency. One mechanism, no others.
 
@@ -254,7 +292,10 @@ so no header reason lines are required; the largest test file is `app.integratio
 legal. Re-measured at MC 10610: largest src file 241 lines (`Discover.tsx`, still under the
 250 soft cap; `types.ts` 201, `page.tsx` 198 — `DetailContent.tsx` 118, `tv/[id]/page.tsx` 41
 added), largest tests `app.integration.test.mjs` 567/600, `tv.test.mjs` 539/600,
-`detail-search.test.mjs` 524/600 — all legal. `server.py` at `d55be2a` is 260 lines — 10 over
+`detail-search.test.mjs` 524/600 — all legal. Re-measured at MC 10612: largest src UNCHANGED
+`Discover.tsx` 241 (`types.ts` 208, `DetailContent.tsx` 144, `format.ts` 100 — under the soft
+cap); largest tests `detail-search.test.mjs` 581/600, `tv.test.mjs` 575/600,
+`app.integration.test.mjs` 567/600 — all legal. `server.py` at `d55be2a` is 260 lines — 10 over
 the ~250 soft line, well under the 400
 hard cap; its module header carries the standing single-file reason (stdlib-only launcher, no
 venv/requirements — the render contract runs ONE file), and the growth since 173 lines is the

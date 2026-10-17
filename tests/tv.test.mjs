@@ -537,3 +537,39 @@ test("T10: keyless boot answers 503 TMDB_NOT_CONFIGURED on every ?type=tv API an
   const requests = await ring();
   assert.deepEqual(requests, [], "a missing key must throw BEFORE any fetch is issued (PLAN §5) — tv surface included");
 });
+
+/* ------------------------------------------------------------------ *
+ * T11/T12 (MC 10612): the score-link axis on the tv side. T11 parses
+ * the anchors BY ATTRIBUTE (T8 discipline) with the href DERIVED from
+ * the fixture — the mediaType-parameterized segment (a /movie/-hardcoded
+ * URL reddens HERE); T12 pins the keyless error block link-free.
+ * ------------------------------------------------------------------ */
+test("T11: /tv/15003 carries the TMDB score anchor at themoviedb.org/tv/<id> + the fixture IMDb anchor — both _blank + noopener noreferrer", async () => {
+  const { status, text } = await api(APP_PORT, "/tv/15003");
+  assert.equal(status, 200);
+  const source = fixtureJson("tv-15003.json");
+  const anchors = (text.match(/<a\b[^>]*>/g) ?? []).map((tag) => ({
+    href: attrValue(tag, "href"),
+    target: attrValue(tag, "target"),
+    rel: attrValue(tag, "rel"),
+  }));
+  const tmdb = anchors.find(
+    (a) => a.href === `https://www.themoviedb.org/tv/${source.id}`,
+  );
+  assert.ok(tmdb, "tv detail must link themoviedb.org/TV/<id> — the mediaType segment is the point");
+  assert.equal(tmdb.target, "_blank");
+  assert.equal(tmdb.rel, "noopener noreferrer");
+  const imdb = anchors.find(
+    (a) => a.href === `https://www.imdb.com/title/${source.imdb_id}/`,
+  );
+  assert.ok(imdb, `known imdb_id must render imdb.com/title/${source.imdb_id}/`);
+  assert.equal(imdb.target, "_blank");
+  assert.equal(imdb.rel, "noopener noreferrer");
+});
+
+test("T12: the keyless /tv/15003 error block stays LINK-FREE — zero themoviedb.org AND imdb.com bytes (block is page-level JSX, DetailContent never instantiated)", async () => {
+  const { status, text } = await api(NOKEY_PORT, "/tv/15003");
+  assert.equal(status, 200, "same error block T10 pins (200, never a crash)");
+  assert.doesNotMatch(text, /themoviedb\.org/, "no detail render ⇒ no TMDB anchor bytes");
+  assert.doesNotMatch(text, /imdb\.com/, "no detail render ⇒ no IMDb anchor bytes");
+});

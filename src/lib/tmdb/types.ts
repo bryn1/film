@@ -75,6 +75,10 @@ export interface MovieDetail extends Movie {
   episodeRunTime: number | null;
   /** tv detail: number_of_seasons; movie detail: always null. */
   numberOfSeasons: number | null;
+  /** First-party external-info id (MC 10612): the detail-page IMDb link's
+   *  source. normalizeDetail folds TMDB's absent|null|"" to null — detail-
+   *  only by design (the MOVIE_KEYS list pin, PLAN-t10c §1): NOT on Movie. */
+  imdbId: string | null;
 }
 
 /** /api/search success shape (§3 + MC 10610 §5): four sections, each
@@ -160,6 +164,9 @@ export interface TmdbCreditsRaw {
 export interface TmdbMovieDetailRaw extends TmdbMovieRaw {
   tagline?: string | null;
   runtime?: number | null;
+  /** TMDB sends this absent, null OR "" when unknown (MC 10612) — the
+   *  `||` fold in normalizeDetail is what makes all three mean null. */
+  imdb_id?: string | null;
   /** tv detail: ARRAY (the movie scalar assumption BREAKS here — §3). */
   episode_run_time?: number[] | null;
   /** tv detail only. */

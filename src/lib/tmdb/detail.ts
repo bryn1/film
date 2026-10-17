@@ -65,6 +65,10 @@ export function normalizeDetail(
     numberOfSeasons: raw.number_of_seasons ?? null,
     genres: (raw.genres ?? []).map((g) => ({ id: g.id, name: g.name ?? "" })),
     director: crew.find((c) => c.job === "Director")?.name ?? null,
+    // `||` NOT `??` (MC 10612): TMDB answers imdb_id absent, null OR "" —
+    // all three mean unknown; "" under `??` would render imdb.com/title//
+    // dead. Falsy-fold precedent: normalizeCompanies omits "" origin_country (F-11d).
+    imdbId: raw.imdb_id || null,
     cast,
   };
 }

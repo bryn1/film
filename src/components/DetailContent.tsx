@@ -32,6 +32,7 @@ export interface DetailContentProps {
 
 export function DetailContent({ detail }: DetailContentProps) {
   const year = formatReleaseYear(detail.releaseDate);
+  const rating = formatRating(detail.voteAverage);
   const duration =
     detail.mediaType === "tv" ? detail.episodeRunTime : detail.runtime;
   const durationLabel =
@@ -56,7 +57,32 @@ export function DetailContent({ detail }: DetailContentProps) {
         <p className={styles.tagline}>{detail.tagline}</p>
       )}
       <ul className={styles.meta} role="list">
-        <li>{formatRating(detail.voteAverage)}</li>
+        {/* MC 10612: the score is a LINK to the title's TMDB page (external
+            absolute href ⇒ raw <a>, the Nav skip-link precedent; Link adds
+            nothing for non-routing URLs). The visible badge text is unchanged
+            (D1/T6 text pins); the aria-label names destination + new tab. */}
+        <li>
+          <a
+            href={`https://www.themoviedb.org/${detail.mediaType}/${detail.id}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`${COPY.detail.ratingOnTmdb} ${rating}, ${COPY.detail.newTab}`}
+          >
+            {rating}
+          </a>
+        </li>
+        {detail.imdbId !== null && (
+          <li>
+            <a
+              href={`https://www.imdb.com/title/${detail.imdbId}/`}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${COPY.detail.imdb}, ${COPY.detail.newTab}`}
+            >
+              {COPY.detail.imdb}
+            </a>
+          </li>
+        )}
         {year !== null && <li>{year}</li>}
         {duration !== null && (
           <li>

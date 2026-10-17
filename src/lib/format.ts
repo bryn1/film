@@ -52,6 +52,12 @@ export const COPY = {
     /** tv meta row label — "Säsonger: N". */
     seasons: "Säsonger",
     notAvailable: "Inte tillgänglig",
+    /** Detail meta external links (MC 10612): the score badge links to the
+     *  TMDB page, IMDb renders only when the id is known. "IMDb" is COMP-
+     *  NOTES canon visible; the other two compose aria-labels only. */
+    ratingOnTmdb: "Betyg på TMDB",
+    imdb: "IMDb",
+    newTab: "öppnas i ny flik",
   },
   /** /search section headings (§7c + MC 10610 §5 tv twin). */
   sections: {

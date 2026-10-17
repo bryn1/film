@@ -63,6 +63,15 @@ keyed app + keyless twin on `TVARMS_FIXTURE_PORT`/`TVARMS_APP_PORT`/
 `TVARMS_NOKEY_PORT` (defaults 3008/3232/3233 — disjoint from all five
 siblings), making the glob a six-file concurrent run.
 
+T10c gates (MC 10612, the clickable detail score) ride the EXISTING boots —
+no new file, no new port: `detail-search.test.mjs` gains D4/D5 (the score
+badge is a `themoviedb.org/movie/<id>` anchor with `_blank`/
+`noopener noreferrer` + aria-label; fixture `imdb_id` ""/absent/null folds to
+NO IMDb element — D5 is the `||`-vs-`??` falsifier), `tv.test.mjs` gains
+T11/T12 (the mediaType-parameterized `themoviedb.org/tv/<id>` + IMDb anchor;
+the keyless error block stays link-free). Suite total: **67 gates**
+(19+13+12+3+12+4 existing + 4 new).
+
 Port caveat (measured TEST-c2): the `next/image` allow-list gate in
 `app.integration.test.mjs` is baked at BUILD time by `next.config.mjs`
 (remotePatterns port 3001). With `FIXTURE_PORT` ≠ 3001 the "allows the

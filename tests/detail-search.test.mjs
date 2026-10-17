@@ -156,6 +156,21 @@ function assertFailEnvelope(body, code) {
   assert.ok(body.error.message.length > 0, "error.message must be non-empty");
 }
 
+/** Every <a> of the served bytes as {attrs, text}, attrs parsed BY NAME —
+ *  the T8 discipline (React SSR may reorder attrs, JSX order is no pin).
+ *  D4/D5 helper (MC 10612); local twin per the file-header precedent. */
+function anchorsIn(text) {
+  const anchors = [];
+  for (const match of text.matchAll(/<a\b([^>]*)>([\s\S]*?)<\/a>/g)) {
+    const attrs = {};
+    for (const attr of match[1].matchAll(/([\w:-]+)="([^"]*)"/g)) {
+      attrs[attr[1]] = attr[2];
+    }
+    anchors.push({ attrs, text: match[2].replace(/<!--.*?-->/g, "") });
+  }
+  return anchors;
+}
+
 before(async () => {
   for (const port of [FIXTURE_PORT, APP_PORT]) {
     assert.ok(
@@ -385,6 +400,48 @@ test("D3: /movie/999999 AND /movie/12abc answer 404 (notFound guard, D3/F-7)", a
     const { status } = await api(APP_PORT, route);
     assert.equal(status, 404, `${route} must be 404, saw ${status}`);
   }
+});
+
+/* ------------------------------------------------------------------ *
+ * D4/D5 (MC 10612): the score badge is a LINK. Parsed BY ATTRIBUTE per
+ * the T8 discipline; D4's expectations DERIVE from the fixture JSON.
+ * D5 is the ""-fixture falsifier for normalizeDetail's ||-fold: a ??
+ * mutation keeps "" and renders imdb.com/title// → red HERE.
+ * ------------------------------------------------------------------ */
+test("D4: /movie/15001 serves the score as a TMDB anchor (text = the rating, aria-label non-empty) + an IMDb anchor from the fixture imdb_id — both _blank + noopener noreferrer", async () => {
+  const { status, text } = await api(APP_PORT, "/movie/15001");
+  assert.equal(status, 200);
+  const source = JSON.parse(
+    readFileSync(join(HERE, "fixtures", "data", "movie-15001.json"), "utf8"),
+  );
+  const anchors = anchorsIn(text);
+  const tmdb = anchors.find(
+    (a) => a.attrs.href === `https://www.themoviedb.org/movie/${source.id}`,
+  );
+  assert.ok(tmdb, "score badge must link to themoviedb.org/movie/<id>");
+  assert.equal(tmdb.attrs.target, "_blank", "new tab");
+  assert.equal(tmdb.attrs.rel, "noopener noreferrer", "external-link rel pair");
+  assert.ok(tmdb.attrs["aria-label"] !== undefined && tmdb.attrs["aria-label"] !== "", "aria-label names the destination (bare number is no name)");
+  // visible badge text UNCHANGED (D1's pin surface), derived comma form
+  assert.equal(tmdb.text, String(source.vote_average.toFixed(1)).replace(".", ","));
+  const imdb = anchors.find(
+    (a) => a.attrs.href === `https://www.imdb.com/title/${source.imdb_id}/`,
+  );
+  assert.ok(imdb, `known imdb_id must render imdb.com/title/${source.imdb_id}/`);
+  assert.equal(imdb.attrs.target, "_blank");
+  assert.equal(imdb.attrs.rel, "noopener noreferrer");
+});
+
+test("D5: /movie/15002 (fixture imdb_id \"\") keeps the TMDB score anchor and carries ZERO imdb.com bytes (no dead imdb.com/title// — the ||-fold falsifier)", async () => {
+  const { status, text } = await api(APP_PORT, "/movie/15002");
+  assert.equal(status, 200);
+  assert.ok(
+    anchorsIn(text).some(
+      (a) => a.attrs.href === "https://www.themoviedb.org/movie/15002",
+    ),
+    "the score is ALWAYS a live TMDB link (id is the page itself)",
+  );
+  assert.doesNotMatch(text, /imdb\.com/, '"imdb_id": "" must fold to null — no IMDb element at all');
 });
 
 /* ------------------------------ S4 (neg) ----------------------------- */
